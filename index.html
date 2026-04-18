@@ -1,0 +1,1663 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Agentic SDLC — Cheat Sheet</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-card: #ffffff;
+    --bg-elev: #f7f5ef;
+    --border: #ece6d4;
+    --border-strong: #d4c7a3;
+    --text: #2d2a24;
+    --text-dim: #5e5951;
+    --text-muted: #8d8679;
+    --accent: #b8660d;
+    --accent-soft: #fbead0;
+    --accent-2: #2d6a4f;
+    --accent-2-soft: #dfeedf;
+    --accent-3: #a03521;
+    --accent-3-soft: #fadcd4;
+    --link: #1e5b8f;
+    --maxw: 1100px;
+    --shadow: 0 1px 2px rgba(60,40,10,0.04), 0 1px 1px rgba(60,40,10,0.03);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 28px; }
+
+  header.page {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  header.page .wrap { padding-top: 40px; padding-bottom: 28px; }
+  .brand {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 5px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow);
+  }
+  .brand .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 8px rgba(45,106,79,0.4); }
+  h1 {
+    margin: 16px 0 6px;
+    font-size: clamp(26px, 3.4vw, 36px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    color: var(--text);
+  }
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .subtitle { color: var(--text-dim); max-width: 720px; font-size: 15px; margin: 0; }
+  .meta {
+    margin-top: 18px;
+    display: flex; flex-wrap: wrap; gap: 8px 16px;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+  .meta .kbd { padding: 2px 8px; border: 1px solid var(--border-strong); border-radius: 6px; color: var(--text); background: var(--bg-card); }
+
+  /* Executive Summary */
+  .exec {
+    margin-top: 26px;
+    padding: 22px 24px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 12px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow);
+  }
+  .exec h2 {
+    margin: 0 0 12px;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .exec h2 svg { color: var(--accent); }
+  .exec p {
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.75;
+    margin: 0 0 10px;
+  }
+  .exec p:last-child { margin-bottom: 0; }
+  .exec strong { color: var(--text); font-weight: 600; }
+  .exec .lib {
+    color: var(--accent-2);
+    font-weight: 600;
+    background: var(--accent-2-soft);
+    padding: 2px 6px 2px 8px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    vertical-align: baseline;
+  }
+  .exec .pitch { margin: 0 0 16px; }
+  .exec .pitch > p:not(.example) {
+    margin: 16px 0 6px;
+    color: var(--text);
+    font-size: 14.5px;
+    line-height: 1.75;
+  }
+  .exec .pitch > p:not(.example):first-child { margin-top: 0; }
+  .exec .pitch strong { color: var(--text); font-weight: 700; }
+
+  .exec .pitch .example {
+    margin: 4px 0 4px 14px;
+    padding: 8px 12px;
+    background: var(--bg-elev);
+    border-left: 2px solid var(--border-strong);
+    border-radius: 0 6px 6px 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .exec .pitch .example strong { color: var(--text); }
+  .exec .pitch .ex-tag {
+    display: inline-block;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-right: 8px;
+    vertical-align: baseline;
+  }
+  .exec .pitch .ex-tag.greenfield {
+    background: var(--accent-2-soft);
+    color: var(--accent-2);
+    border: 1px solid rgba(45,106,79,0.2);
+  }
+  .exec .pitch .ex-tag.existing {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid rgba(184,102,13,0.2);
+  }
+
+  .exec .scenarios {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  @media (max-width: 640px) { .exec .scenarios { grid-template-columns: 1fr; } }
+  .exec .scenario {
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    border-top: 3px solid var(--accent-2);
+  }
+  .exec .scenario.existing { border-top-color: var(--accent); }
+  .exec .scenario h3 {
+    margin: 0 0 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    display: flex; align-items: center; gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .exec .scenario h3 svg { color: var(--accent-2); flex-shrink: 0; }
+  .exec .scenario.existing h3 svg { color: var(--accent); }
+  .exec .io {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text);
+    margin: 6px 0;
+  }
+  .exec .io-label {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--accent-2);
+    background: var(--accent-2-soft);
+    padding: 1px 7px;
+    border-radius: 4px;
+    margin-right: 6px;
+    vertical-align: baseline;
+  }
+  .exec .io-label.out { color: var(--accent); background: var(--accent-soft); }
+
+  .exec .why {
+    margin: 14px 0 0;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--text-dim);
+  }
+  .exec .why strong { color: var(--text); }
+
+  .exec .principle {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    color: var(--text);
+    font-weight: 700;
+    position: relative;
+    border-bottom: 1px dotted var(--text);
+    padding: 0 1px;
+    vertical-align: baseline;
+    outline: none;
+    user-select: none;
+  }
+  .exec .principle:hover {
+    background: rgba(0,0,0,0.05);
+    border-bottom-style: solid;
+  }
+  .exec .principle .icon-info {
+    color: var(--text-dim);
+    opacity: 0.8;
+    flex-shrink: 0;
+  }
+  .exec .principle[aria-expanded="true"] {
+    background: rgba(0,0,0,0.06);
+    border-bottom-style: solid;
+  }
+  .exec .principle-tooltip {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(380px, calc(100vw - 40px));
+    padding: 14px 16px;
+    background: #2d2a24;
+    color: #fefcf5;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.55;
+    text-align: left;
+    text-transform: none;
+    letter-spacing: 0;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    z-index: 40;
+    transition: opacity 0.18s ease, visibility 0.18s ease;
+  }
+  .exec .principle[aria-expanded="true"] .principle-tooltip {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .exec .principle-tooltip .pt-title {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffd79a;
+    margin-bottom: 6px;
+  }
+  .exec .principle-tooltip .pt-desc {
+    display: block;
+    margin: 4px 0;
+    color: #e7e3d6;
+    font-size: 12.5px;
+    line-height: 1.55;
+    font-weight: 400;
+  }
+  .exec .principle-tooltip .pt-how {
+    display: block;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(255,215,154,0.25);
+    color: #e7e3d6;
+    font-size: 12.5px;
+    line-height: 1.55;
+    font-weight: 400;
+  }
+  .exec .principle-tooltip .pt-how strong { color: #ffd79a; }
+  .exec .principle-tooltip .pt-examples {
+    display: block;
+    margin-top: 10px;
+  }
+  .exec .principle-tooltip .pt-ex-label {
+    display: block;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffd79a;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  .exec .principle-tooltip .ex-item {
+    display: block;
+    margin: 5px 0;
+    padding-left: 14px;
+    position: relative;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #d8d4c5;
+  }
+  .exec .principle-tooltip .ex-item::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #ffd79a;
+  }
+  .exec .principle-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #2d2a24;
+  }
+  .exec .hint {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--accent-2);
+    opacity: 0.55;
+    border-radius: 50%;
+    width: 16px; height: 16px;
+    outline: none;
+    transition: opacity 0.15s ease, background 0.15s ease;
+  }
+  .exec .hint:hover, .exec .hint:focus {
+    opacity: 1;
+    background: rgba(45,106,79,0.18);
+  }
+  .exec .hint .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(280px, calc(100vw - 40px));
+    padding: 12px 14px;
+    background: #2d2a24;
+    color: #fefcf5;
+    font-weight: 400;
+    font-size: 12.5px;
+    line-height: 1.55;
+    text-align: left;
+    border-radius: 8px;
+    letter-spacing: 0;
+    text-transform: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+    z-index: 30;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+  }
+  .exec .hint .tooltip em {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    color: #ffd79a;
+    font-size: 11.5px;
+    line-height: 1.5;
+  }
+  .exec .hint .tooltip::before {
+    content: ""; position: absolute;
+    top: 100%; left: 0; right: 0; height: 10px;
+  }
+  .exec .hint .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #2d2a24;
+  }
+  .exec .hint:hover .tooltip,
+  .exec .hint:focus .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* Pipeline nav */
+  nav.pipeline {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+    margin-top: 22px;
+  }
+  @media (max-width: 820px) { nav.pipeline { grid-template-columns: repeat(2, 1fr); } }
+  .stage {
+    display: block;
+    padding: 12px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 12.5px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: var(--shadow);
+  }
+  .stage:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(184,102,13,0.12);
+  }
+  .stage .num {
+    font-size: 10.5px; color: var(--text-muted); letter-spacing: 0.16em;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .stage .num .bullet {
+    display: inline-grid; place-items: center;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent); font-weight: 700; font-size: 10.5px;
+    border: 1px solid rgba(184,102,13,0.25);
+    letter-spacing: 0;
+  }
+  .stage .name { font-weight: 600; color: var(--text); margin-top: 4px; }
+  .stage.current {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    box-shadow: 0 0 0 1px var(--accent) inset;
+    pointer-events: none;
+  }
+  .stage.current .bullet { background: var(--accent); color: #fff; border-color: var(--accent); }
+  button.stage {
+    appearance: none;
+    font-family: inherit;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+  }
+  button.stage.current { cursor: default; }
+
+  /* SDLC phase tabs (outer level) */
+  nav.phases {
+    display: flex; flex-wrap: wrap; gap: 4px;
+    margin-top: 22px;
+    padding: 4px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+  }
+  .phase {
+    flex: 1 1 auto; min-width: 92px;
+    padding: 9px 14px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+    text-align: center;
+    font-family: inherit;
+    letter-spacing: 0.02em;
+  }
+  .phase:hover { color: var(--text); background: var(--bg-card); }
+  .phase.current {
+    background: var(--accent);
+    color: #fff;
+    cursor: default;
+    box-shadow: 0 2px 6px rgba(184,102,13,0.25);
+  }
+  .phase:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* Phase placeholder panels */
+  .phase-placeholders {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 28px;
+  }
+  @media (max-width: 900px) { .phase-placeholders { padding: 20px; } }
+  .phase-placeholders .phase-panel { display: none; }
+  .phase-placeholders .phase-panel.active { display: block; animation: fadeIn 0.2s ease; }
+  .placeholder {
+    text-align: center;
+    padding: 72px 28px;
+    background: var(--bg-card);
+    border: 1px dashed var(--border-strong);
+    border-radius: 14px;
+  }
+  .placeholder .ph-icon {
+    display: inline-grid; place-items: center;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    margin-bottom: 16px;
+    border: 1px solid rgba(184,102,13,0.25);
+  }
+  .placeholder h2 {
+    color: var(--text);
+    margin: 0 0 8px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .placeholder .ph-tag {
+    display: inline-block;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid rgba(184,102,13,0.25);
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .placeholder p {
+    color: var(--text-dim);
+    font-size: 14.5px;
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* Visibility: hide Discovery-specific content when another phase is active */
+  body:not([data-active-phase="discovery"]) .exec,
+  body:not([data-active-phase="discovery"]) nav.pipeline,
+  body:not([data-active-phase="discovery"]) main.tabs { display: none; }
+  body[data-active-phase="discovery"] .phase-placeholders { display: none; }
+
+  main.tabs {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 28px;
+  }
+  @media (max-width: 900px) { main.tabs { padding: 20px; } }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  .tab-head {
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tab-head h2 {
+    margin: 0 0 6px;
+    font-size: 22px;
+    line-height: 1.2;
+    color: var(--text);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .tab-head .tab-subtitle {
+    color: var(--text-dim);
+    margin: 0 0 8px;
+    font-size: 14.5px;
+    max-width: 720px;
+    line-height: 1.55;
+  }
+  .tab-head .tab-aliases {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .tab-head .tab-aliases strong { color: var(--text-dim); font-weight: 600; }
+  .tab-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 900px) { .tab-grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+  .card h2 {
+    margin: 0 0 12px;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card h2 svg { flex-shrink: 0; color: var(--accent); }
+  .card h3 {
+    margin: 12px 0 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .card h3 svg { color: var(--accent-2); flex-shrink: 0; }
+  .card p, .card li {
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+  .card strong { color: var(--text); }
+  .card ul { padding-left: 0; margin: 4px 0; list-style: none; }
+  .card ul li {
+    margin: 4px 0; padding-left: 22px; position: relative;
+  }
+  .card ul li::before {
+    content: ""; position: absolute; left: 4px; top: 8px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent-2);
+  }
+
+  .col-12 { grid-column: span 12; }
+  .col-6  { grid-column: span 6; }
+  @media (max-width: 900px) { .col-12,.col-6 { grid-column: span 1; } }
+
+  .steps { display: grid; gap: 10px; }
+  .step {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+    align-items: start;
+    padding: 14px 16px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .step .idx {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: grid; place-items: center;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 14px;
+    border: 1px solid rgba(184,102,13,0.25);
+  }
+  .step h3 { margin: 0 0 4px; font-size: 15px; }
+  .step p { margin: 0 0 6px; font-size: 14px; color: var(--text-dim); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .chip {
+    font-size: 11.5px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    background: var(--bg-card);
+    color: var(--text);
+    font-weight: 500;
+  }
+  .chip.accent { border-color: var(--accent); background: var(--accent-soft); color: #7a4509; }
+  .chip.green  { border-color: var(--accent-2); background: var(--accent-2-soft); color: #1d4d38; }
+  .chip.amber  { border-color: #c17817; background: #fdecc8; color: #6e4008; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  .out-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  @media (max-width: 820px) { .out-grid { grid-template-columns: repeat(2, 1fr); } }
+  .out {
+    padding: 10px 12px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    font-size: 13px;
+    color: var(--text);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .out svg { color: var(--accent-2); flex-shrink: 0; }
+
+  .card code { font-family: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 0.9em; padding: 1px 5px; background: var(--accent-soft); color: #7a4509; border-radius: 4px; }
+
+  .card .example {
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: var(--accent-3-soft);
+    border: 1px solid rgba(160,53,33,0.25);
+    border-left: 3px solid var(--accent-3);
+    color: var(--text);
+    font-size: 13.5px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .card .example svg { color: var(--accent-3); flex-shrink: 0; margin-top: 2px; }
+  .card .example strong { color: var(--accent-3); }
+
+  .gherkin {
+    margin-top: 10px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: var(--accent-2-soft);
+    border: 1px solid rgba(45,106,79,0.25);
+    border-left: 3px solid var(--accent-2);
+    font-family: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .gherkin .kw { color: var(--accent-2); font-weight: 700; }
+
+  footer {
+    padding: 24px 28px 40px;
+    color: var(--text-muted);
+    font-size: 12.5px;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+
+  /* ==================== Mobile responsive ==================== */
+  @media (max-width: 820px) {
+    .wrap { padding: 22px 18px; }
+    header.page .wrap { padding-top: 32px; padding-bottom: 22px; }
+
+    h1 { font-size: 26px; line-height: 1.15; }
+    .subtitle { font-size: 14.5px; }
+    .meta { font-size: 11.5px; gap: 6px 12px; }
+
+    .exec { margin-top: 20px; padding: 16px 16px; }
+    .exec h2 { font-size: 11.5px; }
+    .exec .pitch > p:not(.example) { font-size: 14px; line-height: 1.7; }
+    .exec .pitch .example { font-size: 12.5px; padding: 8px 10px; margin-left: 10px; }
+
+    /* Phase tabs: horizontal scroll on mobile */
+    nav.phases {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scroll-snap-type: x proximity;
+    }
+    nav.phases::-webkit-scrollbar { height: 4px; }
+    nav.phases::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+    .phase {
+      flex: 0 0 auto;
+      min-width: auto;
+      padding: 9px 14px;
+      font-size: 12.5px;
+      scroll-snap-align: start;
+    }
+
+    /* Agent pipeline: 2-column on tablet/mobile */
+    nav.pipeline { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .stage { padding: 10px 12px; }
+    .stage .name { font-size: 12px; line-height: 1.25; }
+
+    main.tabs { padding: 20px 16px; }
+    .phase-placeholders { padding: 20px 16px; }
+
+    .tab-grid { gap: 10px; }
+    .card { padding: 14px 16px; }
+    .tab-head h2 { font-size: 19px; }
+    .tab-head .tab-subtitle { font-size: 13.5px; }
+
+    .placeholder { padding: 56px 22px; }
+    .placeholder h2 { font-size: 20px; }
+
+    /* Tooltip tighter on mobile so it doesn't overflow */
+    .exec .hint .tooltip { width: min(260px, calc(100vw - 32px)); font-size: 12px; padding: 10px 12px; }
+    .exec .principle-tooltip { width: min(320px, calc(100vw - 32px)); padding: 12px 14px; font-size: 12.5px; }
+
+    /* Prevent long code/text from forcing horizontal scroll */
+    .gherkin, .card code, .out, .step h3 { overflow-wrap: break-word; word-break: break-word; }
+  }
+
+  @media (max-width: 520px) {
+    .wrap { padding: 18px 14px; }
+    header.page .wrap { padding-top: 26px; }
+    h1 { font-size: 23px; }
+
+    .brand { font-size: 11px; padding: 4px 10px; }
+    .meta { font-size: 11px; }
+
+    .exec { padding: 14px 14px; margin-top: 18px; }
+    .exec .pitch > p:not(.example) { font-size: 13.5px; }
+
+    nav.pipeline { grid-template-columns: 1fr; }
+
+    main.tabs { padding: 16px 12px; }
+    .phase-placeholders { padding: 16px 12px; }
+
+    .card { padding: 13px 14px; }
+    .card h2 { font-size: 11.5px; }
+    .card h3 { font-size: 13.5px; }
+    .step { padding: 12px 12px; grid-template-columns: 28px 1fr; gap: 10px; }
+    .step .idx { width: 26px; height: 26px; font-size: 12px; }
+
+    .out-grid { grid-template-columns: 1fr; }
+    .out { font-size: 12.5px; }
+
+    .placeholder { padding: 44px 18px; }
+    .placeholder h2 { font-size: 18px; }
+    .placeholder p { font-size: 13px; }
+    .placeholder .ph-icon { width: 48px; height: 48px; }
+
+    footer { flex-direction: column; gap: 6px; text-align: left; font-size: 11.5px; padding: 20px 14px 32px; }
+  }
+
+  /* Enlarge touch targets on any coarse pointer (touch devices) */
+  @media (hover: none) and (pointer: coarse) {
+    .exec .hint { width: 22px; height: 22px; }
+    .exec .hint svg { width: 14px; height: 14px; }
+    .principle { padding: 2px 3px; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    .card, .step, .stage, .out, .exec { box-shadow: none !important; }
+  }
+</style>
+</head>
+<body data-active-phase="discovery">
+
+<header class="page">
+  <div class="wrap">
+    <span class="brand"><span class="dot"></span>Agentic SDLC · Cheat Sheet</span>
+    <h1>Agentic SDLC — <em>Cheat Sheet</em></h1>
+    <p class="subtitle">
+      How agentic AI transforms every phase of the software development lifecycle — from the first idea through production, observability, and compliance.
+    </p>
+    <div class="meta">
+      <span>End-to-end SDLC · <span class="kbd">8 Phases</span></span>
+      <span>Click any phase below to view its cheat sheet</span>
+    </div>
+
+    <nav class="phases" role="tablist" aria-label="SDLC phase tabs">
+      <button type="button" class="phase current" data-phase="discovery" role="tab" aria-selected="true">Discovery</button>
+      <button type="button" class="phase" data-phase="design" role="tab" aria-selected="false">Design</button>
+      <button type="button" class="phase" data-phase="develop" role="tab" aria-selected="false">Develop</button>
+      <button type="button" class="phase" data-phase="eval" role="tab" aria-selected="false">Eval</button>
+      <button type="button" class="phase" data-phase="observe" role="tab" aria-selected="false">Observe</button>
+      <button type="button" class="phase" data-phase="scale" role="tab" aria-selected="false">Scale</button>
+      <button type="button" class="phase" data-phase="security" role="tab" aria-selected="false">Security</button>
+      <button type="button" class="phase" data-phase="compliance" role="tab" aria-selected="false">Compliance</button>
+    </nav>
+
+    <section class="exec">
+      <h2>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Executive Summary
+      </h2>
+      <div class="pitch">
+        <p>
+          Our agentic system foolproofs requirement gathering so scope creep never starts. The moment we kick off the discovery session, our <strong>Research agent</strong> reads every artifact you share — decks, PDFs, voice memos, screenshots — fans out across the open web with <span class="lib">Exa<span class="hint" tabindex="0" role="button" aria-label="About Exa"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Neural search API for LLMs. Browses the web with semantic queries and integrates with Claude Code as an MCP server.<em>Example: pulls recent competitor feature pages when benchmarking a checkout requirement.</em></span></span></span> and <span class="lib">Firecrawl<span class="hint" tabindex="0" role="button" aria-label="About Firecrawl"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Web crawling and scraping API that turns live sites into clean markdown for LLMs. Also works as an MCP server with Claude Code.<em>Example: scrapes a partner's API documentation page into structured context for the requirement.</em></span></span></span>, pulls citation-backed world knowledge through <span class="lib">Perplexity Sonar<span class="hint" tabindex="0" role="button" aria-label="About Perplexity Sonar"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">LLM search API that returns answers with inline source citations, ideal for evidence-backed research.<em>Example: answers "what accessibility standards apply to checkout" with cited WCAG references.</em></span></span></span>, and lands everything in a <span class="lib">Neo4j<span class="hint" tabindex="0" role="button" aria-label="About Neo4j"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Native graph database that stores entities as nodes and their relationships as traversable edges — ideal for dependency and impact queries.<em>Example: models "Cart Service depends on Pricing API" as an edge queried in milliseconds during impact analysis.</em></span></span></span> knowledge graph via <span class="lib">LlamaIndex<span class="hint" tabindex="0" role="button" aria-label="About LlamaIndex"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Open-source data framework for LLM applications — handles ingestion, indexing, and retrieval over your private data sources.<em>Example: indexes a monorepo's services and their usages so the agent can answer dependency queries with citations.</em></span></span></span> <span class="principle" tabindex="0" role="button" aria-expanded="false" aria-label="About GraphRAG">GraphRAG<svg class="icon-info" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="principle-tooltip"><span class="pt-title">GraphRAG</span><span class="pt-desc">Retrieval-augmented generation backed by a graph database that stores relationships between code, features, services, and technical debt — not flat similarity lookup.</span><span class="pt-how"><strong>How:</strong> the agent traverses edges like "Feature A → depends on → Service B → affected by → Tech Debt C" to answer impact and dependency questions.</span><span class="pt-examples"><span class="pt-ex-label">Examples</span><span class="ex-item">"What breaks if we change the pricing API?" returns Pricing + 3 downstream consumers + 2 open tech-debt tickets on those nodes.</span><span class="ex-item">"Which modules own customer PII?" traces edges between data fields and services to surface every reader and writer.</span></span></span></span> — so "Feature A depends on Service B" becomes a traceable fact, not a guess.
+        </p>
+        <p class="example"><span class="ex-tag greenfield">Greenfield</span>For a marketplace for local artisans, Research pulls competitor benchmarks from Etsy and Folksy, WCAG accessibility standards, and payment-processor comparisons — every claim source-cited.</p>
+        <p class="example"><span class="ex-tag existing">Existing</span>For a saved-cart feature in your B2B checkout, Research traverses your Neo4j graph and flags that Cart Service writes to three notification workers and the Tax API you thought was isolated.</p>
+
+        <p>
+          Our <strong>Synthesis agent</strong> then reranks findings with <span class="lib">Cohere<span class="hint" tabindex="0" role="button" aria-label="About Cohere"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">AI platform best known for its high-quality reranker that re-orders retrieved documents by real relevance to the query.<em>Example: reranks 50 noisy search results down to the 8 most relevant, sharpening the synthesis brief.</em></span></span></span>, dedupes at cosine similarity above 0.85, and runs a <span class="principle" tabindex="0" role="button" aria-expanded="false" aria-label="About Chain of Verification">Chain of Verification<svg class="icon-info" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="principle-tooltip"><span class="pt-title">Chain of Verification (CoVe)</span><span class="pt-desc">A two-pass reasoning pattern where the LLM drafts an answer, then generates verification questions against its own draft to catch contradictions and unsupported claims.</span><span class="pt-how"><strong>How:</strong> after drafting the brief, the agent asks itself "Does section X contradict Y? Is assumption Z backed by evidence?" and revises before finalizing.</span><span class="pt-examples"><span class="pt-ex-label">Examples</span><span class="ex-item">Draft says "checkout must work offline" and "requires real-time tax API" — CoVe flags the contradiction; brief becomes "offline queue with deferred tax validation".</span><span class="ex-item">Draft assumes "all users have email" but scope includes guest users — flagged, replaced with a magic-link alternative.</span></span></span></span> pass to catch contradictions — all enforced by <span class="lib">Instructor<span class="hint" tabindex="0" role="button" aria-label="About Instructor"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Python library that forces LLMs to return validated Pydantic objects — no more parsing free-form text.<em>Example: guarantees the synthesis brief always has "risks" and "scope" as structured fields.</em></span></span></span> and <span class="lib">PydanticAI<span class="hint" tabindex="0" role="button" aria-label="About PydanticAI"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Typed agent framework built on Pydantic models for type-safe LLM orchestration.<em>Example: defines an agent that must emit a RequirementBrief schema — malformed output is rejected.</em></span></span></span> so no required section ever goes missing, with <span class="lib">DSPy<span class="hint" tabindex="0" role="button" aria-label="About DSPy"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Framework that compiles and optimizes LLM prompts like programs — learns the best phrasings from examples.<em>Example: improves repeatability of the synthesis brief across 50 runs of the same input.</em></span></span></span> tuning the whole thing for consistency across runs.
+        </p>
+        <p class="example"><span class="ex-tag greenfield">Greenfield</span>Catches that the artisan-marketplace draft promises both "zero-fee listing" and "revenue from listing fees" — contradiction flagged, brief revised to "revenue from transaction cut".</p>
+        <p class="example"><span class="ex-tag existing">Existing</span>Finds that the saved-cart spec says "cart persists forever" while the GDPR addendum requires 30-day deletion — revised to "cart persists 90 days, then purged".</p>
+
+        <p>
+          Our <strong>Workflow agent</strong> runs <span class="principle" tabindex="0" role="button" aria-expanded="false" aria-label="About Persona-based journey simulation">Persona-based journey simulation<svg class="icon-info" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="principle-tooltip"><span class="pt-title">Persona-based journey simulation</span><span class="pt-desc">Runs multiple synthetic user personas — power user, guest, admin, accessibility-first — through the proposed workflow to expose hidden gaps before engineering begins.</span><span class="pt-how"><strong>How:</strong> each persona navigates the feature step-by-step; the agent records where they hit dead ends, confusion, or missing states, then proposes new requirements.</span><span class="pt-examples"><span class="pt-ex-label">Examples</span><span class="ex-item">A Guest User on the new checkout can place an order but can't view it afterward — new requirement: magic-link order lookup.</span><span class="ex-item">An Accessibility-First persona finds form errors rely on color only — new requirement: screen-reader-friendly error announcements.</span></span></span></span> — routing power users, guests, admins, and accessibility-first personas through the proposed flow and drawing each sequence in <span class="lib">Mermaid.js<span class="hint" tabindex="0" role="button" aria-label="About Mermaid.js"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Text-to-diagram library for sequence, flow, and state diagrams — renders directly in Markdown.<em>Example: renders the checkout sequence — Billing → Tax → Payment → Notification — straight from generated text.</em></span></span></span> or <span class="lib">D2<span class="hint" tabindex="0" role="button" aria-label="About D2"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Modern diagramming language with auto-layout — ideal for technical architecture and dependency diagrams.<em>Example: renders a service-dependency map showing how a new feature wires into existing modules.</em></span></span></span>.
+        </p>
+        <p class="example"><span class="ex-tag greenfield">Greenfield</span>A first-time buyer persona hits a dead-end on the artisan marketplace because there's no guest-checkout path — new requirement added before engineering starts.</p>
+        <p class="example"><span class="ex-tag existing">Existing</span>A returning B2B buyer with an expired session can see the saved cart but can't add to it — new requirement: re-authenticate on cart-resume.</p>
+
+        <p>
+          Our <strong>Approval agent</strong> locks the spec as <span class="principle" tabindex="0" role="button" aria-expanded="false" aria-label="About BDD-style Given/When/Then">BDD-style Given/When/Then<svg class="icon-info" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="principle-tooltip"><span class="pt-title">BDD-style Given / When / Then</span><span class="pt-desc">Behavior-Driven Development format where each requirement is written as Given (context), When (action), Then (expected outcome) — human-readable and machine-executable.</span><span class="pt-how"><strong>How:</strong> each workflow step is converted to Gherkin syntax; the same text doubles as an automated test, so product, QA, and engineering work from one source.</span><span class="pt-examples"><span class="pt-ex-label">Examples</span><span class="ex-item">Given the user has zero balance, When they click "Buy", Then the system shows an "Insufficient Funds" message.</span><span class="ex-item">Given a guest user with an order, When they open the order-history link from email, Then the system grants read-only access for 24 hours.</span></span></span></span> <span class="lib">Cucumber/Gherkin<span class="hint" tabindex="0" role="button" aria-label="About Cucumber/Gherkin"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Behavior-driven testing format — human-readable scenarios that are also machine-executable tests.<em>Example: expresses "Given zero balance, When clicking Buy, Then show Insufficient Funds" as a testable spec.</em></span></span></span> — every "done" is a pass-fail rule, each one traceable to a specific scope item.
+        </p>
+        <p class="example"><span class="ex-tag greenfield">Greenfield</span>"Given an artisan has uploaded 5 listings, When they submit for approval, Then the admin queue shows them within 60 seconds."</p>
+        <p class="example"><span class="ex-tag existing">Existing</span>"Given a buyer has a saved cart older than 90 days, When they log in, Then the cart is cleared and a notice is shown."</p>
+
+        <p>
+          Our <strong>QA agent</strong> closes the loop: <span class="lib">Claude Code<span class="hint" tabindex="0" role="button" aria-label="About Claude Code"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Anthropic's agentic coding CLI that reads the codebase and writes changes matching its conventions.<em>Example: generates pytest scaffolds that follow the project's existing fixtures and naming patterns.</em></span></span></span> reads your actual repo — pytest.ini, jest.config.ts, your fixtures — and emits <span class="principle" tabindex="0" role="button" aria-expanded="false" aria-label="About property-based testing">property-based testing<svg class="icon-info" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="principle-tooltip"><span class="pt-title">Property-based testing</span><span class="pt-desc">Testing that asserts invariants ("properties") and lets the framework generate thousands of random inputs to try to break them — instead of writing fixed example cases.</span><span class="pt-how"><strong>How:</strong> you declare a property like "sum(a,b) === sum(b,a)"; the framework fires random values, including edge cases (negatives, zero, huge numbers, empty strings), until it finds a counter-example.</span><span class="pt-examples"><span class="pt-ex-label">Examples</span><span class="ex-item">Pricing calculator: property "price &gt;= 0" tested with negatives, zero, huge numbers — finds a bug with negative quantities.</span><span class="ex-item">JSON parser: property "parse(stringify(x)) === x" — finds that emoji-containing strings don't round-trip correctly.</span></span></span></span> coverage in <span class="lib">Hypothesis<span class="hint" tabindex="0" role="button" aria-label="About Hypothesis"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Property-based testing library for Python — generates thousands of edge-case inputs automatically.<em>Example: breaks the pricing calculator with negative, zero, and extremely-large values.</em></span></span></span> or <span class="lib">Zod<span class="hint" tabindex="0" role="button" aria-label="About Zod"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">TypeScript schema-validation library for runtime type checks and mock data generation.<em>Example: produces validated mock payloads for third-party webhooks during integration tests.</em></span></span></span> that runs on day one. The whole pipeline orchestrates as a stateful <span class="lib">LangGraph<span class="hint" tabindex="0" role="button" aria-label="About LangGraph"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Stateful graph framework for LLM agents — supports cycles, branching, and re-entry when output quality is poor.<em>Example: lets the discovery agent loop back and re-search when retrieved evidence is below threshold.</em></span></span></span>: when evidence is weak anywhere, the system loops back instead of shipping uncertainty forward.
+        </p>
+        <p class="example"><span class="ex-tag greenfield">Greenfield</span>For the artisan marketplace on Django, QA emits pytest suites with Hypothesis strategies covering listing prices with negatives, zeros, and extreme values — aligned to the project's conftest.py conventions.</p>
+        <p class="example"><span class="ex-tag existing">Existing</span>For saved-cart on Next.js, QA reads vitest.config.ts and generates Zod-validated mock payloads for cart-expiry edge cases, plugging into existing test fixtures.</p>
+      </div>
+
+      <div class="scenarios">
+        <div class="scenario greenfield">
+          <h3>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></svg>
+            Greenfield project
+          </h3>
+          <div class="io"><span class="io-label">In</span>"Build a marketplace for local artisans."</div>
+          <div class="io"><span class="io-label out">Out</span>Market benchmark · in/out-of-scope boundaries · persona journeys · risk catalog · Gherkin acceptance criteria · runnable test scaffolds.</div>
+        </div>
+        <div class="scenario existing">
+          <h3>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            Existing system
+          </h3>
+          <div class="io"><span class="io-label">In</span>"Add saved-cart to our B2B checkout."</div>
+          <div class="io"><span class="io-label out">Out</span>GraphRAG dependency map · impact &amp; tech-debt report · Gherkin criteria for the change · property-based regression tests for the new endpoints.</div>
+        </div>
+      </div>
+
+      <p class="why">
+        <strong>Why it holds together:</strong> <span class="principle" tabindex="0" role="button" aria-expanded="false" aria-label="About stateful agent orchestration">stateful agent orchestration<svg class="icon-info" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="principle-tooltip"><span class="pt-title">Stateful agent orchestration</span><span class="pt-desc">A workflow pattern where agents share state across steps and can loop back to a previous step if the current output is weak or incomplete — instead of shipping uncertain results forward.</span><span class="pt-how"><strong>How:</strong> LangGraph maintains a graph of agent states; each node can proceed, retry, or re-enter a previous node based on quality checks and confidence thresholds.</span><span class="pt-examples"><span class="pt-ex-label">Examples</span><span class="ex-item">Research evidence confidence drops below 0.7 → the graph loops back to re-run search with broader queries before moving on.</span><span class="ex-item">Synthesis finds unresolved contradictions → re-enters the Research node to gather more context on the conflicting claim.</span></span></span></span> re-enters weak steps instead of shipping uncertain output, schema-driven outputs guarantee completeness, and every claim is source-cited — one trustworthy document for engineering, product, and QA to execute from.
+      </p>
+    </section>
+
+    <nav class="pipeline" role="tablist" aria-label="Agent cheat sheet tabs">
+      <button type="button" class="stage current" data-tab="discovery" role="tab" aria-selected="true" aria-controls="panel-discovery"><div class="num"><span class="bullet">1</span> Agent</div><div class="name">Discovery &amp; Research</div></button>
+      <button type="button" class="stage" data-tab="synthesis" role="tab" aria-selected="false" aria-controls="panel-synthesis"><div class="num"><span class="bullet">2</span> Agent</div><div class="name">Synthesis &amp; Validation</div></button>
+      <button type="button" class="stage" data-tab="workflow" role="tab" aria-selected="false" aria-controls="panel-workflow"><div class="num"><span class="bullet">3</span> Agent</div><div class="name">Workflow Simulation</div></button>
+      <button type="button" class="stage" data-tab="approval" role="tab" aria-selected="false" aria-controls="panel-approval"><div class="num"><span class="bullet">4</span> Agent</div><div class="name">Approval &amp; DoD</div></button>
+      <button type="button" class="stage" data-tab="qa" role="tab" aria-selected="false" aria-controls="panel-qa"><div class="num"><span class="bullet">5</span> Agent</div><div class="name">QA &amp; Test Architecture</div></button>
+    </nav>
+  </div>
+</header>
+
+<main class="tabs">
+
+  <div class="tab-panel active" id="panel-discovery" data-panel="discovery" role="tabpanel" aria-labelledby="tab-discovery">
+    <div class="tab-head">
+      <h2>Discovery &amp; Research Agent</h2>
+      <p class="tab-subtitle">Converts an initial requirement into a context-rich evidence base grounded in internal project artifacts and external world knowledge.</p>
+      <div class="tab-aliases"><strong>Also called:</strong> Context Intelligence Agent · Requirement Research Agent</div>
+    </div>
+    <div class="tab-grid">
+
+  <div class="card col-12">
+    <h2>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></svg>
+      Purpose
+    </h2>
+    <p>Transform an initial requirement into a <strong>context-rich evidence base</strong> — grounded in both internal project artifacts and external world knowledge.</p>
+  </div>
+
+  <div class="card col-6">
+    <h2>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      Role · Greenfield Projects
+    </h2>
+    <ul>
+      <li>Discovery analysis</li>
+      <li>Benchmarking</li>
+      <li>Feasibility analysis</li>
+      <li>Opportunity exploration</li>
+    </ul>
+  </div>
+
+  <div class="card col-6">
+    <h2>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16"/><path d="M3 21v-5h5"/></svg>
+      Role · Existing Systems
+    </h2>
+    <ul>
+      <li>Impact analysis</li>
+      <li>Dependency discovery</li>
+      <li>Technical debt assessment</li>
+      <li>Change-risk analysis</li>
+    </ul>
+  </div>
+
+  <div class="card col-12">
+    <h2>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+      How It Works
+    </h2>
+    <div class="steps">
+
+      <div class="step">
+        <div class="idx">1</div>
+        <div>
+          <h3>Multi-Modal Intake Processing</h3>
+          <p>Processes all incoming artifacts and converts them into structured context.</p>
+          <div class="chips">
+            <span class="chip">Images</span>
+            <span class="chip">PDFs</span>
+            <span class="chip">Word documents</span>
+            <span class="chip">PowerPoint files</span>
+            <span class="chip">Audio</span>
+            <span class="chip">Existing project artifacts</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="idx">2</div>
+        <div>
+          <h3>External Knowledge Expansion</h3>
+          <p>Performs deep external search to bring in industry patterns, benchmarks, standards, and technical knowledge relevant to the requirement.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="idx">3</div>
+        <div>
+          <h3>Query Decomposition &amp; Aggregation</h3>
+          <p>Decomposes the requirement into multiple research angles, runs parallel retrieval, and aggregates the findings into a requirement context package.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card col-12">
+    <h2>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+      Technology Stack
+    </h2>
+
+    <div class="two-col" style="margin-top: 6px;">
+      <div>
+        <h3>Orchestration</h3>
+        <div class="chips"><span class="chip accent">LangGraph</span></div>
+        <p style="margin-top:6px;">Preferred for stateful, cyclic workflows. Allows re-entry into earlier steps when search quality is poor.</p>
+      </div>
+
+      <div>
+        <h3>External Search</h3>
+        <div class="chips">
+          <span class="chip accent">Exa</span>
+          <span class="chip accent">Firecrawl</span>
+          <span class="chip accent">Perplexity Sonar API</span>
+        </div>
+        <p style="margin-top:6px;">Neural or citation-friendly retrieval with outputs that are easier for LLM pipelines to consume.</p>
+      </div>
+
+      <div>
+        <h3>Internal Retrieval</h3>
+        <div class="chips"><span class="chip green">LlamaIndex + Neo4j (GraphRAG)</span></div>
+        <p style="margin-top:6px;">Context retrieval with relationship awareness:</p>
+        <ul>
+          <li>Feature A depends on Service B</li>
+          <li>Workflow X affects Module Y</li>
+          <li>Requirement C is linked to Technical Debt D</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Query Expansion</h3>
+        <div class="chips">
+          <span class="chip amber">LangChain MultiQueryRetriever</span>
+          <span class="chip amber">Custom LangGraph decomposition node</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card col-12">
+    <h2>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+      Output — Structured Research Context Package
+    </h2>
+    <div class="out-grid">
+      <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Problem framing</div>
+      <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Internal dependencies</div>
+      <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>External benchmarks</div>
+      <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Feasibility signals</div>
+      <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Risks and assumptions</div>
+      <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Technical debt insights</div>
+      <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Open questions</div>
+      <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Source-backed evidence</div>
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-synthesis" data-panel="synthesis" role="tabpanel" aria-labelledby="tab-synthesis">
+    <div class="tab-head">
+      <h2>Synthesis &amp; Validation Agent</h2>
+      <p class="tab-subtitle">Transforms the raw research bundle into a validated, deduplicated, and decision-ready requirement brief.</p>
+      <div class="tab-aliases"><strong>Also called:</strong> Synthesis Agent · Validation Agent · Structured Brief Agent</div>
+    </div>
+    <div class="tab-grid">
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></svg>
+          Purpose
+        </h2>
+        <p>Transform the raw research bundle into a <strong>validated, deduplicated, and decision-ready requirement brief</strong>.</p>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          Role
+        </h2>
+        <p>Not a simple summarizer. Filters noise, resolves conflicts, validates claims, and produces a structured output that downstream teams can trust.</p>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+          How It Works
+        </h2>
+        <div class="steps">
+          <div class="step">
+            <div class="idx">1</div>
+            <div>
+              <h3>Semantic Deduplication</h3>
+              <p>Removes repetitive or overlapping findings and distills the research bundle into the most meaningful signals.</p>
+              <div class="chips">
+                <span class="chip">Cohere reranking</span>
+                <span class="chip">Text embeddings</span>
+                <span class="chip">Scikit-learn similarity grouping</span>
+                <span class="chip">Cosine similarity thresholding</span>
+              </div>
+              <p style="margin-top: 8px;"><strong>Typical threshold:</strong> merge or distill sources with cosine similarity above <strong>0.85</strong>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">2</div>
+            <div>
+              <h3>Contradiction Detection</h3>
+              <p>Checks for conflicts between facts, assumptions, and claims gathered during research.</p>
+              <div class="chips">
+                <span class="chip">Conflict matrix</span>
+                <span class="chip">Chain of Verification (CoVe)</span>
+                <span class="chip">Second-model validation pass</span>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">3</div>
+            <div>
+              <h3>Structured Brief Generation</h3>
+              <p>Transforms validated information into a schema-driven requirement brief.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Technology Stack
+        </h2>
+        <div class="two-col" style="margin-top: 6px;">
+          <div>
+            <h3>Structured Output Enforcement</h3>
+            <div class="chips">
+              <span class="chip accent">Instructor</span>
+              <span class="chip accent">PydanticAI</span>
+            </div>
+            <p style="margin-top:6px;">Ensures required sections cannot be omitted.</p>
+          </div>
+          <div>
+            <h3>Reasoning Models</h3>
+            <div class="chips">
+              <span class="chip accent">Claude</span>
+              <span class="chip accent">GPT</span>
+            </div>
+            <p style="margin-top:6px;">First pass with higher temperature for draft synthesis; second pass with temperature 0 for verification and consistency.</p>
+          </div>
+          <div>
+            <h3>Optimization</h3>
+            <div class="chips"><span class="chip green">DSPy</span></div>
+            <p style="margin-top:6px;">Used to improve consistency and repeatability beyond prompt-only workflows.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+          Output — Structured Validated Brief
+        </h2>
+        <div class="out-grid">
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Problem statement</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Scope and exclusions</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>User journeys</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Risks</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Assumptions</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Constraints</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Recommendations</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Open issues</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-workflow" data-panel="workflow" role="tabpanel" aria-labelledby="tab-workflow">
+    <div class="tab-head">
+      <h2>Workflow Simulation Agent</h2>
+      <p class="tab-subtitle">Converts structured requirements into human interaction flows, behavioral simulations, and technical journey maps.</p>
+      <div class="tab-aliases"><strong>Also called:</strong> Workflow Agent · Persona Simulation Agent · Journey Modeling Agent</div>
+    </div>
+    <div class="tab-grid">
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></svg>
+          Purpose
+        </h2>
+        <p>Convert structured requirements into <strong>human interaction flows, behavioral simulations, and technical journey maps</strong>.</p>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          Role
+        </h2>
+        <p>Acts as the simulator. Explores how different user personas interact with the system and reveals hidden workflow gaps before implementation begins.</p>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+          How It Works
+        </h2>
+        <div class="steps">
+          <div class="step">
+            <div class="idx">1</div>
+            <div>
+              <h3>Persona Orchestration</h3>
+              <p>Generates multiple realistic user personas to simulate different usage patterns.</p>
+              <div class="chips">
+                <span class="chip">Power User</span>
+                <span class="chip">Accessibility-First User</span>
+                <span class="chip">New User</span>
+                <span class="chip">Guest User</span>
+                <span class="chip">Admin Operator</span>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">2</div>
+            <div>
+              <h3>Workflow and Visual Flow Generation</h3>
+              <p>Creates system flows, state diagrams, and interaction diagrams that represent the expected journey.</p>
+              <div class="example">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                <div><strong>Example:</strong> a checkout flow showing how Billing Service, Tax API, Payment Gateway, and Notification System interact during a purchase sequence.</div>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">3</div>
+            <div>
+              <h3>Multi-Step Simulation</h3>
+              <p>Simulates user and system interactions to identify dead ends, friction points, or missing requirements.</p>
+              <div class="example">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                <div><strong>Example:</strong> a simulation reveals that guest users can place an order but have no way to view order history afterward, leading to a new requirement such as magic-link access.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Technology Stack
+        </h2>
+        <div class="two-col" style="margin-top: 6px;">
+          <div>
+            <h3>Orchestration</h3>
+            <div class="chips"><span class="chip accent">LangGraph</span></div>
+            <p style="margin-top:6px;">Used for stateful multi-step simulation loops.</p>
+          </div>
+          <div>
+            <h3>Diagramming</h3>
+            <div class="chips">
+              <span class="chip accent">Mermaid.js</span>
+              <span class="chip accent">D2</span>
+            </div>
+            <p style="margin-top:6px;">D2 is useful for auto-layout technical diagrams and architecture flows.</p>
+          </div>
+          <div>
+            <h3>Reasoning Model</h3>
+            <div class="chips"><span class="chip green">GPT-4o</span></div>
+            <p style="margin-top:6px;">Strong for persona simulation and creative interaction modeling.</p>
+          </div>
+          <div>
+            <h3>Optimization</h3>
+            <div class="chips"><span class="chip amber">Few-shot examples</span></div>
+            <p style="margin-top:6px;">Few-shot examples of strong UX flows and successful workflows.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+          Output
+        </h2>
+        <div class="out-grid">
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Persona-based user journeys</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Workflow maps</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Sequence diagrams</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Gap discovery notes</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Missing requirement suggestions</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-approval" data-panel="approval" role="tabpanel" aria-labelledby="tab-approval">
+    <div class="tab-head">
+      <h2>Approval &amp; Definition-of-Done Agent</h2>
+      <p class="tab-subtitle">Converts workflows and requirements into machine-readable behavioral specifications that define exactly what "done" means.</p>
+      <div class="tab-aliases"><strong>Also called:</strong> Approver Agent · Rule-Making Agent · Definition-of-Done Agent · Acceptance Criteria Architect</div>
+    </div>
+    <div class="tab-grid">
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></svg>
+          Purpose
+        </h2>
+        <p>Convert workflows and requirements into <strong>machine-readable behavioral specifications</strong> that define exactly what "done" means.</p>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          Role
+        </h2>
+        <p>Formalizes the requirement into clear pass/fail conditions that can be approved, traced, and verified.</p>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+          How It Works
+        </h2>
+        <div class="steps">
+          <div class="step">
+            <div class="idx">1</div>
+            <div>
+              <h3>Behavioral Atomicity</h3>
+              <p>Breaks each workflow into atomic actions that can be independently validated.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">2</div>
+            <div>
+              <h3>Acceptance Criteria Structuring</h3>
+              <p>Converts requirement expectations into structured behavioral specifications.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">3</div>
+            <div>
+              <h3>Gherkin Conversion</h3>
+              <p>Maps requirements into <strong>Given / When / Then</strong> format for testability and precision.</p>
+              <div class="gherkin">
+                <span class="kw">Given</span> the user has zero balance<br/>
+                <span class="kw">When</span> they click "Buy"<br/>
+                <span class="kw">Then</span> the system shows an "Insufficient Funds" message
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Technology Stack
+        </h2>
+        <div class="two-col" style="margin-top: 6px;">
+          <div>
+            <h3>Structured Output</h3>
+            <div class="chips"><span class="chip accent">Instructor</span></div>
+            <p style="margin-top:6px;">Used to enforce a strict <code>List[GherkinRecord]</code> or equivalent schema.</p>
+          </div>
+          <div>
+            <h3>Specification Format</h3>
+            <div class="chips"><span class="chip accent">Cucumber / Gherkin</span></div>
+          </div>
+          <div>
+            <h3>Reasoning Model</h3>
+            <div class="chips"><span class="chip green">GPT-4o</span></div>
+            <p style="margin-top:6px;">Used at temperature 0 for low-variance logical mapping.</p>
+          </div>
+          <div>
+            <h3>Optimization</h3>
+            <div class="chips"><span class="chip amber">Chain of Verification</span></div>
+            <p style="margin-top:6px;">Ensures each acceptance criterion maps back to a specific in-scope item.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+          Output
+        </h2>
+        <div class="out-grid">
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Machine-readable acceptance criteria</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Definition of Done records</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Atomic workflow validations</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Requirement-to-criteria traceability</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-qa" data-panel="qa" role="tabpanel" aria-labelledby="tab-qa">
+    <div class="tab-head">
+      <h2>QA &amp; Test Architecture Agent</h2>
+      <p class="tab-subtitle">Bridges requirements into implementation by generating developer-ready test scaffolds, edge-case suites, and mock payloads.</p>
+      <div class="tab-aliases"><strong>Also called:</strong> QA Agent · Unit Test Architect · Test Readiness Agent · Code Bridge Agent</div>
+    </div>
+    <div class="tab-grid">
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></svg>
+          Purpose
+        </h2>
+        <p>Bridge requirements into implementation by generating <strong>developer-ready test scaffolds, edge-case suites, and mock payloads</strong>.</p>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          Role
+        </h2>
+        <p>Takes the approved requirement package and turns it into concrete testing assets developers can use immediately.</p>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+          How It Works
+        </h2>
+        <div class="steps">
+          <div class="step">
+            <div class="idx">1</div>
+            <div>
+              <h3>Property-Based Test Generation</h3>
+              <p>Generates tests that validate boundaries, invalid states, and unexpected input combinations instead of only fixed examples.</p>
+              <div class="chips">
+                <span class="chip">Negative prices</span>
+                <span class="chip">Empty required fields</span>
+                <span class="chip">Emojis in unexpected fields</span>
+                <span class="chip">Extremely long input strings</span>
+                <span class="chip">Malformed third-party payloads</span>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">2</div>
+            <div>
+              <h3>Mock Payload Synthesis</h3>
+              <p>Generates realistic payloads and fixtures for internal and third-party integrations.</p>
+              <div class="example">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                <div><strong>Example:</strong> a complex webhook mock for Stripe or a tax API event payload for local testing.</div>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">3</div>
+            <div>
+              <h3>Repository-Aware Test Alignment</h3>
+              <p>Checks the actual project setup so that the generated tests match the repository's framework and conventions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Technology Stack
+        </h2>
+        <div class="two-col" style="margin-top: 6px;">
+          <div>
+            <h3>Repository-Aware Generation</h3>
+            <div class="chips">
+              <span class="chip accent">Claude Code</span>
+              <span class="chip accent">GitHub Copilot SDK</span>
+            </div>
+          </div>
+          <div>
+            <h3>Reasoning Model</h3>
+            <div class="chips"><span class="chip accent">Claude</span></div>
+            <p style="margin-top:6px;">Chosen for high code-generation reliability.</p>
+          </div>
+          <div>
+            <h3>Test and Schema Tools</h3>
+            <div class="chips">
+              <span class="chip green">Hypothesis (Python)</span>
+              <span class="chip green">Zod (TypeScript)</span>
+            </div>
+          </div>
+          <div>
+            <h3>Optimization</h3>
+            <div class="chips"><span class="chip amber">RAG on Codebase</span></div>
+            <p style="margin-top:6px;">Retrieves files such as <code>jest.config.ts</code>, <code>playwright.config.ts</code>, or <code>pytest.ini</code> so generated tests are runnable in the existing environment.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+          Output
+        </h2>
+        <div class="out-grid">
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Unit test boilerplates</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Edge-case test sets</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Property-based tests</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Mock payloads</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Framework-aligned test scaffolds</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="phase-placeholders">
+  <div class="phase-panel" data-phase="design">
+    <div class="placeholder">
+      <div class="ph-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+      <span class="ph-tag">Phase 2 · Coming Soon</span>
+      <h2>Design</h2>
+      <p>Agents that translate approved requirements into system architecture, API contracts, data models, and UX wireframes — with trade-off analysis and stakeholder reviews baked in.</p>
+    </div>
+  </div>
+
+  <div class="phase-panel" data-phase="develop">
+    <div class="placeholder">
+      <div class="ph-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+      <span class="ph-tag">Phase 3 · Coming Soon</span>
+      <h2>Develop</h2>
+      <p>Agentic coding pipelines that implement features using Claude Code and the GitHub Copilot SDK, open PRs with review-ready diffs, and keep the codebase aligned to existing conventions.</p>
+    </div>
+  </div>
+
+  <div class="phase-panel" data-phase="eval">
+    <div class="placeholder">
+      <div class="ph-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+      <span class="ph-tag">Phase 4 · Coming Soon</span>
+      <h2>Eval</h2>
+      <p>Agents that run regression, performance, load, and LLM-output-quality evaluations — flagging accuracy drift, latency regressions, and SLA violations before release.</p>
+    </div>
+  </div>
+
+  <div class="phase-panel" data-phase="observe">
+    <div class="placeholder">
+      <div class="ph-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <span class="ph-tag">Phase 5 · Coming Soon</span>
+      <h2>Observe</h2>
+      <p>Agents that watch production signals, correlate logs, traces, and metrics, detect anomalies, and open incidents with root-cause hypotheses attached.</p>
+    </div>
+  </div>
+
+  <div class="phase-panel" data-phase="scale">
+    <div class="placeholder">
+      <div class="ph-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+      <span class="ph-tag">Phase 6 · Coming Soon</span>
+      <h2>Scale</h2>
+      <p>Agents that forecast capacity, tune autoscaling policies, recommend caching and sharding strategies, and simulate load before traffic spikes hit production.</p>
+    </div>
+  </div>
+
+  <div class="phase-panel" data-phase="security">
+    <div class="placeholder">
+      <div class="ph-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <span class="ph-tag">Phase 7 · Coming Soon</span>
+      <h2>Security</h2>
+      <p>Agents that run continuous threat modeling, dependency vulnerability scans, secret detection, and policy-compliance checks across the repo — before code reaches review.</p>
+    </div>
+  </div>
+
+  <div class="phase-panel" data-phase="compliance">
+    <div class="placeholder">
+      <div class="ph-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 11 17 15 13"/></svg></div>
+      <span class="ph-tag">Phase 8 · Coming Soon</span>
+      <h2>Compliance</h2>
+      <p>Agents that map features to regulatory frameworks (SOC 2, ISO 27001, GDPR, HIPAA), produce audit trails, and flag compliance gaps in-flight — long before audit season.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>© Techjays · Our agentic framework — AI-Native Requirements Discovery</div>
+  <div>5 Agents · End-to-end Requirement Discovery</div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Principle click-to-expand tooltips
+    const principles = document.querySelectorAll('.exec .principle');
+    principles.forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = el.getAttribute('aria-expanded') === 'true';
+        principles.forEach(o => o.setAttribute('aria-expanded', 'false'));
+        if (!isOpen) el.setAttribute('aria-expanded', 'true');
+      });
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          el.click();
+        } else if (e.key === 'Escape') {
+          el.setAttribute('aria-expanded', 'false');
+          el.blur();
+        }
+      });
+      const tip = el.querySelector('.principle-tooltip');
+      if (tip) tip.addEventListener('click', (e) => e.stopPropagation());
+    });
+    document.addEventListener('click', () => {
+      principles.forEach(o => o.setAttribute('aria-expanded', 'false'));
+    });
+
+    // Agent tab switching (sub-level, inside Discovery)
+    const tabs = document.querySelectorAll('nav.pipeline .stage');
+    const panels = document.querySelectorAll('main.tabs .tab-panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+        tabs.forEach(t => {
+          const active = t === tab;
+          t.classList.toggle('current', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        panels.forEach(p => {
+          p.classList.toggle('active', p.dataset.panel === target);
+        });
+        principles.forEach(o => o.setAttribute('aria-expanded', 'false'));
+        const activePanel = document.querySelector('main.tabs .tab-panel.active');
+        if (activePanel) activePanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // SDLC phase switching (top-level)
+    const phaseTabs = document.querySelectorAll('nav.phases .phase');
+    const phasePanels = document.querySelectorAll('.phase-placeholders .phase-panel');
+    phaseTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.phase;
+        document.body.dataset.activePhase = target;
+        phaseTabs.forEach(t => {
+          const active = t === tab;
+          t.classList.toggle('current', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        phasePanels.forEach(p => {
+          p.classList.toggle('active', p.dataset.phase === target);
+        });
+        principles.forEach(o => o.setAttribute('aria-expanded', 'false'));
+        window.scrollTo({ top: document.querySelector('nav.phases').offsetTop - 20, behavior: 'smooth' });
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
