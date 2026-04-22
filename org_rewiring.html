@@ -702,6 +702,169 @@
     body { background: #fff; }
     .card, .step, .stage, .out, .exec { box-shadow: none !important; }
   }
+
+  /* Framework expansions — collapsible detail + mock artifact + example */
+  .two-col > div .fw-expand {
+    margin-top: 10px;
+    border-top: 1px dashed var(--border-strong);
+    padding-top: 8px;
+  }
+  .fw-expand > summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--accent);
+    padding: 4px 0;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .fw-expand > summary::-webkit-details-marker { display: none; }
+  .fw-expand > summary::before {
+    content: "▸";
+    display: inline-block;
+    transition: transform 0.15s ease;
+    font-size: 11px;
+  }
+  .fw-expand[open] > summary::before { transform: rotate(90deg); }
+  .fw-expand > summary:hover { color: var(--accent-hover); }
+  .fw-detail {
+    margin-top: 10px;
+    padding: 12px;
+    background: var(--bg-sunken);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .fw-detail .fw-para {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    margin: 0 0 10px;
+  }
+  .fw-detail .fw-example {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    margin: 10px 0 0;
+    padding: 8px 10px;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    border-radius: 0 6px 6px 0;
+  }
+  .fw-detail .fw-example strong { color: var(--text); }
+
+  /* Mock artifact wrappers */
+  .mock {
+    margin: 8px 0 4px;
+    padding: 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .mock-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  /* Matrix — CSS grid with header cells */
+  .mock-matrix .mg {
+    display: grid;
+    gap: 1px;
+    background: var(--border-strong);
+    border: 1px solid var(--border-strong);
+    border-radius: 4px;
+    overflow: hidden;
+    font-size: 11.5px;
+  }
+  .mock-matrix .mg > div {
+    background: var(--bg-card);
+    padding: 6px 8px;
+    line-height: 1.35;
+    color: var(--text);
+  }
+  .mock-matrix .mg .mh {
+    background: var(--bg-elev);
+    font-weight: 700;
+    font-size: 10.5px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .mock-matrix .mg .mh-row {
+    background: var(--bg-elev);
+    font-weight: 600;
+    color: var(--text-dim);
+  }
+  .mock-matrix .mg .amber { background: #fff6e6; color: #7a5200; }
+  .mock-matrix .mg .good { background: var(--accent-2-soft); color: #086a69; }
+  .mock-matrix .mg .warn { background: var(--accent-3-soft); color: #9b1c3c; }
+
+  /* Table — compact styled table */
+  .mock-table table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  .mock-table th, .mock-table td {
+    border: 1px solid var(--border-strong);
+    padding: 5px 7px;
+    text-align: left;
+    color: var(--text);
+    line-height: 1.35;
+  }
+  .mock-table th {
+    background: var(--bg-elev);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-dim);
+    font-weight: 700;
+  }
+  .mock-table td.r { background: #ffe0e6; color: #9b1c3c; font-weight: 700; text-align: center; }
+  .mock-table td.a { background: #ffe4d6; color: #a04020; font-weight: 700; text-align: center; }
+  .mock-table td.c { background: var(--accent-2-soft); color: #086a69; font-weight: 700; text-align: center; }
+  .mock-table td.i { background: var(--bg-elev); color: var(--text-muted); font-weight: 700; text-align: center; }
+  .mock-table td.tick { text-align: center; color: var(--accent-2); font-weight: 700; }
+  .mock-table tr.highlight td { background: #fff6e6; }
+
+  /* Inline SVG mocks — shared */
+  .mock svg { display: block; width: 100%; height: auto; max-width: 380px; margin: 0 auto; }
+  .mock svg text { font-family: inherit; fill: var(--text-dim); }
+  .mock svg .axis { stroke: var(--border-strong); stroke-width: 1; }
+  .mock svg .grid { stroke: var(--border); stroke-width: 1; stroke-dasharray: 2 2; }
+  .mock svg .bar { fill: var(--accent); }
+  .mock svg .bar-target { fill: var(--accent-2); }
+  .mock svg .dot { fill: var(--accent); stroke: #fff; stroke-width: 1.5; }
+  .mock svg .dot-good { fill: var(--accent-2); }
+  .mock svg .dot-warn { fill: var(--accent-3); }
+  .mock svg .node-box { fill: var(--bg-card); stroke: var(--accent); stroke-width: 1.5; }
+  .mock svg .node-box-hub { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+  .mock svg .node-box-warn { fill: #fff6e6; stroke: #d08a20; stroke-width: 1.5; }
+  .mock svg .edge { stroke: var(--text-muted); stroke-width: 1.3; fill: none; marker-end: url(#arrow); }
+  .mock svg .label-axis { font-size: 9px; fill: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+  .mock svg .label-node { font-size: 10px; fill: var(--text); font-weight: 600; text-anchor: middle; }
+  .mock svg .label-small { font-size: 9px; fill: var(--text-dim); }
+  .mock svg .quad { fill: var(--bg-sunken); opacity: 0.6; }
+  .mock svg .quad-good { fill: var(--accent-2-soft); opacity: 0.5; }
+  .mock svg .quad-warn { fill: var(--accent-3-soft); opacity: 0.4; }
+
+  /* Horizontal bars via CSS when inline SVG is overkill */
+  .mock-bars .mb-row { display: grid; grid-template-columns: 110px 1fr 48px; align-items: center; gap: 8px; margin: 4px 0; font-size: 11.5px; }
+  .mock-bars .mb-label { color: var(--text-dim); font-weight: 600; }
+  .mock-bars .mb-track { background: var(--bg-sunken); border-radius: 4px; height: 10px; position: relative; overflow: hidden; border: 1px solid var(--border); }
+  .mock-bars .mb-fill { background: var(--accent); height: 100%; border-radius: 4px; }
+  .mock-bars .mb-fill.good { background: var(--accent-2); }
+  .mock-bars .mb-fill.warn { background: #d08a20; }
+  .mock-bars .mb-target { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--text); }
+  .mock-bars .mb-value { font-size: 10.5px; color: var(--text-muted); text-align: right; font-variant-numeric: tabular-nums; }
+
+  @media (max-width: 720px) {
+    .mock svg { max-width: 100%; }
+    .mock-bars .mb-row { grid-template-columns: 90px 1fr 40px; font-size: 11px; }
+  }
 </style>
 </head>
 <body data-active-phase="overview">
@@ -1121,11 +1284,158 @@
       <div class="card col-12">
         <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
         <div class="two-col" style="margin-top: 6px;">
-          <div><h3>Operating Model Canvas</h3><div class="chips"><span class="chip accent">OMC</span></div><p style="margin-top:6px;">One-page view of value creation: customers, suppliers, value streams, organization, locations, information, management systems.</p></div>
-          <div><h3>Capability Maturity Assessment</h3><div class="chips"><span class="chip accent">CMMI-style</span></div><p style="margin-top:6px;">Maturity rating by capability across people, process, technology, and governance.</p></div>
-          <div><h3>Decision-Rights Mapping</h3><div class="chips"><span class="chip accent">RAPID / RACI</span></div><p style="margin-top:6px;">Surfaces who actually decides vs who is consulted — and where approval gridlock lives.</p></div>
-          <div><h3>Value Stream Mapping</h3><div class="chips"><span class="chip accent">Lean VSM</span></div><p style="margin-top:6px;">Exposes wait time, handoff count, and rework as a percentage of total lead time.</p></div>
-          <div><h3>AI Readiness Assessment</h3><div class="chips"><span class="chip accent">Strategy · Data · Talent · Tech · Adoption</span></div><p style="margin-top:6px;">Baseline scorecard across six AI-transformation dimensions; sets the starting point for Phase 2 prioritization.</p></div>
+          <div>
+            <h3>Operating Model Canvas</h3>
+            <div class="chips"><span class="chip accent">OMC</span></div>
+            <p style="margin-top:6px;">One-page view of value creation: customers, suppliers, value streams, organization, locations, information, management systems.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">A one-sheet that forces leadership to describe the business in seven named blocks. If leadership cannot fill any block in under a minute, the underlying operating reality is ambiguous — which is itself the finding.</p>
+                <div class="mock mock-matrix">
+                  <div class="mock-label">Illustrative — Operating Model Canvas</div>
+                  <div class="mg" style="grid-template-columns: 130px 1fr;">
+                    <div class="mh-row">Customers</div><div>Enterprise FSI clients, mid-market SaaS ISVs</div>
+                    <div class="mh-row">Suppliers</div><div>Hyperscalers, specialist delivery partners</div>
+                    <div class="mh-row">Value streams</div><div>Sell → Design → Deliver → Run</div>
+                    <div class="mh-row">Organization</div><div>Functional silos; 8 layers; ~12:1 span in engineering</div>
+                    <div class="mh-row">Locations</div><div>HQ + 3 delivery centers across 6 time zones</div>
+                    <div class="mh-row">Information</div><div class="amber">Fragmented; ~40% of knowledge in email/chat</div>
+                    <div class="mh-row">Management systems</div><div class="amber">KPIs skewed to utilization; weak cycle-time view</div>
+                  </div>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> On the first draft, leadership cannot name a single canonical "value stream" — sales owns one definition, delivery owns another. That gap is the real finding; the canvas just surfaces it in 45 minutes.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Capability Maturity Assessment</h3>
+            <div class="chips"><span class="chip accent">CMMI-style</span></div>
+            <p style="margin-top:6px;">Maturity rating by capability across people, process, technology, and governance.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Scores each dimension 1–5 against defined anchor statements and plots a radar of current vs target. The value isn't the number — it's the argument that surfaces when two executives score the same dimension 2 apart.</p>
+                <div class="mock mock-radar">
+                  <div class="mock-label">Illustrative — Current vs Target maturity</div>
+                  <svg viewBox="0 0 340 240" role="img" aria-label="Maturity radar: current vs target across four dimensions">
+                    <circle cx="170" cy="120" r="20" class="grid" fill="none"/>
+                    <circle cx="170" cy="120" r="40" class="grid" fill="none"/>
+                    <circle cx="170" cy="120" r="60" class="grid" fill="none"/>
+                    <circle cx="170" cy="120" r="80" class="grid" fill="none"/>
+                    <circle cx="170" cy="120" r="100" class="grid" fill="none"/>
+                    <line x1="170" y1="120" x2="170" y2="20" class="axis"/>
+                    <line x1="170" y1="120" x2="270" y2="120" class="axis"/>
+                    <line x1="170" y1="120" x2="170" y2="220" class="axis"/>
+                    <line x1="170" y1="120" x2="70" y2="120" class="axis"/>
+                    <polygon points="170,40 250,120 170,200 90,120" style="fill: var(--accent-2-soft); stroke: var(--accent-2); stroke-width: 1.5; fill-opacity: 0.6;"/>
+                    <polygon points="170,60 230,120 170,180 130,120" style="fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; fill-opacity: 0.85;"/>
+                    <text x="170" y="14" text-anchor="middle" class="label-axis">People</text>
+                    <text x="278" y="124" class="label-axis">Tech</text>
+                    <text x="170" y="235" text-anchor="middle" class="label-axis">Governance</text>
+                    <text x="62" y="124" text-anchor="end" class="label-axis">Process</text>
+                  </svg>
+                  <div style="margin-top: 6px; font-size: 10.5px; color: var(--text-dim); display: flex; gap: 14px; justify-content: center;">
+                    <span style="display:inline-flex;align-items:center;gap:4px;"><span style="display:inline-block;width:10px;height:10px;background:var(--accent-soft);border:1.5px solid var(--accent);"></span>Current (P 3 · Pr 2 · T 4 · G 2)</span>
+                    <span style="display:inline-flex;align-items:center;gap:4px;"><span style="display:inline-block;width:10px;height:10px;background:var(--accent-2-soft);border:1.5px solid var(--accent-2);"></span>Target (all 4)</span>
+                  </div>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Technology scores 4 on day one because tooling is present — but governance scores 2, which means the tooling is used without controls. That asymmetry is the leading indicator that AI pilots will outrun their safety net.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Decision-Rights Mapping</h3>
+            <div class="chips"><span class="chip accent">RAPID / RACI</span></div>
+            <p style="margin-top:6px;">Surfaces who actually decides vs who is consulted — and where approval gridlock lives.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">For each recurring decision, we name the Recommender, Agreer/Approver, Consulted, and Informed. The diagnostic value is in the rows where two people both claim "A" — that is approval gridlock made visible.</p>
+                <div class="mock mock-table">
+                  <div class="mock-label">Illustrative — RAPID grid (R = Recommend · A = Approve · C = Consult · I = Inform)</div>
+                  <table>
+                    <thead>
+                      <tr><th>Decision</th><th>CEO</th><th>COO</th><th>CTO</th><th>Legal</th><th>Delivery</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Approve a Tier-3 AI use case</td><td class="a">A</td><td class="c">C</td><td class="r">R</td><td class="c">C</td><td class="i">I</td></tr>
+                      <tr class="highlight"><td>Sign pricing exception &gt; 10%</td><td class="a">A</td><td class="a">A</td><td class="i">I</td><td class="c">C</td><td class="r">R</td></tr>
+                      <tr><td>Release a governance update</td><td class="i">I</td><td class="c">C</td><td class="r">R</td><td class="a">A</td><td class="i">I</td></tr>
+                      <tr><td>Greenlight a pilot exit</td><td class="a">A</td><td class="c">C</td><td class="c">C</td><td class="i">I</td><td class="r">R</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Row 2 shows the anti-pattern: both CEO and COO hold the "A" for pricing exceptions. Every exception stalls waiting for both calendars to converge — in practice, 9 business days median. Resolving the ownership to a single A drops it to under 2.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Value Stream Mapping</h3>
+            <div class="chips"><span class="chip accent">Lean VSM</span></div>
+            <p style="margin-top:6px;">Exposes wait time, handoff count, and rework as a percentage of total lead time.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Plots each step of a value stream with its active time (actual work) and wait time (queue between handoffs). The ratio is the headline — if wait time is &gt; 50%, automation of the active steps barely moves lead time.</p>
+                <div class="mock mock-gantt">
+                  <div class="mock-label">Illustrative — Lead time breakdown for a typical delivery</div>
+                  <svg viewBox="0 0 340 195" role="img" aria-label="Value stream lead time: active vs wait per step">
+                    <text x="74" y="25" text-anchor="end" class="label-small">Intake</text>
+                    <rect x="80" y="16" width="10" height="12" style="fill: var(--accent);"/>
+                    <rect x="90" y="16" width="30" height="12" style="fill: #f5c06b;"/>
+                    <text x="126" y="26" class="label-small">2d + 6d wait</text>
+                    <text x="74" y="47" text-anchor="end" class="label-small">Discovery</text>
+                    <rect x="80" y="38" width="25" height="12" style="fill: var(--accent);"/>
+                    <rect x="105" y="38" width="20" height="12" style="fill: #f5c06b;"/>
+                    <text x="131" y="48" class="label-small">5d + 4d wait</text>
+                    <text x="74" y="69" text-anchor="end" class="label-small">Dev</text>
+                    <rect x="80" y="60" width="50" height="12" style="fill: var(--accent);"/>
+                    <rect x="130" y="60" width="10" height="12" style="fill: #f5c06b;"/>
+                    <text x="146" y="70" class="label-small">10d + 2d wait</text>
+                    <text x="74" y="91" text-anchor="end" class="label-small">QA</text>
+                    <rect x="80" y="82" width="15" height="12" style="fill: var(--accent);"/>
+                    <rect x="95" y="82" width="35" height="12" style="fill: #f5c06b;"/>
+                    <text x="136" y="92" class="label-small">3d + 7d wait</text>
+                    <text x="74" y="113" text-anchor="end" class="label-small">Release</text>
+                    <rect x="80" y="104" width="5" height="12" style="fill: var(--accent);"/>
+                    <rect x="85" y="104" width="5" height="12" style="fill: #f5c06b;"/>
+                    <text x="96" y="114" class="label-small">1d + 1d wait</text>
+                    <line x1="80" y1="135" x2="320" y2="135" class="axis"/>
+                    <text x="80" y="150" class="label-small">0d</text>
+                    <text x="320" y="150" class="label-small" text-anchor="end">40d total</text>
+                    <text x="170" y="180" text-anchor="middle" class="label-axis">Wait = 50% of lead time</text>
+                  </svg>
+                  <div style="margin-top: 4px; font-size: 10.5px; color: var(--text-dim); display: flex; gap: 14px; justify-content: center;">
+                    <span style="display:inline-flex;align-items:center;gap:4px;"><span style="display:inline-block;width:10px;height:10px;background:var(--accent);"></span>Active work</span>
+                    <span style="display:inline-flex;align-items:center;gap:4px;"><span style="display:inline-block;width:10px;height:10px;background:#f5c06b;"></span>Wait / queue</span>
+                  </div>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> QA looks like a bottleneck — 3d active. But 7d is wait time behind an overloaded QA lead. Automating test execution saves maybe 1d; fixing the handoff (pre-validated artifacts) saves 5d.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>AI Readiness Assessment</h3>
+            <div class="chips"><span class="chip accent">Strategy · Data · Talent · Tech · Adoption</span></div>
+            <p style="margin-top:6px;">Baseline scorecard across six AI-transformation dimensions; sets the starting point for Phase 2 prioritization.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Scores each dimension 0–4 against anchor statements, with a target marker per dimension. The gaps, not the absolutes, drive Phase 2 — the lowest-scoring dimension is usually the hidden blocker no one has been willing to name.</p>
+                <div class="mock mock-bars">
+                  <div class="mock-label">Illustrative — Readiness scorecard (black line = target)</div>
+                  <div class="mb-row"><div class="mb-label">Strategy</div><div class="mb-track"><div class="mb-fill" style="width: 60%;"></div><div class="mb-target" style="left: 80%;"></div></div><div class="mb-value">3.0 / 4</div></div>
+                  <div class="mb-row"><div class="mb-label">Data</div><div class="mb-track"><div class="mb-fill warn" style="width: 35%;"></div><div class="mb-target" style="left: 80%;"></div></div><div class="mb-value">1.8 / 4</div></div>
+                  <div class="mb-row"><div class="mb-label">Talent</div><div class="mb-track"><div class="mb-fill" style="width: 50%;"></div><div class="mb-target" style="left: 80%;"></div></div><div class="mb-value">2.5 / 4</div></div>
+                  <div class="mb-row"><div class="mb-label">Technology</div><div class="mb-track"><div class="mb-fill good" style="width: 70%;"></div><div class="mb-target" style="left: 80%;"></div></div><div class="mb-value">3.5 / 4</div></div>
+                  <div class="mb-row"><div class="mb-label">Op. Model</div><div class="mb-track"><div class="mb-fill warn" style="width: 30%;"></div><div class="mb-target" style="left: 80%;"></div></div><div class="mb-value">1.5 / 4</div></div>
+                  <div class="mb-row"><div class="mb-label">Adoption</div><div class="mb-track"><div class="mb-fill" style="width: 45%;"></div><div class="mb-target" style="left: 80%;"></div></div><div class="mb-value">2.2 / 4</div></div>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Technology scores highest and Operating Model lowest — a classic pattern where the tooling is ahead of the org design. Phase 2 prioritizes operating-model work even though executives want to talk about models and tools.</p>
+              </div>
+            </details>
+          </div>
         </div>
       </div>
       <div class="card col-12">
@@ -1215,12 +1525,174 @@
       <div class="card col-12">
         <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
         <div class="two-col" style="margin-top: 6px;">
-          <div><h3>SIPOC</h3><div class="chips"><span class="chip accent">Scoping</span></div><p style="margin-top:6px;">Suppliers · Inputs · Process · Outputs · Customers — a one-sheet scope that makes handoff breakdowns visible at a glance.</p></div>
-          <div><h3>Service Blueprint</h3><div class="chips"><span class="chip accent">Front + Back Stage</span></div><p style="margin-top:6px;">Maps the visible and invisible work behind a service outcome, exposing internal wait states.</p></div>
-          <div><h3>RACI / Decision-Rights</h3><div class="chips"><span class="chip accent">Approval Gridlock</span></div><p style="margin-top:6px;">Surfaces where too many people must approve, and where accountability is missing.</p></div>
-          <div><h3>Process Maturity Model</h3><div class="chips"><span class="chip accent">Ad-hoc → Optimizing</span></div><p style="margin-top:6px;">Rates each workflow so we don't propose automation on top of an ad-hoc process.</p></div>
-          <div><h3>Task Automation Suitability</h3><div class="chips"><span class="chip accent">Repeatability × Risk</span></div><p style="margin-top:6px;">Scores tasks on structure, repeatability, data availability, and risk tolerance — separates AI-leverage from AI-hazard.</p></div>
-          <div><h3>Role-to-Value Alignment</h3><div class="chips"><span class="chip accent">Role Audit</span></div><p style="margin-top:6px;">Tests whether each role's time allocation matches the value the organization expects from it.</p></div>
+          <div>
+            <h3>SIPOC</h3>
+            <div class="chips"><span class="chip accent">Scoping</span></div>
+            <p style="margin-top:6px;">Suppliers · Inputs · Process · Outputs · Customers — a one-sheet scope that makes handoff breakdowns visible at a glance.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">One row per workflow, five columns. The power of SIPOC is scope discipline — if the team cannot agree on what the inputs or outputs are, the workflow isn't a workflow yet, it's a pattern of activity.</p>
+                <div class="mock mock-table">
+                  <div class="mock-label">Illustrative — Client proposal process</div>
+                  <table>
+                    <thead>
+                      <tr><th>Suppliers</th><th>Inputs</th><th>Process</th><th>Outputs</th><th>Customers</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>BD team · Solution architect · Delivery head</td>
+                        <td>RFP doc · Past-case library · Pricing sheet · Client brief</td>
+                        <td>Qualify → Scope → Estimate → Review → Submit</td>
+                        <td>Proposal PDF · SoW draft · Pricing deck · Risk log</td>
+                        <td>Client procurement · Client sponsor · Internal approver</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> The "Past-case library" input is listed — but on inspection it's a shared drive with 400 folders and no index. That missing input is why every proposal starts from scratch. SIPOC exposes it in one line.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Service Blueprint</h3>
+            <div class="chips"><span class="chip accent">Front + Back Stage</span></div>
+            <p style="margin-top:6px;">Maps the visible and invisible work behind a service outcome, exposing internal wait states.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Three swim-lanes — customer actions, front-stage, back-stage — aligned to the same time axis. Back-stage wait states are where AI leverage hides; they never show up in a customer-journey map.</p>
+                <div class="mock mock-matrix">
+                  <div class="mock-label">Illustrative — Support ticket blueprint</div>
+                  <div class="mg" style="grid-template-columns: 110px repeat(4, 1fr);">
+                    <div class="mh">Stage →</div><div class="mh">Submit</div><div class="mh">Triage</div><div class="mh">Investigate</div><div class="mh">Resolve</div>
+                    <div class="mh-row">Customer</div><div>Opens ticket</div><div>Waits</div><div>Answers clarifications</div><div>Confirms fix</div>
+                    <div class="mh-row">Front-stage</div><div>Auto-ack</div><div class="amber">L1 manual read</div><div>L2 reply (async)</div><div>Notifies customer</div>
+                    <div class="mh-row">Back-stage</div><div>Form write</div><div class="amber">L1 searches KB</div><div class="amber">L2 reproduces bug</div><div>Engineer patches</div>
+                  </div>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> The two amber back-stage cells (L1 KB search, L2 reproduction) are invisible to the customer but consume ~60% of cycle time. AI-assisted retrieval and test-case synthesis target exactly those cells — not the customer-visible steps.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>RACI / Decision-Rights</h3>
+            <div class="chips"><span class="chip accent">Approval Gridlock</span></div>
+            <p style="margin-top:6px;">Surfaces where too many people must approve, and where accountability is missing.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">For each task in a workflow, name one R and one A. Rows with multiple As or no As are the failure patterns — they are the rows people complain about in interviews without being able to articulate why.</p>
+                <div class="mock mock-table">
+                  <div class="mock-label">Illustrative — RACI for release flow (R = Responsible · A = Accountable · C = Consulted · I = Informed)</div>
+                  <table>
+                    <thead>
+                      <tr><th>Task</th><th>PM</th><th>Tech Lead</th><th>QA</th><th>Sec</th><th>Ops</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Define acceptance criteria</td><td class="a">A</td><td class="r">R</td><td class="c">C</td><td class="i">I</td><td class="i">I</td></tr>
+                      <tr><td>Approve architecture change</td><td class="c">C</td><td class="a">A</td><td class="i">I</td><td class="c">C</td><td class="i">I</td></tr>
+                      <tr class="highlight"><td>Sign off on release</td><td class="a">A</td><td class="a">A</td><td class="a">A</td><td class="a">A</td><td class="a">A</td></tr>
+                      <tr><td>Post-release monitor</td><td class="i">I</td><td class="c">C</td><td class="i">I</td><td class="i">I</td><td class="a">A</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Row 3 has five As. No one is actually accountable — if the release breaks, every role claims "I signed off pending others." The RACI re-draft resolves it to PM = A, everyone else = C.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Process Maturity Model</h3>
+            <div class="chips"><span class="chip accent">Ad-hoc → Optimizing</span></div>
+            <p style="margin-top:6px;">Rates each workflow so we don't propose automation on top of an ad-hoc process.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Five levels on a single scale. The rule we enforce: a process below "Defined" is not ready for AI automation. Automating an ad-hoc process just accelerates inconsistency.</p>
+                <div class="mock">
+                  <div class="mock-label">Illustrative — Maturity position by workflow</div>
+                  <svg viewBox="0 0 340 180" role="img" aria-label="Process maturity levels with current positions">
+                    <line x1="30" y1="130" x2="310" y2="130" class="axis"/>
+                    <line x1="30" y1="125" x2="30" y2="135" class="axis"/>
+                    <line x1="100" y1="125" x2="100" y2="135" class="axis"/>
+                    <line x1="170" y1="125" x2="170" y2="135" class="axis"/>
+                    <line x1="240" y1="125" x2="240" y2="135" class="axis"/>
+                    <line x1="310" y1="125" x2="310" y2="135" class="axis"/>
+                    <text x="30" y="150" text-anchor="middle" class="label-small">Ad-hoc</text>
+                    <text x="100" y="150" text-anchor="middle" class="label-small">Repeatable</text>
+                    <text x="170" y="150" text-anchor="middle" class="label-small">Defined</text>
+                    <text x="240" y="150" text-anchor="middle" class="label-small">Managed</text>
+                    <text x="310" y="150" text-anchor="middle" class="label-small">Optimizing</text>
+                    <text x="25" y="165" class="label-small" fill="#b05a1f">← not ready for automation</text>
+                    <text x="315" y="165" text-anchor="end" class="label-small" style="fill: #086a69;">ready →</text>
+                    <circle cx="75" cy="130" r="6" class="dot-warn" style="fill: var(--accent-3);"/>
+                    <text x="75" y="115" text-anchor="middle" class="label-small">Proposal</text>
+                    <circle cx="155" cy="130" r="6" class="dot" style="fill: var(--accent);"/>
+                    <text x="155" y="115" text-anchor="middle" class="label-small">Support triage</text>
+                    <circle cx="265" cy="130" r="6" class="dot-good" style="fill: var(--accent-2);"/>
+                    <text x="265" y="115" text-anchor="middle" class="label-small">Release</text>
+                    <text x="170" y="30" text-anchor="middle" class="label-axis">Which workflows are safe to automate?</text>
+                  </svg>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Proposal writing scores Ad-hoc — every BD lead works differently. Automating on top of that just means each BD lead gets their own inconsistent AI. Phase 3 will define the process first, then automate. Release (Managed) is ready for automation today.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Task Automation Suitability</h3>
+            <div class="chips"><span class="chip accent">Repeatability × Risk</span></div>
+            <p style="margin-top:6px;">Scores tasks on structure, repeatability, data availability, and risk tolerance — separates AI-leverage from AI-hazard.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Plots tasks on a 2×2 of repeatability (x) against risk tolerance (y). Upper-right is AI-leverage. Lower-right is AI-hazard — tasks that feel automatable but can't absorb errors without consequence.</p>
+                <div class="mock mock-scatter">
+                  <div class="mock-label">Illustrative — Suitability matrix</div>
+                  <svg viewBox="0 0 340 240" role="img" aria-label="Task automation 2x2 by repeatability and risk tolerance">
+                    <rect x="40" y="20" width="135" height="95" class="quad-warn"/>
+                    <rect x="175" y="20" width="145" height="95" class="quad-good"/>
+                    <rect x="40" y="115" width="135" height="95" class="quad-warn"/>
+                    <rect x="175" y="115" width="145" height="95" class="quad"/>
+                    <line x1="40" y1="115" x2="320" y2="115" class="axis"/>
+                    <line x1="175" y1="20" x2="175" y2="210" class="axis"/>
+                    <line x1="40" y1="20" x2="40" y2="210" class="axis"/>
+                    <line x1="40" y1="210" x2="320" y2="210" class="axis"/>
+                    <text x="180" y="14" class="label-axis">High risk-tolerance →</text>
+                    <text x="325" y="215" class="label-axis" text-anchor="end">High repeatability →</text>
+                    <text x="107" y="65" text-anchor="middle" class="label-small" style="fill: #9b1c3c; font-weight:700;">AI HAZARD</text>
+                    <text x="247" y="65" text-anchor="middle" class="label-small" style="fill: #086a69; font-weight:700;">AI LEVERAGE</text>
+                    <circle cx="250" cy="60" r="6" class="dot-good"/><text x="260" y="63" class="label-small">Proposal drafts</text>
+                    <circle cx="290" cy="85" r="6" class="dot-good"/><text x="260" y="105" class="label-small">Log triage</text>
+                    <circle cx="230" cy="90" r="6" class="dot-good"/><text x="170" y="112" class="label-small">Meeting notes</text>
+                    <circle cx="110" cy="50" r="6" class="dot-warn"/><text x="120" y="53" class="label-small">Legal drafting</text>
+                    <circle cx="90" cy="160" r="6" class="dot-warn"/><text x="100" y="163" class="label-small">Pricing exception</text>
+                    <circle cx="260" cy="165" r="6" class="dot"/><text x="200" y="178" class="label-small">Code review</text>
+                    <circle cx="140" cy="190" r="6" class="dot-warn"/><text x="150" y="193" class="label-small">Sec signoff</text>
+                  </svg>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Proposal drafts sit in AI leverage — high repeat, low stakes if drafts are reviewed. Pricing exceptions sit in AI hazard — repeatable pattern but high consequence if wrong, so human approval stays mandatory even if AI can pre-fill.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Role-to-Value Alignment</h3>
+            <div class="chips"><span class="chip accent">Role Audit</span></div>
+            <p style="margin-top:6px;">Tests whether each role's time allocation matches the value the organization expects from it.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">For a role, compare expected value-mix (per the job spec) with actual time-mix (per interviews and calendar sampling). A large gap is a role that has silently drifted — the job title hasn't changed but the work has.</p>
+                <div class="mock mock-bars">
+                  <div class="mock-label">Illustrative — Senior BA, 40h week</div>
+                  <div class="mb-row"><div class="mb-label">Req. elicitation</div><div class="mb-track"><div class="mb-fill good" style="width: 15%;"></div><div class="mb-target" style="left: 50%;"></div></div><div class="mb-value">6h / 20h</div></div>
+                  <div class="mb-row"><div class="mb-label">Workshop design</div><div class="mb-track"><div class="mb-fill good" style="width: 10%;"></div><div class="mb-target" style="left: 25%;"></div></div><div class="mb-value">4h / 10h</div></div>
+                  <div class="mb-row"><div class="mb-label">Status reporting</div><div class="mb-track"><div class="mb-fill warn" style="width: 45%;"></div><div class="mb-target" style="left: 10%;"></div></div><div class="mb-value">18h / 4h</div></div>
+                  <div class="mb-row"><div class="mb-label">Tool admin</div><div class="mb-track"><div class="mb-fill warn" style="width: 30%;"></div><div class="mb-target" style="left: 15%;"></div></div><div class="mb-value">12h / 6h</div></div>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> A Senior BA is expected to spend 50% on requirements work; they spend 15%. The gap is absorbed by status reporting and tool admin — both candidates for AI offload, freeing the BA to do the job they were hired for.</p>
+              </div>
+            </details>
+          </div>
         </div>
       </div>
       <div class="card col-12">
@@ -1298,12 +1770,196 @@
       <div class="card col-12">
         <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
         <div class="two-col" style="margin-top: 6px;">
-          <div><h3>Target Operating Model</h3><div class="chips"><span class="chip accent">TOM</span></div><p style="margin-top:6px;">Structure · process · technology · people · governance · measurement — the six dimensions we explicitly redesign.</p></div>
-          <div><h3>Human-in-the-Loop Framework</h3><div class="chips"><span class="chip accent">HITL</span></div><p style="margin-top:6px;">Every workflow names the decision points humans retain and the confidence thresholds for AI action.</p></div>
-          <div><h3>Capability Mapping</h3><div class="chips"><span class="chip accent">Build · Buy · Partner</span></div><p style="margin-top:6px;">For each new capability, we decide where it sits on the build/buy/partner spectrum.</p></div>
-          <div><h3>Span &amp; Layer Review</h3><div class="chips"><span class="chip accent">Org Design</span></div><p style="margin-top:6px;">Detects too-many-layers, too-wide-spans, and duplicate roles — especially in middle management.</p></div>
-          <div><h3>Central Platform + Federated</h3><div class="chips"><span class="chip accent">Hub &amp; Spoke</span></div><p style="margin-top:6px;">One team owns the platform and standards; each function owns its use cases and outcomes on that platform.</p></div>
-          <div><h3>Responsible AI Governance</h3><div class="chips"><span class="chip accent">Trusted AI</span></div><p style="margin-top:6px;">Policy + control-point + model-risk tiering + audit — the governance spine of the future state.</p></div>
+          <div>
+            <h3>Target Operating Model</h3>
+            <div class="chips"><span class="chip accent">TOM</span></div>
+            <p style="margin-top:6px;">Structure · process · technology · people · governance · measurement — the six dimensions we explicitly redesign.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Six dimensions compared current → target. The discipline is forcing each cell to be a concrete sentence, not a slogan. "Cross-functional pods" is a slogan; "4–6 person pods with BA, Dev, QA, and platform liaison roles permanent" is a design.</p>
+                <div class="mock mock-matrix">
+                  <div class="mock-label">Illustrative — Current vs Target operating model</div>
+                  <div class="mg" style="grid-template-columns: 120px 1fr 1fr;">
+                    <div class="mh">Dimension</div><div class="mh">Current</div><div class="mh">Target</div>
+                    <div class="mh-row">Structure</div><div>Functional silos; handoff-heavy</div><div class="good">Cross-functional pods + central platform</div>
+                    <div class="mh-row">Process</div><div>Phase-gated waterfall with AI bolted on</div><div class="good">Flow-based with AI checkpoints in every step</div>
+                    <div class="mh-row">Technology</div><div>Tool sprawl; no gateway</div><div class="good">Single model gateway + eval harness</div>
+                    <div class="mh-row">People</div><div>Roles defined pre-AI</div><div class="good">Redesigned roles; AI-fluency leveled</div>
+                    <div class="mh-row">Governance</div><div>Reactive; post-incident policy</div><div class="good">Proactive; control-point design before launch</div>
+                    <div class="mh-row">Measurement</div><div>Utilization-centric</div><div class="good">Cycle-time + quality + leverage ratio</div>
+                  </div>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> The "Measurement" row is the one most organizations skip. They redesign structure and process, then keep measuring utilization — which punishes the very leverage behaviors the new model depends on. The row is non-optional.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Human-in-the-Loop Framework</h3>
+            <div class="chips"><span class="chip accent">HITL</span></div>
+            <p style="margin-top:6px;">Every workflow names the decision points humans retain and the confidence thresholds for AI action.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Every workflow is reduced to a decision-flow diagram with named confidence thresholds at each branch. "Human-in-the-loop" without explicit thresholds is just a statement of intent — the threshold makes it enforceable.</p>
+                <div class="mock mock-tree">
+                  <div class="mock-label">Illustrative — Support copilot decision flow</div>
+                  <svg viewBox="0 0 340 220" role="img" aria-label="HITL decision flow with confidence thresholds">
+                    <defs><marker id="arrow-p3-hitl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: var(--text-muted);"/></marker></defs>
+                    <rect x="120" y="10" width="100" height="30" rx="4" class="node-box"/>
+                    <text x="170" y="30" class="label-node">AI drafts reply</text>
+                    <path d="M 170 40 L 170 70" class="edge" style="marker-end: url(#arrow-p3-hitl);"/>
+                    <polygon points="170,70 230,95 170,120 110,95" style="fill: var(--bg-card); stroke: var(--accent); stroke-width:1.5;"/>
+                    <text x="170" y="99" class="label-node">confidence ≥ 0.85?</text>
+                    <path d="M 230 95 L 290 130" class="edge" style="marker-end: url(#arrow-p3-hitl);"/>
+                    <text x="255" y="115" class="label-small" style="fill: #086a69;">yes</text>
+                    <path d="M 110 95 L 50 130" class="edge" style="marker-end: url(#arrow-p3-hitl);"/>
+                    <text x="82" y="115" class="label-small" style="fill: #9b1c3c;">no</text>
+                    <rect x="240" y="130" width="95" height="40" rx="4" class="node-box" style="fill: var(--accent-2-soft); stroke: var(--accent-2);"/>
+                    <text x="287" y="148" class="label-node">auto-send</text>
+                    <text x="287" y="162" class="label-small" text-anchor="middle">log + audit</text>
+                    <rect x="5" y="130" width="95" height="40" rx="4" class="node-box" style="fill: var(--accent-soft); stroke: var(--accent);"/>
+                    <text x="52" y="148" class="label-node">human review</text>
+                    <text x="52" y="162" class="label-small" text-anchor="middle">named L2 agent</text>
+                    <rect x="120" y="180" width="100" height="30" rx="4" class="node-box-warn"/>
+                    <text x="170" y="200" class="label-node">any billing? → human</text>
+                    <path d="M 52 170 L 130 185" class="edge" style="marker-end: url(#arrow-p3-hitl); stroke-dasharray: 3 2;"/>
+                    <path d="M 287 170 L 210 185" class="edge" style="marker-end: url(#arrow-p3-hitl); stroke-dasharray: 3 2;"/>
+                  </svg>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Confidence ≥ 0.85 auto-routes; otherwise a named L2 reviews. But note the override box: any ticket touching billing routes to a human regardless of confidence — class-based override beats threshold-based routing when the downside is customer-visible.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Capability Mapping</h3>
+            <div class="chips"><span class="chip accent">Build · Buy · Partner</span></div>
+            <p style="margin-top:6px;">For each new capability, we decide where it sits on the build/buy/partner spectrum.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Each new capability lands in exactly one of build / buy / partner. The decision isn't cost-driven — it's strategic-differentiation-driven. Build only where the capability is a moat; buy or partner everywhere else.</p>
+                <div class="mock mock-table">
+                  <div class="mock-label">Illustrative — Capability build/buy/partner</div>
+                  <table>
+                    <thead>
+                      <tr><th>Capability</th><th>Build</th><th>Buy</th><th>Partner</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Model gateway &amp; routing</td><td class="tick">✓</td><td></td><td></td></tr>
+                      <tr><td>Eval harness &amp; drift detection</td><td class="tick">✓</td><td></td><td></td></tr>
+                      <tr><td>Foundation models</td><td></td><td class="tick">✓</td><td></td></tr>
+                      <tr><td>Vector DB + retrieval</td><td></td><td class="tick">✓</td><td></td></tr>
+                      <tr><td>Red-team testing</td><td></td><td></td><td class="tick">✓</td></tr>
+                      <tr><td>Compliance audit tooling</td><td></td><td></td><td class="tick">✓</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> We build the gateway and eval harness because they encode how this firm judges AI quality — that is the moat. We buy foundation models and vector DBs because there is no advantage in owning commodity infrastructure. Red-team expertise partners because it must be independent to be credible.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Span &amp; Layer Review</h3>
+            <div class="chips"><span class="chip accent">Org Design</span></div>
+            <p style="margin-top:6px;">Detects too-many-layers, too-wide-spans, and duplicate roles — especially in middle management.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Counts layers from CEO to individual contributor and span of control at each manager. AI-native orgs tend to need fewer middle layers — if middle-management span is below 5, that's often a layer that exists to move information, not to decide.</p>
+                <div class="mock mock-dag">
+                  <div class="mock-label">Illustrative — Engineering sub-org span audit</div>
+                  <svg viewBox="0 0 340 200" role="img" aria-label="Org chart fragment highlighting over-wide span">
+                    <rect x="140" y="8" width="60" height="24" rx="3" class="node-box"/>
+                    <text x="170" y="24" class="label-node">CTO</text>
+                    <line x1="170" y1="32" x2="90" y2="55" class="edge" style="marker-end:none;"/>
+                    <line x1="170" y1="32" x2="170" y2="55" class="edge" style="marker-end:none;"/>
+                    <line x1="170" y1="32" x2="250" y2="55" class="edge" style="marker-end:none;"/>
+                    <rect x="55" y="55" width="70" height="24" rx="3" class="node-box"/>
+                    <text x="90" y="71" class="label-node">VP Eng</text>
+                    <rect x="135" y="55" width="70" height="24" rx="3" class="node-box"/>
+                    <text x="170" y="71" class="label-node">VP Platform</text>
+                    <rect x="215" y="55" width="70" height="24" rx="3" class="node-box"/>
+                    <text x="250" y="71" class="label-node">VP Data</text>
+                    <line x1="90" y1="79" x2="40" y2="105" class="edge" style="marker-end:none;"/>
+                    <line x1="90" y1="79" x2="70" y2="105" class="edge" style="marker-end:none;"/>
+                    <line x1="90" y1="79" x2="100" y2="105" class="edge" style="marker-end:none;"/>
+                    <line x1="90" y1="79" x2="130" y2="105" class="edge" style="marker-end:none;"/>
+                    <rect x="10" y="105" width="160" height="20" rx="3" class="node-box-warn"/>
+                    <text x="90" y="119" class="label-node">4 engineering directors</text>
+                    <line x1="170" y1="79" x2="170" y2="105" class="edge" style="marker-end:none;"/>
+                    <rect x="140" y="105" width="60" height="20" rx="3" class="node-box"/>
+                    <text x="170" y="119" class="label-node">1 director</text>
+                    <line x1="250" y1="79" x2="220" y2="105" class="edge" style="marker-end:none;"/>
+                    <line x1="250" y1="79" x2="250" y2="105" class="edge" style="marker-end:none;"/>
+                    <line x1="250" y1="79" x2="280" y2="105" class="edge" style="marker-end:none;"/>
+                    <line x1="250" y1="79" x2="310" y2="105" class="edge" style="marker-end:none;"/>
+                    <line x1="250" y1="79" x2="340" y2="105" class="edge" style="marker-end:none;"/>
+                    <rect x="205" y="105" width="140" height="20" rx="3" class="node-box-warn"/>
+                    <text x="275" y="119" class="label-node">8 data leads (wide span)</text>
+                    <text x="170" y="165" text-anchor="middle" class="label-axis">6 layers deep · widest span = 8 reports</text>
+                    <text x="170" y="185" text-anchor="middle" class="label-small">Amber = candidate for restructure</text>
+                  </svg>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> VP Data has 8 direct reports; that span means 1:1s alone consume 8 hours a week and decisions queue behind them. Target state: split into two teams of 4, or elevate two reports to senior managers with 4-person spans each — the "layer" here is earned.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Central Platform + Federated</h3>
+            <div class="chips"><span class="chip accent">Hub &amp; Spoke</span></div>
+            <p style="margin-top:6px;">One team owns the platform and standards; each function owns its use cases and outcomes on that platform.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">A hub-and-spoke pattern: the platform team owns the model gateway, eval harness, data contracts, and guardrails. Every function team builds on top. The contract between hub and spoke is explicit, versioned, and measurable.</p>
+                <div class="mock mock-dag">
+                  <div class="mock-label">Illustrative — Hub-and-spoke platform architecture</div>
+                  <svg viewBox="0 0 340 220" role="img" aria-label="Central platform with four federated consumers">
+                    <circle cx="170" cy="110" r="48" class="node-box-hub"/>
+                    <text x="170" y="105" class="label-node">AI Enablement</text>
+                    <text x="170" y="120" class="label-node">Platform</text>
+                    <rect x="30" y="20" width="90" height="32" rx="6" class="node-box"/>
+                    <text x="75" y="40" class="label-node">Sales / BD</text>
+                    <rect x="220" y="20" width="90" height="32" rx="6" class="node-box"/>
+                    <text x="265" y="40" class="label-node">Engineering</text>
+                    <rect x="30" y="170" width="90" height="32" rx="6" class="node-box"/>
+                    <text x="75" y="190" class="label-node">Support / CS</text>
+                    <rect x="220" y="170" width="90" height="32" rx="6" class="node-box"/>
+                    <text x="265" y="190" class="label-node">Marketing</text>
+                    <line x1="105" y1="52" x2="140" y2="88" class="edge" style="marker-end: none;"/>
+                    <line x1="235" y1="52" x2="200" y2="88" class="edge" style="marker-end: none;"/>
+                    <line x1="105" y1="170" x2="140" y2="135" class="edge" style="marker-end: none;"/>
+                    <line x1="235" y1="170" x2="200" y2="135" class="edge" style="marker-end: none;"/>
+                    <text x="170" y="215" text-anchor="middle" class="label-small">Contract: gateway · eval harness · data contracts · guardrails</text>
+                  </svg>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Engineering builds a code-review copilot; it consumes the same model gateway + eval harness the Support copilot uses. Engineering owns the use case metrics; the platform owns uptime, cost-per-call, and policy enforcement. Neither reinvents what the other owns.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Responsible AI Governance</h3>
+            <div class="chips"><span class="chip accent">Trusted AI</span></div>
+            <p style="margin-top:6px;">Policy + control-point + model-risk tiering + audit — the governance spine of the future state.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Governance is four stacked layers. Each layer has named artifacts and owners. If any layer is missing, the ones above it become unenforceable — a policy without control points is a suggestion.</p>
+                <div class="mock mock-matrix">
+                  <div class="mock-label">Illustrative — Governance spine (top-down)</div>
+                  <div class="mg" style="grid-template-columns: 130px 1fr 130px;">
+                    <div class="mh">Layer</div><div class="mh">Contains</div><div class="mh">Owner</div>
+                    <div class="mh-row">Policy</div><div>Acceptable-use · data classes · model-risk matrix</div><div>Legal + Security</div>
+                    <div class="mh-row">Control points</div><div>Named approval gates · confidence thresholds · escalation routes</div><div>Platform team</div>
+                    <div class="mh-row">Risk tiering</div><div>Tiers 1–4 by data class × decision impact</div><div>AI governance board</div>
+                    <div class="mh-row">Audit</div><div>Full I/O capture · retention per data class · periodic review</div><div>Internal audit + Platform</div>
+                  </div>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> A common failure mode: policy exists (layer 1), risk tiering exists (layer 3), but control points are missing (layer 2). Teams self-tier their use cases and self-enforce the policy. Six months in, nobody can prove a given use case ran under its stated tier. Control points fix that.</p>
+              </div>
+            </details>
+          </div>
         </div>
       </div>
       <div class="card col-12">
@@ -1394,11 +2050,193 @@
       <div class="card col-12">
         <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
         <div class="two-col" style="margin-top: 6px;">
-          <div><h3>Value × Feasibility Matrix</h3><div class="chips"><span class="chip accent">2×2</span></div><p style="margin-top:6px;">Classic consulting 2×2 that splits the portfolio into quick wins, strategic bets, fill-ins, and low-priority items.</p></div>
-          <div><h3>Transformation Scoring Model</h3><div class="chips"><span class="chip accent">Weighted</span></div><p style="margin-top:6px;">Weighted score across nine inputs produces a rank-ordered backlog, not a gut-feel list.</p></div>
-          <div><h3>Dependency Mapping</h3><div class="chips"><span class="chip accent">DAG</span></div><p style="margin-top:6px;">Upstream-downstream dependencies ensure platform and governance are built before the workloads that depend on them.</p></div>
-          <div><h3>Risk-Adjusted Roadmap</h3><div class="chips"><span class="chip accent">Monte Carlo-lite</span></div><p style="margin-top:6px;">Scenarios for delivery slippage, adoption friction, and policy delays — a roadmap that survives contact with reality.</p></div>
-          <div><h3>KPI Tree Alignment</h3><div class="chips"><span class="chip accent">North-Star → Pilot</span></div><p style="margin-top:6px;">Every pilot's success metric rolls up to a strategic north-star KPI, so ROI is attributable.</p></div>
+          <div>
+            <h3>Value × Feasibility Matrix</h3>
+            <div class="chips"><span class="chip accent">2×2</span></div>
+            <p style="margin-top:6px;">Classic consulting 2×2 that splits the portfolio into quick wins, strategic bets, fill-ins, and low-priority items.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Plots each candidate workload on business value (y) × feasibility (x). The quadrant labels drive sequencing: Quick Wins go to Q1, Strategic Bets get deliberate staffing, Fill-ins backfill slack capacity, Low-Priority is explicitly deferred (not silently).</p>
+                <div class="mock mock-scatter">
+                  <div class="mock-label">Illustrative — Portfolio placement</div>
+                  <svg viewBox="0 0 340 240" role="img" aria-label="Value vs feasibility 2x2 portfolio plot">
+                    <rect x="40" y="20" width="135" height="95" class="quad"/>
+                    <rect x="175" y="20" width="145" height="95" class="quad-good"/>
+                    <rect x="40" y="115" width="135" height="95" class="quad-warn"/>
+                    <rect x="175" y="115" width="145" height="95" class="quad"/>
+                    <line x1="40" y1="115" x2="320" y2="115" class="axis"/>
+                    <line x1="175" y1="20" x2="175" y2="210" class="axis"/>
+                    <line x1="40" y1="20" x2="40" y2="210" class="axis"/>
+                    <line x1="40" y1="210" x2="320" y2="210" class="axis"/>
+                    <text x="40" y="14" class="label-axis">↑ Value</text>
+                    <text x="325" y="222" class="label-axis" text-anchor="end">Feasibility →</text>
+                    <text x="107" y="36" text-anchor="middle" class="label-small" style="font-weight:700;">STRATEGIC BETS</text>
+                    <text x="247" y="36" text-anchor="middle" class="label-small" style="fill: #086a69; font-weight:700;">QUICK WINS</text>
+                    <text x="107" y="132" text-anchor="middle" class="label-small" style="fill: #9b1c3c; font-weight:700;">LOW-PRIORITY</text>
+                    <text x="247" y="132" text-anchor="middle" class="label-small" style="font-weight:700;">FILL-INS</text>
+                    <circle cx="100" cy="60" r="6" class="dot"/><text x="110" y="63" class="label-small">Eng autonomy</text>
+                    <circle cx="130" cy="85" r="6" class="dot"/><text x="140" y="88" class="label-small">Legal drafting</text>
+                    <circle cx="250" cy="50" r="6" class="dot-good"/><text x="180" y="63" class="label-small">Proposal automation</text>
+                    <circle cx="285" cy="75" r="6" class="dot-good"/><text x="215" y="88" class="label-small">Support copilot</text>
+                    <circle cx="230" cy="100" r="6" class="dot-good"/><text x="165" y="108" class="label-small">Meeting notes</text>
+                    <circle cx="240" cy="160" r="6" class="dot"/><text x="250" y="163" class="label-small">Calendar triage</text>
+                    <circle cx="80" cy="180" r="6" class="dot-warn"/><text x="90" y="183" class="label-small">HR chatbot</text>
+                    <circle cx="135" cy="195" r="6" class="dot-warn"/><text x="145" y="198" class="label-small">Internal FAQ</text>
+                  </svg>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Engineering autonomy is high value / low feasibility today (Strategic Bet) — it goes into the roadmap with deliberate capability-building. Proposal automation is high / high (Quick Win) — Q1 pilot. The HR chatbot looks fun but is low / low — deferred on purpose, not by accident.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Transformation Scoring Model</h3>
+            <div class="chips"><span class="chip accent">Weighted</span></div>
+            <p style="margin-top:6px;">Weighted score across nine inputs produces a rank-ordered backlog, not a gut-feel list.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Each workload gets a 1–5 score per criterion, weighted by the executive-approved rubric. The output is a rank-ordered backlog whose order can be defended in a board meeting — not because it is objective, but because the subjectivity is made explicit in the weights.</p>
+                <div class="mock mock-table">
+                  <div class="mock-label">Illustrative — Weighted scoring across Wave-1 candidates</div>
+                  <table>
+                    <thead>
+                      <tr><th>Workload</th><th>Value<br><span style="font-weight:400;">×0.30</span></th><th>Feas.<br><span style="font-weight:400;">×0.20</span></th><th>Data<br><span style="font-weight:400;">×0.15</span></th><th>Risk<br><span style="font-weight:400;">×0.15</span></th><th>Adopt.<br><span style="font-weight:400;">×0.20</span></th><th>Score</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr class="highlight"><td>Proposal automation</td><td>5</td><td>4</td><td>4</td><td>4</td><td>5</td><td style="font-weight:700;">4.5</td></tr>
+                      <tr><td>Support copilot</td><td>4</td><td>4</td><td>4</td><td>3</td><td>4</td><td style="font-weight:700;">3.85</td></tr>
+                      <tr><td>Meeting notes</td><td>3</td><td>5</td><td>3</td><td>5</td><td>4</td><td style="font-weight:700;">3.85</td></tr>
+                      <tr><td>Eng autonomy</td><td>5</td><td>2</td><td>2</td><td>2</td><td>3</td><td style="font-weight:700;">3.05</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Proposal automation tops the list at 4.5 — high across the board. Eng autonomy scores 5 on Value but is dragged down by low Feasibility, Data, and Risk scores. The model makes it impossible to smuggle "high value" past the other constraints.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Dependency Mapping</h3>
+            <div class="chips"><span class="chip accent">DAG</span></div>
+            <p style="margin-top:6px;">Upstream-downstream dependencies ensure platform and governance are built before the workloads that depend on them.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">A directed graph of which capabilities must ship before which pilots can launch. Platform and governance consistently show up as root nodes — and consistently get under-funded because they are invisible to business stakeholders.</p>
+                <div class="mock mock-dag">
+                  <div class="mock-label">Illustrative — Wave-1 dependency graph</div>
+                  <svg viewBox="0 0 340 220" role="img" aria-label="Dependency DAG: platform and governance feed pilots">
+                    <defs><marker id="arrow-p4-dep" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: var(--text-muted);"/></marker></defs>
+                    <rect x="10" y="20" width="100" height="28" rx="4" class="node-box-hub"/>
+                    <text x="60" y="39" class="label-node">Model gateway</text>
+                    <rect x="10" y="100" width="100" height="28" rx="4" class="node-box-hub"/>
+                    <text x="60" y="119" class="label-node">Eval harness</text>
+                    <rect x="10" y="180" width="100" height="28" rx="4" class="node-box-hub"/>
+                    <text x="60" y="199" class="label-node">Governance spine</text>
+                    <rect x="180" y="20" width="100" height="28" rx="4" class="node-box"/>
+                    <text x="230" y="39" class="label-node">Proposal pilot</text>
+                    <rect x="180" y="100" width="100" height="28" rx="4" class="node-box"/>
+                    <text x="230" y="119" class="label-node">Support pilot</text>
+                    <rect x="180" y="180" width="100" height="28" rx="4" class="node-box"/>
+                    <text x="230" y="199" class="label-node">Code-review pilot</text>
+                    <path d="M 110 34 L 180 34" class="edge" style="marker-end: url(#arrow-p4-dep);"/>
+                    <path d="M 110 38 L 180 108" class="edge" style="marker-end: url(#arrow-p4-dep);"/>
+                    <path d="M 110 114 L 180 114" class="edge" style="marker-end: url(#arrow-p4-dep);"/>
+                    <path d="M 110 118 L 180 190" class="edge" style="marker-end: url(#arrow-p4-dep);"/>
+                    <path d="M 110 194 L 180 40" class="edge" style="marker-end: url(#arrow-p4-dep);"/>
+                    <path d="M 110 194 L 180 116" class="edge" style="marker-end: url(#arrow-p4-dep);"/>
+                    <path d="M 110 194 L 180 196" class="edge" style="marker-end: url(#arrow-p4-dep);"/>
+                  </svg>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> All three pilots require the gateway and governance spine as prerequisites. If governance slips, every downstream pilot slips — making governance the single highest-leverage investment in Wave 1, even though it has no user-visible output.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Risk-Adjusted Roadmap</h3>
+            <div class="chips"><span class="chip accent">Monte Carlo-lite</span></div>
+            <p style="margin-top:6px;">Scenarios for delivery slippage, adoption friction, and policy delays — a roadmap that survives contact with reality.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Every lane's Q-bar has two parts: the expected-case (solid) and a risk tail (striped) showing p50 → p90 slippage. When the tails overlap the next quarter's dependency, that is the conversation the exec steering committee needs to have before the quarter starts.</p>
+                <div class="mock mock-gantt">
+                  <div class="mock-label">Illustrative — 4-quarter roadmap with risk tails</div>
+                  <svg viewBox="0 0 340 200" role="img" aria-label="Risk-adjusted Gantt across four quarters">
+                    <line x1="90" y1="170" x2="320" y2="170" class="axis"/>
+                    <line x1="90" y1="20" x2="90" y2="170" class="axis"/>
+                    <line x1="147" y1="20" x2="147" y2="170" class="grid"/>
+                    <line x1="204" y1="20" x2="204" y2="170" class="grid"/>
+                    <line x1="261" y1="20" x2="261" y2="170" class="grid"/>
+                    <text x="118" y="185" text-anchor="middle" class="label-small">Q1</text>
+                    <text x="175" y="185" text-anchor="middle" class="label-small">Q2</text>
+                    <text x="232" y="185" text-anchor="middle" class="label-small">Q3</text>
+                    <text x="290" y="185" text-anchor="middle" class="label-small">Q4</text>
+                    <text x="84" y="40" text-anchor="end" class="label-small">Gateway</text>
+                    <rect x="90" y="32" width="40" height="14" style="fill: var(--accent);"/>
+                    <rect x="130" y="32" width="15" height="14" style="fill: var(--accent); opacity: 0.35;"/>
+                    <text x="84" y="68" text-anchor="end" class="label-small">Governance</text>
+                    <rect x="90" y="60" width="55" height="14" style="fill: var(--accent);"/>
+                    <rect x="145" y="60" width="25" height="14" style="fill: var(--accent); opacity: 0.35;"/>
+                    <text x="84" y="96" text-anchor="end" class="label-small">Proposal pilot</text>
+                    <rect x="147" y="88" width="50" height="14" style="fill: var(--accent-2);"/>
+                    <rect x="197" y="88" width="12" height="14" style="fill: var(--accent-2); opacity: 0.35;"/>
+                    <text x="84" y="124" text-anchor="end" class="label-small">Support pilot</text>
+                    <rect x="204" y="116" width="50" height="14" style="fill: var(--accent-2);"/>
+                    <rect x="254" y="116" width="18" height="14" style="fill: var(--accent-2); opacity: 0.35;"/>
+                    <text x="84" y="152" text-anchor="end" class="label-small">Scale-up</text>
+                    <rect x="261" y="144" width="50" height="14" style="fill: #d08a20;"/>
+                    <rect x="311" y="144" width="10" height="14" style="fill: #d08a20; opacity: 0.35;"/>
+                  </svg>
+                  <div style="margin-top: 4px; font-size: 10.5px; color: var(--text-dim); display: flex; gap: 10px; justify-content: center;">
+                    <span>Solid = p50 finish</span><span>Faded = p50 → p90 tail</span>
+                  </div>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Governance's p90 tail reaches into Q2 — but the Proposal pilot depends on governance. This is where steering needs to either add capacity to governance in Q1, or explicitly accept delaying the Proposal pilot. Either is fine; ignoring the overlap is not.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>KPI Tree Alignment</h3>
+            <div class="chips"><span class="chip accent">North-Star → Pilot</span></div>
+            <p style="margin-top:6px;">Every pilot's success metric rolls up to a strategic north-star KPI, so ROI is attributable.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">A pilot's metric lives on a tree. If a pilot cannot name its parent metric, it has no ROI story. The tree also prevents metric sprawl — every level-3 metric must connect to a level-2 metric, which must connect to the north star.</p>
+                <div class="mock mock-tree">
+                  <div class="mock-label">Illustrative — North-star → pilot metric tree</div>
+                  <svg viewBox="0 0 340 210" role="img" aria-label="KPI tree showing north star to pilot metrics">
+                    <rect x="100" y="10" width="140" height="32" rx="4" class="node-box-hub"/>
+                    <text x="170" y="27" class="label-node">Firm margin +3pp</text>
+                    <text x="170" y="38" class="label-small" text-anchor="middle">(by FY-end)</text>
+                    <line x1="170" y1="42" x2="95" y2="72" class="edge" style="marker-end:none;"/>
+                    <line x1="170" y1="42" x2="245" y2="72" class="edge" style="marker-end:none;"/>
+                    <rect x="25" y="72" width="140" height="32" rx="4" class="node-box"/>
+                    <text x="95" y="89" class="label-node">Revenue per BD rep</text>
+                    <text x="95" y="100" class="label-small" text-anchor="middle">+15%</text>
+                    <rect x="175" y="72" width="140" height="32" rx="4" class="node-box"/>
+                    <text x="245" y="89" class="label-node">Delivery cycle time</text>
+                    <text x="245" y="100" class="label-small" text-anchor="middle">−20%</text>
+                    <line x1="95" y1="104" x2="50" y2="140" class="edge" style="marker-end:none;"/>
+                    <line x1="95" y1="104" x2="140" y2="140" class="edge" style="marker-end:none;"/>
+                    <line x1="245" y1="104" x2="200" y2="140" class="edge" style="marker-end:none;"/>
+                    <line x1="245" y1="104" x2="290" y2="140" class="edge" style="marker-end:none;"/>
+                    <rect x="10" y="140" width="80" height="28" rx="3" class="node-box"/>
+                    <text x="50" y="158" class="label-node">Proposal win-rate</text>
+                    <rect x="100" y="140" width="80" height="28" rx="3" class="node-box"/>
+                    <text x="140" y="158" class="label-node">Proposal TAT</text>
+                    <rect x="160" y="140" width="80" height="28" rx="3" class="node-box"/>
+                    <text x="200" y="158" class="label-node">Support FCR</text>
+                    <rect x="250" y="140" width="80" height="28" rx="3" class="node-box"/>
+                    <text x="290" y="158" class="label-node">QA defect rate</text>
+                    <text x="170" y="200" text-anchor="middle" class="label-small">Level 3 metrics belong to pilots · each rolls up to exactly one Level 2</text>
+                  </svg>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> The Proposal pilot owns "Proposal TAT" (turnaround time). It rolls up into "Revenue per BD rep" (a level-2 driver of the margin north star). If someone proposes a pilot that cannot name its level-2 parent, the pilot doesn't get funded.</p>
+              </div>
+            </details>
+          </div>
         </div>
       </div>
       <div class="card col-12">
@@ -1478,12 +2316,163 @@
       <div class="card col-12">
         <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
         <div class="two-col" style="margin-top: 6px;">
-          <div><h3>Pilot Charter Framework</h3><div class="chips"><span class="chip accent">Scope · Baseline · Target · Scale</span></div><p style="margin-top:6px;">Every pilot has a one-page charter the sponsor signs; no charter, no pilot.</p></div>
-          <div><h3>Responsible AI Governance</h3><div class="chips"><span class="chip accent">Policy · Control · Audit</span></div><p style="margin-top:6px;">Policy, control-point design, and auditability for every AI-assisted workflow.</p></div>
-          <div><h3>Control-Point Design</h3><div class="chips"><span class="chip accent">Gates + Confidence</span></div><p style="margin-top:6px;">Named approval gates with confidence thresholds and explicit escalation routes.</p></div>
-          <div><h3>Model Risk Tiering</h3><div class="chips"><span class="chip accent">Tier 1–4</span></div><p style="margin-top:6px;">Tiers the risk of each AI use case; higher-tier use cases require stronger evaluation and human oversight.</p></div>
-          <div><h3>Adoption / Change Management</h3><div class="chips"><span class="chip accent">Prosci-style</span></div><p style="margin-top:6px;">Adoption is engineered with awareness, desire, knowledge, ability, and reinforcement — not wished for.</p></div>
-          <div><h3>Capability Enablement</h3><div class="chips"><span class="chip accent">Role × Skill × Practice</span></div><p style="margin-top:6px;">Training tied to role, measured by practice — not by course-completion rates.</p></div>
+          <div>
+            <h3>Pilot Charter Framework</h3>
+            <div class="chips"><span class="chip accent">Scope · Baseline · Target · Scale</span></div>
+            <p style="margin-top:6px;">Every pilot has a one-page charter the sponsor signs; no charter, no pilot.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">A single page. Eight named sections. Signed by the sponsor before launch. The charter is not a proposal document — it is the operating contract under which the pilot runs, and every later argument about scope, success, or kill criteria resolves back to it.</p>
+                <div class="mock mock-matrix">
+                  <div class="mock-label">Illustrative — Support copilot charter</div>
+                  <div class="mg" style="grid-template-columns: 130px 1fr;">
+                    <div class="mh-row">Scope</div><div>Tier-1 English support for billing-free tickets</div>
+                    <div class="mh-row">Owner</div><div>Head of Support + AI Platform lead</div>
+                    <div class="mh-row">Baseline</div><div>Response p50 9m · FCR 58% · CSAT 4.1 (4 weeks pre-launch)</div>
+                    <div class="mh-row">Target</div><div>Response p50 ≤ 5m · FCR ≥ 62% · CSAT neutral-or-better</div>
+                    <div class="mh-row">Approval gates</div><div>Confidence &lt; 0.75 → human · any billing → human · any refund → human</div>
+                    <div class="mh-row">Audit</div><div>Full I/O log · 18-month retention · quarterly review</div>
+                    <div class="mh-row">Scale-up</div><div>Targets met 2 consecutive weeks → expand to Tier-2</div>
+                    <div class="mh-row">Kill criteria</div><div>CSAT drop &gt; 0.2 OR hallucination incident touching billing</div>
+                  </div>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Six weeks in, the team wants to expand to Tier-2 because early numbers look good. The charter answers that: scale-up requires <em>two consecutive weeks</em> meeting target — not "good-looking" numbers. The conversation ends in 90 seconds.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Responsible AI Governance</h3>
+            <div class="chips"><span class="chip accent">Policy · Control · Audit</span></div>
+            <p style="margin-top:6px;">Policy, control-point design, and auditability for every AI-assisted workflow.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">For Phase 5 governance, the frame is per-workload: each pilot answers the same three columns — the policy it operates under, the control points enforced at runtime, and the audit trail it leaves behind. A "yes" in all three is the minimum bar for production exposure.</p>
+                <div class="mock mock-table">
+                  <div class="mock-label">Illustrative — Governance contract per workload</div>
+                  <table>
+                    <thead>
+                      <tr><th>Workload</th><th>Policy</th><th>Control</th><th>Audit</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Support copilot</td><td>Tier-2 · no PII to 3P</td><td>Conf threshold · human override · class-based escalation</td><td>Full I/O · 18mo</td></tr>
+                      <tr><td>Proposal copilot</td><td>Tier-1 · BD data class</td><td>Human edit required · no auto-send</td><td>Draft log · 12mo</td></tr>
+                      <tr><td>Code-review bot</td><td>Tier-2 · IP-sensitive repos flagged</td><td>Advisory only · no auto-merge · sec-sensitive paths excluded</td><td>Comment log · 24mo</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Proposal copilot is Tier-1 (low risk), so the control is simply "human edits before send." Support copilot is Tier-2 — the control includes confidence thresholds and class-based escalation (billing always to human). Same framework; different controls tuned to risk.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Control-Point Design</h3>
+            <div class="chips"><span class="chip accent">Gates + Confidence</span></div>
+            <p style="margin-top:6px;">Named approval gates with confidence thresholds and explicit escalation routes.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Every pilot ships with an explicit flow diagram: named gates, numeric thresholds, named escalation owners. A control point that isn't named and numbered isn't a control — it's a hope.</p>
+                <div class="mock mock-tree">
+                  <div class="mock-label">Illustrative — Control-point flow</div>
+                  <svg viewBox="0 0 340 200" role="img" aria-label="Control point flow with named gates">
+                    <defs><marker id="arrow-p5-cp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" style="fill: var(--text-muted);"/></marker></defs>
+                    <rect x="8" y="80" width="68" height="34" rx="4" class="node-box"/>
+                    <text x="42" y="100" class="label-node">Intake</text>
+                    <path d="M 76 97 L 100 97" class="edge" style="marker-end: url(#arrow-p5-cp);"/>
+                    <rect x="100" y="70" width="78" height="54" rx="4" class="node-box" style="fill: var(--accent-soft); stroke: var(--accent);"/>
+                    <text x="139" y="90" class="label-node">Gate 1</text>
+                    <text x="139" y="103" class="label-small" text-anchor="middle">Conf ≥ 0.75?</text>
+                    <text x="139" y="116" class="label-small" text-anchor="middle">else → L2</text>
+                    <path d="M 178 97 L 202 97" class="edge" style="marker-end: url(#arrow-p5-cp);"/>
+                    <rect x="202" y="70" width="78" height="54" rx="4" class="node-box" style="fill: var(--accent-soft); stroke: var(--accent);"/>
+                    <text x="241" y="90" class="label-node">Gate 2</text>
+                    <text x="241" y="103" class="label-small" text-anchor="middle">Class clean?</text>
+                    <text x="241" y="116" class="label-small" text-anchor="middle">else → Human</text>
+                    <path d="M 280 97 L 304 97" class="edge" style="marker-end: url(#arrow-p5-cp);"/>
+                    <rect x="304" y="80" width="34" height="34" rx="4" class="node-box" style="fill: var(--accent-2-soft); stroke: var(--accent-2);"/>
+                    <text x="321" y="100" class="label-node">Exec</text>
+                    <rect x="50" y="150" width="240" height="34" rx="4" class="node-box-warn"/>
+                    <text x="170" y="170" class="label-node">Escalation: named L2 · Support-Lead@ops</text>
+                  </svg>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Gate 1 (confidence ≥ 0.75) catches low-signal drafts. Gate 2 (class filter) routes any billing/PII content to a human regardless of confidence. Escalation is to a named owner, not "the team" — an unnamed owner is a queue.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Model Risk Tiering</h3>
+            <div class="chips"><span class="chip accent">Tier 1–4</span></div>
+            <p style="margin-top:6px;">Tiers the risk of each AI use case; higher-tier use cases require stronger evaluation and human oversight.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Four tiers drive the intensity of evaluation, oversight, and audit per use case. The critical discipline is matching tier to actual consequence — tier-4 controls on a tier-1 use case wastes effort; tier-1 controls on a tier-4 use case is how an incident happens.</p>
+                <div class="mock mock-table">
+                  <div class="mock-label">Illustrative — Risk tier controls</div>
+                  <table>
+                    <thead>
+                      <tr><th>Tier</th><th>Data class</th><th>Evaluation</th><th>Oversight</th><th>Audit retention</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Tier 1</td><td>Public / internal-low</td><td>Spot-check</td><td>Optional human</td><td>6 months</td></tr>
+                      <tr><td>Tier 2</td><td>Confidential</td><td>Weekly offline</td><td>Human on threshold</td><td>12 months</td></tr>
+                      <tr><td>Tier 3</td><td>Regulated / client</td><td>Daily online + offline</td><td>Human on every action</td><td>18 months</td></tr>
+                      <tr class="highlight"><td>Tier 4</td><td>Financial / PII / legal</td><td>Continuous + red-team sign-off</td><td>Dual human approval</td><td>24 months + legal hold</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> The meeting-notes summarizer is Tier 1 — public text, low consequence. The underwriting assistant is Tier 4 — any hallucination creates legal exposure. Same LLM underneath; completely different control wrappers.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Adoption / Change Management</h3>
+            <div class="chips"><span class="chip accent">Prosci-style</span></div>
+            <p style="margin-top:6px;">Adoption is engineered with awareness, desire, knowledge, ability, and reinforcement — not wished for.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">ADKAR: every stage has a named leading indicator. Adoption curves stall at whichever stage is the weakest link — usually Ability (they've been told, they want to, they've been trained, but they can't actually do the new thing in their flow) or Reinforcement (incentives still reward the old behavior).</p>
+                <div class="mock mock-bars">
+                  <div class="mock-label">Illustrative — ADKAR status for Support copilot rollout</div>
+                  <div class="mb-row"><div class="mb-label">Awareness</div><div class="mb-track"><div class="mb-fill good" style="width: 85%;"></div></div><div class="mb-value">85%</div></div>
+                  <div class="mb-row"><div class="mb-label">Desire</div><div class="mb-track"><div class="mb-fill good" style="width: 70%;"></div></div><div class="mb-value">70%</div></div>
+                  <div class="mb-row"><div class="mb-label">Knowledge</div><div class="mb-track"><div class="mb-fill" style="width: 60%;"></div></div><div class="mb-value">60%</div></div>
+                  <div class="mb-row"><div class="mb-label">Ability</div><div class="mb-track"><div class="mb-fill warn" style="width: 35%;"></div></div><div class="mb-value">35%</div></div>
+                  <div class="mb-row"><div class="mb-label">Reinforcement</div><div class="mb-track"><div class="mb-fill warn" style="width: 20%;"></div></div><div class="mb-value">20%</div></div>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> Awareness and Desire are fine — the team ran townhalls and the reps believe in the tool. But Ability is stuck at 35% because the copilot lives in a sidebar they have to remember to open. Reinforcement is at 20% because handle-time metrics still penalize them for pausing to consult the copilot. Both are fixable — but both have to be named.</p>
+              </div>
+            </details>
+          </div>
+          <div>
+            <h3>Capability Enablement</h3>
+            <div class="chips"><span class="chip accent">Role × Skill × Practice</span></div>
+            <p style="margin-top:6px;">Training tied to role, measured by practice — not by course-completion rates.</p>
+            <details class="fw-expand">
+              <summary>Show example</summary>
+              <div class="fw-detail">
+                <p class="fw-para">Each role has a required skill, a practice artifact (what they produce to demonstrate the skill), and a measurement (how we'll know). Course completion is not a measurement — it is attendance.</p>
+                <div class="mock mock-table">
+                  <div class="mock-label">Illustrative — Enablement matrix by role</div>
+                  <table>
+                    <thead>
+                      <tr><th>Role</th><th>Required skill</th><th>Practice artifact</th><th>Measurement</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Senior BA</td><td>AI-assisted requirements synthesis</td><td>Acceptance-criteria draft from transcript</td><td>Peer-rated quality ≥ 4/5 on 5 samples</td></tr>
+                      <tr><td>QA Lead</td><td>Eval-harness authoring</td><td>Evaluation suite for one workflow</td><td>Coverage + signal verified on test cases</td></tr>
+                      <tr><td>Delivery Lead</td><td>Control-point design</td><td>Signed pilot charter</td><td>Charter review by AI governance board</td></tr>
+                      <tr><td>Support Agent</td><td>Copilot-augmented resolution</td><td>3 closed tickets using copilot</td><td>Time-to-resolution + CSAT on sampled tickets</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="fw-example"><strong>Example.</strong> The Senior BA doesn't "complete a course on AI" — they produce five acceptance-criteria drafts that pass peer review. The artifact is concrete, the measurement is observable, and the capability is demonstrable the day the pilot ships.</p>
+              </div>
+            </details>
+          </div>
         </div>
       </div>
       <div class="card col-12">
