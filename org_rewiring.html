@@ -39,7 +39,7 @@
     --gradient-accent-2: linear-gradient(135deg, #0ea5a4 0%, #06b6d4 100%);
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
+  html, body { margin: 0; padding: 0; overflow-x: hidden; }
   body {
     background: var(--bg);
     background-image:
@@ -619,51 +619,83 @@
       -webkit-overflow-scrolling: touch;
       scrollbar-width: thin;
       scroll-snap-type: x proximity;
+      position: relative;
+      -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
+              mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
     }
     nav.phases::-webkit-scrollbar { height: 4px; }
     nav.phases::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
     .phase {
       flex: 0 0 auto; min-width: auto;
-      padding: 9px 14px; font-size: 12.5px;
+      padding: 10px 14px; font-size: 12.5px;
+      min-height: 40px;
       scroll-snap-align: start;
     }
     nav.pipeline { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-    .stage { padding: 10px 12px; }
+    .stage { padding: 12px 12px; min-height: 44px; }
     .stage .name { font-size: 12px; line-height: 1.25; }
     main.tabs { padding: 20px 16px; }
     .tab-grid { gap: 10px; }
     .card { padding: 14px 16px; }
-    .tab-head h2 { font-size: 19px; }
+    .tab-head h2 { font-size: 19px; overflow-wrap: break-word; word-break: break-word; }
     .tab-head .tab-subtitle { font-size: 13.5px; }
     .exec .hint .tooltip { width: min(260px, calc(100vw - 32px)); font-size: 12px; padding: 10px 12px; }
     .exec .principle-tooltip { width: min(320px, calc(100vw - 32px)); padding: 12px 14px; font-size: 12.5px; }
     .gherkin, .card code, .out, .step h3 { overflow-wrap: break-word; word-break: break-word; }
+    footer { padding: 24px 18px 36px; font-size: 12px; }
   }
 
   @media (max-width: 520px) {
     .wrap { padding: 18px 14px; }
     header.page .wrap { padding-top: 26px; }
-    h1 { font-size: 23px; }
-    .brand { font-size: 11px; padding: 4px 10px; }
+    h1 { font-size: 22px; letter-spacing: -0.02em; }
+    .brand { font-size: 10.5px; padding: 6px 12px; letter-spacing: 0.14em; }
+    .subtitle { font-size: 14px; }
     .meta { font-size: 11px; }
-    .exec { padding: 14px 14px; margin-top: 18px; }
-    .exec .pitch > p:not(.example) { font-size: 13.5px; }
+    .meta .kbd { padding: 3px 8px; font-size: 11px; }
+    .exec { padding: 14px 14px; margin-top: 18px; border-radius: 16px; }
+    .exec::before { border-radius: 16px 0 0 16px; }
+    .exec .pitch > p:not(.example) { font-size: 13.5px; line-height: 1.65; }
+    .exec .scenario { padding: 14px 14px; }
+    .exec .why { font-size: 12.5px; padding: 12px 14px; }
+    nav.phases { padding: 4px; border-radius: 12px; }
     nav.pipeline { grid-template-columns: 1fr; }
     main.tabs { padding: 16px 12px; }
-    .card { padding: 13px 14px; }
+    .tab-head { margin-bottom: 16px; padding-bottom: 14px; }
+    .tab-head h2 { font-size: 17px; }
+    .card { padding: 13px 14px; border-radius: 14px; }
     .card h2 { font-size: 11.5px; }
     .card h3 { font-size: 13.5px; }
+    .card p, .card li { font-size: 13.5px; }
     .step { padding: 12px 12px; grid-template-columns: 28px 1fr; gap: 10px; }
     .step .idx { width: 26px; height: 26px; font-size: 12px; }
+    .step h3 { font-size: 14px; }
+    .step p { font-size: 13px; }
     .out-grid { grid-template-columns: 1fr; }
     .out { font-size: 12.5px; }
+    .chip { font-size: 11px; padding: 4px 10px; }
+    .gherkin { font-size: 12px; padding: 12px 14px; line-height: 1.7; }
+    .matrix { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 6px; text-align: left; font-size: 11.5px; padding: 20px 14px 32px; }
+    .exec .principle, .exec .lib {
+      display: inline;
+      padding: 1px 6px;
+      line-height: 2;
+      -webkit-box-decoration-break: clone;
+              box-decoration-break: clone;
+    }
+    .exec .principle .icon-info, .exec .lib .hint {
+      display: inline-block;
+      vertical-align: -2px;
+      margin-left: 2px;
+    }
   }
 
   @media (hover: none) and (pointer: coarse) {
     .exec .hint { width: 22px; height: 22px; }
     .exec .hint svg { width: 14px; height: 14px; }
-    .principle { padding: 2px 3px; }
+    .principle { padding: 2px 6px; }
+    .phase, .stage, button.stage { touch-action: manipulation; }
   }
 
   @media print {
@@ -767,10 +799,8 @@
 
     <nav class="pipeline phase1" role="tablist" aria-label="Phase 1 sub-sections">
       <button type="button" class="stage current" data-tab="p1-plan" role="tab" aria-selected="true"><div class="num"><span class="bullet">1</span> Tab</div><div class="name">Plan &amp; Activities</div></button>
-      <button type="button" class="stage" data-tab="p1-frameworks" role="tab" aria-selected="false"><div class="num"><span class="bullet">2</span> Tab</div><div class="name">Frameworks</div></button>
-      <button type="button" class="stage" data-tab="p1-analysis" role="tab" aria-selected="false"><div class="num"><span class="bullet">3</span> Tab</div><div class="name">Analysis</div></button>
-      <button type="button" class="stage" data-tab="p1-risks" role="tab" aria-selected="false"><div class="num"><span class="bullet">4</span> Tab</div><div class="name">Risks</div></button>
-      <button type="button" class="stage" data-tab="p1-outcome" role="tab" aria-selected="false"><div class="num"><span class="bullet">5</span> Tab</div><div class="name">Outcome</div></button>
+      <button type="button" class="stage" data-tab="p1-analysis" role="tab" aria-selected="false"><div class="num"><span class="bullet">2</span> Tab</div><div class="name">Analysis</div></button>
+      <button type="button" class="stage" data-tab="p1-outcome" role="tab" aria-selected="false"><div class="num"><span class="bullet">3</span> Tab</div><div class="name">Outcome</div></button>
     </nav>
 
     <section class="exec phase2">
@@ -801,10 +831,8 @@
 
     <nav class="pipeline phase2" role="tablist" aria-label="Phase 2 sub-sections">
       <button type="button" class="stage current" data-tab="p2-plan" role="tab" aria-selected="true"><div class="num"><span class="bullet">1</span> Tab</div><div class="name">Plan &amp; Evidence</div></button>
-      <button type="button" class="stage" data-tab="p2-frameworks" role="tab" aria-selected="false"><div class="num"><span class="bullet">2</span> Tab</div><div class="name">Frameworks</div></button>
-      <button type="button" class="stage" data-tab="p2-analysis" role="tab" aria-selected="false"><div class="num"><span class="bullet">3</span> Tab</div><div class="name">Analysis</div></button>
-      <button type="button" class="stage" data-tab="p2-risks" role="tab" aria-selected="false"><div class="num"><span class="bullet">4</span> Tab</div><div class="name">Risks</div></button>
-      <button type="button" class="stage" data-tab="p2-outcome" role="tab" aria-selected="false"><div class="num"><span class="bullet">5</span> Tab</div><div class="name">Outcome</div></button>
+      <button type="button" class="stage" data-tab="p2-analysis" role="tab" aria-selected="false"><div class="num"><span class="bullet">2</span> Tab</div><div class="name">Analysis</div></button>
+      <button type="button" class="stage" data-tab="p2-outcome" role="tab" aria-selected="false"><div class="num"><span class="bullet">3</span> Tab</div><div class="name">Outcome</div></button>
     </nav>
 
     <section class="exec phase3">
@@ -835,10 +863,8 @@
 
     <nav class="pipeline phase3" role="tablist" aria-label="Phase 3 sub-sections">
       <button type="button" class="stage current" data-tab="p3-plan" role="tab" aria-selected="true"><div class="num"><span class="bullet">1</span> Tab</div><div class="name">Plan &amp; Activities</div></button>
-      <button type="button" class="stage" data-tab="p3-frameworks" role="tab" aria-selected="false"><div class="num"><span class="bullet">2</span> Tab</div><div class="name">Frameworks</div></button>
-      <button type="button" class="stage" data-tab="p3-analysis" role="tab" aria-selected="false"><div class="num"><span class="bullet">3</span> Tab</div><div class="name">Design Focus</div></button>
-      <button type="button" class="stage" data-tab="p3-risks" role="tab" aria-selected="false"><div class="num"><span class="bullet">4</span> Tab</div><div class="name">Risks</div></button>
-      <button type="button" class="stage" data-tab="p3-outcome" role="tab" aria-selected="false"><div class="num"><span class="bullet">5</span> Tab</div><div class="name">Outcome</div></button>
+      <button type="button" class="stage" data-tab="p3-analysis" role="tab" aria-selected="false"><div class="num"><span class="bullet">2</span> Tab</div><div class="name">Analysis</div></button>
+      <button type="button" class="stage" data-tab="p3-outcome" role="tab" aria-selected="false"><div class="num"><span class="bullet">3</span> Tab</div><div class="name">Outcome</div></button>
     </nav>
 
     <section class="exec phase4">
@@ -869,10 +895,8 @@
 
     <nav class="pipeline phase4" role="tablist" aria-label="Phase 4 sub-sections">
       <button type="button" class="stage current" data-tab="p4-plan" role="tab" aria-selected="true"><div class="num"><span class="bullet">1</span> Tab</div><div class="name">Plan &amp; Inputs</div></button>
-      <button type="button" class="stage" data-tab="p4-frameworks" role="tab" aria-selected="false"><div class="num"><span class="bullet">2</span> Tab</div><div class="name">Frameworks</div></button>
-      <button type="button" class="stage" data-tab="p4-analysis" role="tab" aria-selected="false"><div class="num"><span class="bullet">3</span> Tab</div><div class="name">Prioritization</div></button>
-      <button type="button" class="stage" data-tab="p4-risks" role="tab" aria-selected="false"><div class="num"><span class="bullet">4</span> Tab</div><div class="name">Risks</div></button>
-      <button type="button" class="stage" data-tab="p4-outcome" role="tab" aria-selected="false"><div class="num"><span class="bullet">5</span> Tab</div><div class="name">Outcome</div></button>
+      <button type="button" class="stage" data-tab="p4-analysis" role="tab" aria-selected="false"><div class="num"><span class="bullet">2</span> Tab</div><div class="name">Analysis</div></button>
+      <button type="button" class="stage" data-tab="p4-outcome" role="tab" aria-selected="false"><div class="num"><span class="bullet">3</span> Tab</div><div class="name">Outcome</div></button>
     </nav>
 
     <section class="exec phase5">
@@ -903,10 +927,8 @@
 
     <nav class="pipeline phase5" role="tablist" aria-label="Phase 5 sub-sections">
       <button type="button" class="stage current" data-tab="p5-plan" role="tab" aria-selected="true"><div class="num"><span class="bullet">1</span> Tab</div><div class="name">Plan &amp; Charters</div></button>
-      <button type="button" class="stage" data-tab="p5-frameworks" role="tab" aria-selected="false"><div class="num"><span class="bullet">2</span> Tab</div><div class="name">Frameworks</div></button>
-      <button type="button" class="stage" data-tab="p5-analysis" role="tab" aria-selected="false"><div class="num"><span class="bullet">3</span> Tab</div><div class="name">Governance</div></button>
-      <button type="button" class="stage" data-tab="p5-risks" role="tab" aria-selected="false"><div class="num"><span class="bullet">4</span> Tab</div><div class="name">Risks</div></button>
-      <button type="button" class="stage" data-tab="p5-outcome" role="tab" aria-selected="false"><div class="num"><span class="bullet">5</span> Tab</div><div class="name">Outcome</div></button>
+      <button type="button" class="stage" data-tab="p5-analysis" role="tab" aria-selected="false"><div class="num"><span class="bullet">2</span> Tab</div><div class="name">Analysis</div></button>
+      <button type="button" class="stage" data-tab="p5-outcome" role="tab" aria-selected="false"><div class="num"><span class="bullet">3</span> Tab</div><div class="name">Outcome</div></button>
     </nav>
 
     <nav class="pipeline departments" role="tablist" aria-label="Department framework tabs">
@@ -1074,29 +1096,10 @@
     </div>
   </div>
 
-  <div class="tab-panel" id="panel-p1-frameworks" data-panel="p1-frameworks" role="tabpanel">
-    <div class="tab-head">
-      <h2>Frameworks Used</h2>
-      <p class="tab-subtitle">Named frameworks that structure the current-state view and AI readiness baseline.</p>
-    </div>
-    <div class="tab-grid">
-      <div class="card col-12">
-        <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
-        <div class="two-col" style="margin-top: 6px;">
-          <div><h3>Operating Model Canvas</h3><div class="chips"><span class="chip accent">OMC</span></div><p style="margin-top:6px;">One-page view of value creation: customers, suppliers, value streams, organization, locations, information, management systems.</p></div>
-          <div><h3>Capability Maturity Assessment</h3><div class="chips"><span class="chip accent">CMMI-style</span></div><p style="margin-top:6px;">Maturity rating by capability across people, process, technology, and governance.</p></div>
-          <div><h3>Decision-Rights Mapping</h3><div class="chips"><span class="chip accent">RAPID / RACI</span></div><p style="margin-top:6px;">Surfaces who actually decides vs who is consulted — and where approval gridlock lives.</p></div>
-          <div><h3>Value Stream Mapping</h3><div class="chips"><span class="chip accent">Lean VSM</span></div><p style="margin-top:6px;">Exposes wait time, handoff count, and rework as a percentage of total lead time.</p></div>
-          <div><h3>AI Readiness Assessment</h3><div class="chips"><span class="chip accent">Strategy · Data · Talent · Tech · Adoption</span></div><p style="margin-top:6px;">Baseline scorecard across six AI-transformation dimensions; sets the starting point for Phase 2 prioritization.</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="tab-panel" id="panel-p1-analysis" data-panel="p1-analysis" role="tabpanel">
     <div class="tab-head">
-      <h2>What We Analyze</h2>
-      <p class="tab-subtitle">The five questions we answer before recommending anything.</p>
+      <h2>Analysis</h2>
+      <p class="tab-subtitle">The questions we answer, the frameworks behind them, and the risks we prevent.</p>
     </div>
     <div class="tab-grid">
       <div class="card col-12">
@@ -1115,15 +1118,16 @@
           <div><span class="kw">Because</span> the go-to-market narrative has outpaced the operating model</div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="tab-panel" id="panel-p1-risks" data-panel="p1-risks" role="tabpanel">
-    <div class="tab-head">
-      <h2>Risks &amp; Mitigations</h2>
-      <p class="tab-subtitle">What typically goes wrong in Phase 1 and how we prevent it.</p>
-    </div>
-    <div class="tab-grid">
+      <div class="card col-12">
+        <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
+        <div class="two-col" style="margin-top: 6px;">
+          <div><h3>Operating Model Canvas</h3><div class="chips"><span class="chip accent">OMC</span></div><p style="margin-top:6px;">One-page view of value creation: customers, suppliers, value streams, organization, locations, information, management systems.</p></div>
+          <div><h3>Capability Maturity Assessment</h3><div class="chips"><span class="chip accent">CMMI-style</span></div><p style="margin-top:6px;">Maturity rating by capability across people, process, technology, and governance.</p></div>
+          <div><h3>Decision-Rights Mapping</h3><div class="chips"><span class="chip accent">RAPID / RACI</span></div><p style="margin-top:6px;">Surfaces who actually decides vs who is consulted — and where approval gridlock lives.</p></div>
+          <div><h3>Value Stream Mapping</h3><div class="chips"><span class="chip accent">Lean VSM</span></div><p style="margin-top:6px;">Exposes wait time, handoff count, and rework as a percentage of total lead time.</p></div>
+          <div><h3>AI Readiness Assessment</h3><div class="chips"><span class="chip accent">Strategy · Data · Talent · Tech · Adoption</span></div><p style="margin-top:6px;">Baseline scorecard across six AI-transformation dimensions; sets the starting point for Phase 2 prioritization.</p></div>
+        </div>
+      </div>
       <div class="card col-12">
         <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Risks</h2>
         <ul>
@@ -1187,24 +1191,8 @@
       </div>
     </div>
   </div>
-  <div class="tab-panel" data-panel="p2-frameworks" role="tabpanel">
-    <div class="tab-head"><h2>Frameworks Used</h2><p class="tab-subtitle">Named frameworks that turn interviews into a structured diagnostic.</p></div>
-    <div class="tab-grid">
-      <div class="card col-12">
-        <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
-        <div class="two-col" style="margin-top: 6px;">
-          <div><h3>SIPOC</h3><div class="chips"><span class="chip accent">Scoping</span></div><p style="margin-top:6px;">Suppliers · Inputs · Process · Outputs · Customers — a one-sheet scope that makes handoff breakdowns visible at a glance.</p></div>
-          <div><h3>Service Blueprint</h3><div class="chips"><span class="chip accent">Front + Back Stage</span></div><p style="margin-top:6px;">Maps the visible and invisible work behind a service outcome, exposing internal wait states.</p></div>
-          <div><h3>RACI / Decision-Rights</h3><div class="chips"><span class="chip accent">Approval Gridlock</span></div><p style="margin-top:6px;">Surfaces where too many people must approve, and where accountability is missing.</p></div>
-          <div><h3>Process Maturity Model</h3><div class="chips"><span class="chip accent">Ad-hoc → Optimizing</span></div><p style="margin-top:6px;">Rates each workflow so we don't propose automation on top of an ad-hoc process.</p></div>
-          <div><h3>Task Automation Suitability</h3><div class="chips"><span class="chip accent">Repeatability × Risk</span></div><p style="margin-top:6px;">Scores tasks on structure, repeatability, data availability, and risk tolerance — separates AI-leverage from AI-hazard.</p></div>
-          <div><h3>Role-to-Value Alignment</h3><div class="chips"><span class="chip accent">Role Audit</span></div><p style="margin-top:6px;">Tests whether each role's time allocation matches the value the organization expects from it.</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="tab-panel" data-panel="p2-analysis" role="tabpanel">
-    <div class="tab-head"><h2>What We Analyze</h2><p class="tab-subtitle">Where AI actually leverages — and where automation would just accelerate bad patterns.</p></div>
+    <div class="tab-head"><h2>Analysis</h2><p class="tab-subtitle">Where AI actually leverages — plus the frameworks that get us there and the risks that distort the diagnostic.</p></div>
     <div class="tab-grid">
       <div class="card col-12">
         <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Analysis Focus</h2>
@@ -1224,11 +1212,17 @@
           <div><span class="kw">Because</span> the upstream workflow maturity is the constraint</div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="tab-panel" data-panel="p2-risks" role="tabpanel">
-    <div class="tab-head"><h2>Risks &amp; Mitigations</h2><p class="tab-subtitle">What distorts the diagnostic — and how we prevent it.</p></div>
-    <div class="tab-grid">
+      <div class="card col-12">
+        <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
+        <div class="two-col" style="margin-top: 6px;">
+          <div><h3>SIPOC</h3><div class="chips"><span class="chip accent">Scoping</span></div><p style="margin-top:6px;">Suppliers · Inputs · Process · Outputs · Customers — a one-sheet scope that makes handoff breakdowns visible at a glance.</p></div>
+          <div><h3>Service Blueprint</h3><div class="chips"><span class="chip accent">Front + Back Stage</span></div><p style="margin-top:6px;">Maps the visible and invisible work behind a service outcome, exposing internal wait states.</p></div>
+          <div><h3>RACI / Decision-Rights</h3><div class="chips"><span class="chip accent">Approval Gridlock</span></div><p style="margin-top:6px;">Surfaces where too many people must approve, and where accountability is missing.</p></div>
+          <div><h3>Process Maturity Model</h3><div class="chips"><span class="chip accent">Ad-hoc → Optimizing</span></div><p style="margin-top:6px;">Rates each workflow so we don't propose automation on top of an ad-hoc process.</p></div>
+          <div><h3>Task Automation Suitability</h3><div class="chips"><span class="chip accent">Repeatability × Risk</span></div><p style="margin-top:6px;">Scores tasks on structure, repeatability, data availability, and risk tolerance — separates AI-leverage from AI-hazard.</p></div>
+          <div><h3>Role-to-Value Alignment</h3><div class="chips"><span class="chip accent">Role Audit</span></div><p style="margin-top:6px;">Tests whether each role's time allocation matches the value the organization expects from it.</p></div>
+        </div>
+      </div>
       <div class="card col-12">
         <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/></svg>Risks</h2>
         <ul>
@@ -1283,24 +1277,8 @@
       </div>
     </div>
   </div>
-  <div class="tab-panel" data-panel="p3-frameworks" role="tabpanel">
-    <div class="tab-head"><h2>Frameworks Used</h2><p class="tab-subtitle">Design grammar for the AI-native operating model.</p></div>
-    <div class="tab-grid">
-      <div class="card col-12">
-        <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
-        <div class="two-col" style="margin-top: 6px;">
-          <div><h3>Target Operating Model</h3><div class="chips"><span class="chip accent">TOM</span></div><p style="margin-top:6px;">Structure · process · technology · people · governance · measurement — the six dimensions we explicitly redesign.</p></div>
-          <div><h3>Human-in-the-Loop Framework</h3><div class="chips"><span class="chip accent">HITL</span></div><p style="margin-top:6px;">Every workflow names the decision points humans retain and the confidence thresholds for AI action.</p></div>
-          <div><h3>Capability Mapping</h3><div class="chips"><span class="chip accent">Build · Buy · Partner</span></div><p style="margin-top:6px;">For each new capability, we decide where it sits on the build/buy/partner spectrum.</p></div>
-          <div><h3>Span &amp; Layer Review</h3><div class="chips"><span class="chip accent">Org Design</span></div><p style="margin-top:6px;">Detects too-many-layers, too-wide-spans, and duplicate roles — especially in middle management.</p></div>
-          <div><h3>Central Platform + Federated</h3><div class="chips"><span class="chip accent">Hub &amp; Spoke</span></div><p style="margin-top:6px;">One team owns the platform and standards; each function owns its use cases and outcomes on that platform.</p></div>
-          <div><h3>Responsible AI Governance</h3><div class="chips"><span class="chip accent">Trusted AI</span></div><p style="margin-top:6px;">Policy + control-point + model-risk tiering + audit — the governance spine of the future state.</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="tab-panel" data-panel="p3-analysis" role="tabpanel">
-    <div class="tab-head"><h2>Design Focus</h2><p class="tab-subtitle">The decisions Phase 3 locks in.</p></div>
+    <div class="tab-head"><h2>Analysis</h2><p class="tab-subtitle">Design focus for the future-state operating model, the frameworks we use, and the failure modes we avoid.</p></div>
     <div class="tab-grid">
       <div class="card col-12">
         <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z"/><path d="M3 12h18"/><path d="M12 3a15.3 15.3 0 0 1 4 9 15.3 15.3 0 0 1-4 9 15.3 15.3 0 0 1-4-9 15.3 15.3 0 0 1 4-9z"/></svg>Redesign Questions</h2>
@@ -1317,11 +1295,17 @@
           <div><strong>Illustrative future state.</strong> A traditional software services firm with separate BA, PM, QA, design, and development silos redesigns into cross-functional delivery pods supported by a central AI enablement platform. QA shifts from manual execution to quality strategy and evaluation; BAs own requirement quality; the platform team owns the model gateway, eval harness, and data contracts.</div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="tab-panel" data-panel="p3-risks" role="tabpanel">
-    <div class="tab-head"><h2>Risks &amp; Mitigations</h2><p class="tab-subtitle">How future-state designs fail, and how we avoid each failure mode.</p></div>
-    <div class="tab-grid">
+      <div class="card col-12">
+        <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
+        <div class="two-col" style="margin-top: 6px;">
+          <div><h3>Target Operating Model</h3><div class="chips"><span class="chip accent">TOM</span></div><p style="margin-top:6px;">Structure · process · technology · people · governance · measurement — the six dimensions we explicitly redesign.</p></div>
+          <div><h3>Human-in-the-Loop Framework</h3><div class="chips"><span class="chip accent">HITL</span></div><p style="margin-top:6px;">Every workflow names the decision points humans retain and the confidence thresholds for AI action.</p></div>
+          <div><h3>Capability Mapping</h3><div class="chips"><span class="chip accent">Build · Buy · Partner</span></div><p style="margin-top:6px;">For each new capability, we decide where it sits on the build/buy/partner spectrum.</p></div>
+          <div><h3>Span &amp; Layer Review</h3><div class="chips"><span class="chip accent">Org Design</span></div><p style="margin-top:6px;">Detects too-many-layers, too-wide-spans, and duplicate roles — especially in middle management.</p></div>
+          <div><h3>Central Platform + Federated</h3><div class="chips"><span class="chip accent">Hub &amp; Spoke</span></div><p style="margin-top:6px;">One team owns the platform and standards; each function owns its use cases and outcomes on that platform.</p></div>
+          <div><h3>Responsible AI Governance</h3><div class="chips"><span class="chip accent">Trusted AI</span></div><p style="margin-top:6px;">Policy + control-point + model-risk tiering + audit — the governance spine of the future state.</p></div>
+        </div>
+      </div>
       <div class="card col-12">
         <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/></svg>Risks</h2>
         <ul>
@@ -1390,26 +1374,11 @@
       </div>
     </div>
   </div>
-  <div class="tab-panel" data-panel="p4-frameworks" role="tabpanel">
-    <div class="tab-head"><h2>Frameworks Used</h2><p class="tab-subtitle">The scoring, sequencing, and risk-adjustment tools.</p></div>
-    <div class="tab-grid">
-      <div class="card col-12">
-        <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
-        <div class="two-col" style="margin-top: 6px;">
-          <div><h3>Value × Feasibility Matrix</h3><div class="chips"><span class="chip accent">2×2</span></div><p style="margin-top:6px;">Classic consulting 2×2 that splits the portfolio into quick wins, strategic bets, fill-ins, and low-priority items.</p></div>
-          <div><h3>Transformation Scoring Model</h3><div class="chips"><span class="chip accent">Weighted</span></div><p style="margin-top:6px;">Weighted score across nine inputs produces a rank-ordered backlog, not a gut-feel list.</p></div>
-          <div><h3>Dependency Mapping</h3><div class="chips"><span class="chip accent">DAG</span></div><p style="margin-top:6px;">Upstream-downstream dependencies ensure platform and governance are built before the workloads that depend on them.</p></div>
-          <div><h3>Risk-Adjusted Roadmap</h3><div class="chips"><span class="chip accent">Monte Carlo-lite</span></div><p style="margin-top:6px;">Scenarios for delivery slippage, adoption friction, and policy delays — a roadmap that survives contact with reality.</p></div>
-          <div><h3>KPI Tree Alignment</h3><div class="chips"><span class="chip accent">North-Star → Pilot</span></div><p style="margin-top:6px;">Every pilot's success metric rolls up to a strategic north-star KPI, so ROI is attributable.</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="tab-panel" data-panel="p4-analysis" role="tabpanel">
-    <div class="tab-head"><h2>Prioritization — Worked Example</h2><p class="tab-subtitle">Why proposal automation outranks engineering autonomy in Wave 1.</p></div>
+    <div class="tab-head"><h2>Analysis</h2><p class="tab-subtitle">Prioritization reasoning, the scoring/sequencing frameworks, and how prioritization goes wrong in practice.</p></div>
     <div class="tab-grid">
       <div class="card col-12">
-        <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Reasoning</h2>
+        <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Prioritization — Worked Example</h2>
         <ul>
           <li>Business value is visible quickly — win-rate and proposal turnaround are leading commercial indicators.</li>
           <li>Data is already available — past proposals, win/loss records, client briefs.</li>
@@ -1422,11 +1391,16 @@
           <div><strong>Contrast.</strong> Full engineering autonomy ranks lower in Wave 1 — data is inconsistent across repos, evaluation is hard, and the risk of accelerated bad patterns is high until architecture governance is tightened.</div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="tab-panel" data-panel="p4-risks" role="tabpanel">
-    <div class="tab-head"><h2>Risks &amp; Mitigations</h2><p class="tab-subtitle">How prioritization goes wrong in practice.</p></div>
-    <div class="tab-grid">
+      <div class="card col-12">
+        <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
+        <div class="two-col" style="margin-top: 6px;">
+          <div><h3>Value × Feasibility Matrix</h3><div class="chips"><span class="chip accent">2×2</span></div><p style="margin-top:6px;">Classic consulting 2×2 that splits the portfolio into quick wins, strategic bets, fill-ins, and low-priority items.</p></div>
+          <div><h3>Transformation Scoring Model</h3><div class="chips"><span class="chip accent">Weighted</span></div><p style="margin-top:6px;">Weighted score across nine inputs produces a rank-ordered backlog, not a gut-feel list.</p></div>
+          <div><h3>Dependency Mapping</h3><div class="chips"><span class="chip accent">DAG</span></div><p style="margin-top:6px;">Upstream-downstream dependencies ensure platform and governance are built before the workloads that depend on them.</p></div>
+          <div><h3>Risk-Adjusted Roadmap</h3><div class="chips"><span class="chip accent">Monte Carlo-lite</span></div><p style="margin-top:6px;">Scenarios for delivery slippage, adoption friction, and policy delays — a roadmap that survives contact with reality.</p></div>
+          <div><h3>KPI Tree Alignment</h3><div class="chips"><span class="chip accent">North-Star → Pilot</span></div><p style="margin-top:6px;">Every pilot's success metric rolls up to a strategic north-star KPI, so ROI is attributable.</p></div>
+        </div>
+      </div>
       <div class="card col-12">
         <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/></svg>Risks</h2>
         <ul>
@@ -1488,24 +1462,8 @@
       </div>
     </div>
   </div>
-  <div class="tab-panel" data-panel="p5-frameworks" role="tabpanel">
-    <div class="tab-head"><h2>Frameworks Used</h2><p class="tab-subtitle">Governance and enablement grammar for safe scale-up.</p></div>
-    <div class="tab-grid">
-      <div class="card col-12">
-        <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
-        <div class="two-col" style="margin-top: 6px;">
-          <div><h3>Pilot Charter Framework</h3><div class="chips"><span class="chip accent">Scope · Baseline · Target · Scale</span></div><p style="margin-top:6px;">Every pilot has a one-page charter the sponsor signs; no charter, no pilot.</p></div>
-          <div><h3>Responsible AI Governance</h3><div class="chips"><span class="chip accent">Policy · Control · Audit</span></div><p style="margin-top:6px;">Policy, control-point design, and auditability for every AI-assisted workflow.</p></div>
-          <div><h3>Control-Point Design</h3><div class="chips"><span class="chip accent">Gates + Confidence</span></div><p style="margin-top:6px;">Named approval gates with confidence thresholds and explicit escalation routes.</p></div>
-          <div><h3>Model Risk Tiering</h3><div class="chips"><span class="chip accent">Tier 1–4</span></div><p style="margin-top:6px;">Tiers the risk of each AI use case; higher-tier use cases require stronger evaluation and human oversight.</p></div>
-          <div><h3>Adoption / Change Management</h3><div class="chips"><span class="chip accent">Prosci-style</span></div><p style="margin-top:6px;">Adoption is engineered with awareness, desire, knowledge, ability, and reinforcement — not wished for.</p></div>
-          <div><h3>Capability Enablement</h3><div class="chips"><span class="chip accent">Role × Skill × Practice</span></div><p style="margin-top:6px;">Training tied to role, measured by practice — not by course-completion rates.</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="tab-panel" data-panel="p5-analysis" role="tabpanel">
-    <div class="tab-head"><h2>Governance Focus</h2><p class="tab-subtitle">The non-negotiables every pilot must have before production exposure.</p></div>
+    <div class="tab-head"><h2>Analysis</h2><p class="tab-subtitle">Governance non-negotiables, the frameworks that enforce them, and why pilots fail to scale.</p></div>
     <div class="tab-grid">
       <div class="card col-12">
         <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>Non-negotiables</h2>
@@ -1517,11 +1475,17 @@
           <li>Scale-up criteria — quantitative bar the pilot must clear before moving to production.</li>
         </ul>
       </div>
-    </div>
-  </div>
-  <div class="tab-panel" data-panel="p5-risks" role="tabpanel">
-    <div class="tab-head"><h2>Risks &amp; Mitigations</h2><p class="tab-subtitle">Why pilots fail to scale — and how to prevent that outcome.</p></div>
-    <div class="tab-grid">
+      <div class="card col-12">
+        <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>Frameworks</h2>
+        <div class="two-col" style="margin-top: 6px;">
+          <div><h3>Pilot Charter Framework</h3><div class="chips"><span class="chip accent">Scope · Baseline · Target · Scale</span></div><p style="margin-top:6px;">Every pilot has a one-page charter the sponsor signs; no charter, no pilot.</p></div>
+          <div><h3>Responsible AI Governance</h3><div class="chips"><span class="chip accent">Policy · Control · Audit</span></div><p style="margin-top:6px;">Policy, control-point design, and auditability for every AI-assisted workflow.</p></div>
+          <div><h3>Control-Point Design</h3><div class="chips"><span class="chip accent">Gates + Confidence</span></div><p style="margin-top:6px;">Named approval gates with confidence thresholds and explicit escalation routes.</p></div>
+          <div><h3>Model Risk Tiering</h3><div class="chips"><span class="chip accent">Tier 1–4</span></div><p style="margin-top:6px;">Tiers the risk of each AI use case; higher-tier use cases require stronger evaluation and human oversight.</p></div>
+          <div><h3>Adoption / Change Management</h3><div class="chips"><span class="chip accent">Prosci-style</span></div><p style="margin-top:6px;">Adoption is engineered with awareness, desire, knowledge, ability, and reinforcement — not wished for.</p></div>
+          <div><h3>Capability Enablement</h3><div class="chips"><span class="chip accent">Role × Skill × Practice</span></div><p style="margin-top:6px;">Training tied to role, measured by practice — not by course-completion rates.</p></div>
+        </div>
+      </div>
       <div class="card col-12">
         <h2><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/></svg>Risks</h2>
         <ul>
