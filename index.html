@@ -614,11 +614,15 @@
     margin: 0 auto;
   }
 
-  /* Visibility: hide Discovery-specific content when another phase is active */
-  body:not([data-active-phase="discovery"]) .exec,
-  body:not([data-active-phase="discovery"]) nav.pipeline,
-  body:not([data-active-phase="discovery"]) main.tabs { display: none; }
-  body[data-active-phase="discovery"] .phase-placeholders { display: none; }
+  /* Visibility: show only the active phase's exec/pipeline/main; hide placeholders for phases that have real content */
+  body:not([data-active-phase="discovery"]) .exec.discovery,
+  body:not([data-active-phase="discovery"]) nav.pipeline.discovery,
+  body:not([data-active-phase="discovery"]) main.tabs.discovery { display: none; }
+  body:not([data-active-phase="design"]) .exec.design,
+  body:not([data-active-phase="design"]) nav.pipeline.design,
+  body:not([data-active-phase="design"]) main.tabs.design { display: none; }
+  body[data-active-phase="discovery"] .phase-placeholders,
+  body[data-active-phase="design"] .phase-placeholders { display: none; }
 
   main.tabs {
     max-width: var(--maxw);
@@ -960,7 +964,7 @@
       <button type="button" class="phase" data-phase="compliance" role="tab" aria-selected="false">Compliance</button>
     </nav>
 
-    <section class="exec">
+    <section class="exec discovery">
       <h2>
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         Executive Summary
@@ -1021,17 +1025,79 @@
       </p>
     </section>
 
-    <nav class="pipeline" role="tablist" aria-label="Agent workflow tabs">
+    <nav class="pipeline discovery" role="tablist" aria-label="Discovery agent workflow tabs">
       <button type="button" class="stage current" data-tab="discovery" role="tab" aria-selected="true" aria-controls="panel-discovery"><div class="num"><span class="bullet">1</span> Agent</div><div class="name">Discovery &amp; Research</div></button>
       <button type="button" class="stage" data-tab="synthesis" role="tab" aria-selected="false" aria-controls="panel-synthesis"><div class="num"><span class="bullet">2</span> Agent</div><div class="name">Synthesis &amp; Validation</div></button>
       <button type="button" class="stage" data-tab="workflow" role="tab" aria-selected="false" aria-controls="panel-workflow"><div class="num"><span class="bullet">3</span> Agent</div><div class="name">Workflow Simulation</div></button>
       <button type="button" class="stage" data-tab="approval" role="tab" aria-selected="false" aria-controls="panel-approval"><div class="num"><span class="bullet">4</span> Agent</div><div class="name">Approval &amp; DoD</div></button>
       <button type="button" class="stage" data-tab="qa" role="tab" aria-selected="false" aria-controls="panel-qa"><div class="num"><span class="bullet">5</span> Agent</div><div class="name">QA &amp; Test Architecture</div></button>
     </nav>
+
+    <section class="exec design">
+      <h2>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Executive Summary
+      </h2>
+      <div class="pitch">
+        <p>
+          Our agentic system foolproofs design so "it looked fine in Figma" never reaches engineering. When the approved requirement brief lands, our <strong>Architecture agent</strong> reads it against the Discovery GraphRAG dependency map, drafts <strong>C4 model</strong> views in <span class="lib">Structurizr<span class="hint" tabindex="0" role="button" aria-label="About Structurizr"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Text-sourced C4-model diagramming tool that renders context, container, component, and code views from a small DSL — diff-able in git.<em>Example: the same DSL file renders every C4 view of the billing service, reviewable as a plain code diff.</em></span></span></span> and <span class="lib">Mermaid<span class="hint" tabindex="0" role="button" aria-label="About Mermaid"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Text-to-diagram library for sequence, flow, state, and C4 diagrams — renders straight from Markdown.<em>Example: renders container-level C4 of the billing pipeline directly inside the architecture ADR.</em></span></span></span>, sizes NFR budgets (p95 latency, RPS, error rate, cost ceiling), and emits one <span class="principle" tabindex="0" role="button" aria-expanded="false" aria-label="About ADR Discipline">ADR<svg class="icon-info" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="principle-tooltip"><span class="pt-title">ADR Discipline</span><span class="pt-desc">Every non-trivial architecture or design trade-off produces a MADR 3.0 Architecture Decision Record — numbered, immutable, linked from the artifact that realizes the decision.</span><span class="pt-how"><strong>How:</strong> every agent (Architecture, UX, Contract, Handoff) can emit ADRs; the critique loop forces one whenever personas disagree; a missing ADR blocks merge.</span><span class="pt-examples"><span class="pt-ex-label">Examples</span><span class="ex-item">ADR-0003: Kafka over SNS for billing events — replayable audit chosen over lower ops overhead.</span><span class="ex-item">ADR-0012: Token-based dark mode via CSS custom properties, not Tailwind variants.</span></span></span></span> per trade-off — <span class="lib">MADR 3.0<span class="hint" tabindex="0" role="button" aria-label="About MADR 3.0"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Markdown Any Decision Records — a lightweight ADR template with numbered, immutable entries.<em>Example: ADR-0007 documents the pagination trade-off; future ADRs only amend, never overwrite.</em></span></span></span> format, numbered, immutable.
+        </p>
+        <p class="example"><span class="ex-tag greenfield">Greenfield</span>For usage-based pricing, Architecture proposes a Kafka-backed event bus with 7-year replayable retention; ADR-0003 documents the trade-off against SNS (lower ops cost, no replay) and accepts the ops overhead for audit compliance.</p>
+        <p class="example"><span class="ex-tag existing">Existing</span>For metered billing added to an existing subscription product, Architecture emits a delta C4 showing 4 new containers (Meter, Rater, Invoicer, Event Bus), 3 touched modules, and a strangler-fig plan with blast-radius on the shared NetSuite connector.</p>
+
+        <p>
+          Our <strong>UX agent</strong> grounds every mockup in a <span class="principle" tabindex="0" role="button" aria-expanded="false" aria-label="About Design Tokens">design-token<svg class="icon-info" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="principle-tooltip"><span class="pt-title">Design Tokens as Single Source of Truth</span><span class="pt-desc">One W3C-DTCG JSON file owns every color, space, type, and motion value. Mocks, code, and docs resolve tokens at build time — never hardcode.</span><span class="pt-how"><strong>How:</strong> the UX agent authors <code>tokens.json</code>; the Prototyping agent reads the same file through Style Dictionary; Storybook docs render the live values.</span><span class="pt-examples"><span class="pt-ex-label">Examples</span><span class="ex-item">Swapping <code>color.brand.primary</code> from orange to teal updates 148 components, 22 Storybook stories, and 3 mockup boards in one commit.</span><span class="ex-item">A contrast failure on <code>color.text.on-brand</code> is caught in <code>tokens.json</code> lint before it reaches any screen.</span></span></span></span> JSON file conforming to the <span class="lib">W3C DTCG<span class="hint" tabindex="0" role="button" aria-label="About W3C DTCG"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">W3C Design Tokens Community Group specification — a standard JSON format for design-token exchange across tools.<em>Example: same <code>tokens.json</code> loads into Figma, Style Dictionary, and Storybook without translation.</em></span></span></span> spec, drafts flows in <span class="lib">Claude Design<span class="hint" tabindex="0" role="button" aria-label="About Claude Design"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Anthropic's conversational artifact canvas — iteratively generates and refines mockups grounded in the user story and the design system.<em>Example: drafts 4 layout variants for the metered-billing dashboard, each cited to the same requirement ID.</em></span></span></span> and <span class="lib">Google Stitch<span class="hint" tabindex="0" role="button" aria-label="About Google Stitch"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Google's AI UI design tool — strong at multi-variant layout search from a single natural-language brief.<em>Example: produces stacked / split / drawer variants of a usage dashboard for the critique loop to pick from.</em></span></span></span>, lands hi-fi screens in <span class="lib">v0 by Vercel<span class="hint" tabindex="0" role="button" aria-label="About v0 by Vercel"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">AI-to-production UI generator that emits Shadcn/ui + Tailwind React code aligned to a design system.<em>Example: emits a production-grade billing-dashboard page in Shadcn/ui with tokens pre-wired.</em></span></span></span> and <span class="lib">Figma + MCP<span class="hint" tabindex="0" role="button" aria-label="About Figma + MCP"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Figma's Dev Mode MCP server lets agents read frames, export tokens, and push artboards without a human intermediary.<em>Example: the UX agent pulls a library component from Figma and posts a revised frame in one turn.</em></span></span></span>, and <span class="principle" tabindex="0" role="button" aria-expanded="false" aria-label="About Multi-Modal Grounding">pairs every mock<svg class="icon-info" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="principle-tooltip"><span class="pt-title">Multi-Modal Grounding</span><span class="pt-desc">Every mockup is paired with a user-story ID, a persona, and a set of token references. Unpaired mocks are rejected by the consensus gate.</span><span class="pt-how"><strong>How:</strong> the UX agent emits a <code>frame-manifest.json</code> per mock listing the requirement IDs it serves, the persona it targets, and the tokens it consumes; the critique loop fails the frame if any field is empty.</span><span class="pt-examples"><span class="pt-ex-label">Examples</span><span class="ex-item">A beautiful empty-state illustration was rejected because no user story referenced it — moved to a rejected-proposals folder.</span><span class="ex-item">A dense-data screen added story IDs REQ-114 and REQ-116 and the "Billing Ops" persona before approval.</span></span></span></span> with a user-story ID, persona, and token set before it leaves the agent — then gates every artifact through <span class="lib">axe-core<span class="hint" tabindex="0" role="button" aria-label="About axe-core"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Industry-standard accessibility testing engine used to flag WCAG violations in rendered pages.<em>Example: flags an icon-only button missing an accessible name before the mock leaves the UX agent.</em></span></span></span> and <span class="principle" tabindex="0" role="button" aria-expanded="false" aria-label="About Accessibility-First">WCAG 2.2 AA<svg class="icon-info" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="principle-tooltip"><span class="pt-title">Accessibility-First (WCAG 2.2 AA)</span><span class="pt-desc">Every screen passes axe-core, keyboard traversal, reduced-motion, and contrast checks <strong>before</strong> it leaves the design agent — not after release.</span><span class="pt-how"><strong>How:</strong> axe-core + Pa11y run in a LangGraph gate node; a failure re-enters the UX agent with a structured violation list.</span><span class="pt-examples"><span class="pt-ex-label">Examples</span><span class="ex-item">A <code>required</code> icon-only button is flagged (missing accessible name) and rewritten with <code>aria-label</code>.</span><span class="ex-item">A toast relying on color alone is replaced with color + icon + text.</span></span></span></span> before it leaves.
+        </p>
+        <p class="example"><span class="ex-tag greenfield">Greenfield</span>Stitch proposes three layouts (stacked, split, drawer) for the usage dashboard; the critique loop picks split; v0 produces the final Shadcn-grounded screen with tokens pre-wired and axe-core clean.</p>
+        <p class="example"><span class="ex-tag existing">Existing</span>On the subscription product, the UX agent reuses the existing <code>tokens.json</code> and posts 2 new persona flows + 11 visual-regression baselines — no new color or type value introduced.</p>
+
+        <p>
+          Our <strong>API Contract agent</strong> writes <span class="lib">OpenAPI 3.1<span class="hint" tabindex="0" role="button" aria-label="About OpenAPI 3.1"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Modern REST API specification format built on JSON Schema 2020-12 — the canonical way to describe sync interfaces.<em>Example: every endpoint ties back to a requirement ID, so coverage can be audited.</em></span></span></span> and <span class="lib">AsyncAPI 3.0<span class="hint" tabindex="0" role="button" aria-label="About AsyncAPI 3.0"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">OpenAPI's event-driven sibling — describes Kafka, MQTT, WebSocket, and Pub/Sub channels in the same style.<em>Example: locks the shape of the <code>usage.metered</code> Kafka topic before any producer or consumer is written.</em></span></span></span>, generates <span class="lib">Pact<span class="hint" tabindex="0" role="button" aria-label="About Pact"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Consumer-driven contract testing framework — verifies that services honor the contracts their consumers rely on.<em>Example: pins the billing-event consumer contract so a producer change can't silently break ERP sync.</em></span></span></span> consumer contracts, and locks the schema in <span class="lib">Prisma<span class="hint" tabindex="0" role="button" aria-label="About Prisma"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Type-safe ORM and schema migration tool — the ERD, migration, and typed client all flow from one <code>schema.prisma</code>.<em>Example: emits the <code>UsageEvent</code> and <code>Invoice</code> tables with partitioning hints and PII tags.</em></span></span></span> migrations — so the first code change is a schema change, not a reverse-engineered surprise.
+        </p>
+        <p class="example"><span class="ex-tag greenfield">Greenfield</span>Models <code>UsageEvent</code> (append-only, tenant-partitioned, PII: none) and <code>Invoice</code> (tenant-owned, PII: billing_email) — OpenAPI 3.1 + AsyncAPI 3.0 + Pact contracts all emit in one pass.</p>
+        <p class="example"><span class="ex-tag existing">Existing</span>Runs <code>oasdiff</code> and <code>buf breaking</code> against the prior spec; flags one breaking removal, suggests an additive <code>v2</code> route with a 180-day deprecation window.</p>
+
+        <p>
+          Our <strong>Prototyping agent</strong> converts tokens + mocks into <span class="lib">Shadcn/ui<span class="hint" tabindex="0" role="button" aria-label="About Shadcn/ui"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Copy-in React component library built on Radix primitives and Tailwind — accessible by default, owned by your repo.<em>Example: the generated BillingTable reads tokens directly and exposes slot props for empty/error states.</em></span></span></span> + <span class="lib">Tailwind<span class="hint" tabindex="0" role="button" aria-label="About Tailwind"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Utility-first CSS framework that maps token values to class names — no bespoke CSS files.<em>Example: <code>bg-brand-primary</code> resolves through <code>tokens.json</code>, so changing the token updates every surface.</em></span></span></span> components organized by <span class="principle" tabindex="0" role="button" aria-expanded="false" aria-label="About Atomic Design">Atomic Design<svg class="icon-info" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="principle-tooltip"><span class="pt-title">Atomic Design</span><span class="pt-desc">Brad Frost's atoms → molecules → organisms → templates → pages hierarchy; each level has one owner and one Storybook folder.</span><span class="pt-how"><strong>How:</strong> the Prototyping agent files every component at exactly one level; molecules compose atoms only; organisms compose molecules only; violations are flagged.</span><span class="pt-examples"><span class="pt-ex-label">Examples</span><span class="ex-item"><code>PriceBadge</code> (atom) → <code>UsageRow</code> (molecule) → <code>BillingTable</code> (organism).</span><span class="ex-item">A "god component" that mixed atom and organism concerns was rejected and split into 3 files and 3 stories.</span></span></span></span>, pins them into <span class="lib">Storybook 9<span class="hint" tabindex="0" role="button" aria-label="About Storybook 9"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Component workbench and living spec — one story per component state, with MDX docs and linked ADRs.<em>Example: the billing dashboard ships 11 stories covering default, loading, empty, error, and dense states.</em></span></span></span> with <span class="lib">Chromatic<span class="hint" tabindex="0" role="button" aria-label="About Chromatic"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="tooltip">Cloud visual-regression service for Storybook — captures baselines and diffs every PR.<em>Example: catches a 1-pixel shift in the dense-data table row before it reaches production.</em></span></span></span> visual-regression baselines, and ships a PR as <span class="principle" tabindex="0" role="button" aria-expanded="false" aria-label="About Design-as-Code">diff-able artifacts<svg class="icon-info" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="principle-tooltip"><span class="pt-title">Design-as-Code</span><span class="pt-desc">No screenshot-only deliverables. Every design artifact is diff-able text — <code>tokens.json</code>, mermaid, <code>openapi.yaml</code>, <code>*.stories.tsx</code>, <code>ADR-NNNN.md</code>.</span><span class="pt-how"><strong>How:</strong> the Prototyping agent enforces that PRs contain no binary-only changes; PDFs/PNGs are acceptable as generated artifacts but must have a text source committed alongside.</span><span class="pt-examples"><span class="pt-ex-label">Examples</span><span class="ex-item">A reviewer sees exactly which token changed in a git diff instead of eyeballing Figma version history.</span><span class="ex-item">An ADR amendment shows up as a numbered append-only entry, not a silent Figma comment.</span></span></span></span> — so engineering starts from a PR, not from reconstructing a Figma frame.
+        </p>
+        <p class="example"><span class="ex-tag greenfield">Greenfield</span>For the billing dashboard: 11 stories, 22 baselines (light + dark), 4 Playwright interaction tests, 0 axe violations — PR opened with review checklist and 6 linked ADRs.</p>
+        <p class="example"><span class="ex-tag existing">Existing</span>The handoff PR reuses 38 existing atoms and adds 3 molecules + 1 organism; drift report flags 2 existing components that hardcoded the old brand color and proposes the token migration.</p>
+      </div>
+
+      <div class="scenarios">
+        <div class="scenario greenfield">
+          <h3>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></svg>
+            Greenfield project
+          </h3>
+          <div class="io"><span class="io-label">In</span>"Design the UX and system architecture for usage-based B2B SaaS pricing."</div>
+          <div class="io"><span class="io-label out">Out</span>C4 context + container diagrams · NFR budgets (p95 &lt; 300&nbsp;ms @ 2k RPS) · <code>tokens.json</code> · 14 Claude Design + Stitch flows · 9 v0 hi-fi screens · OpenAPI 3.1 + AsyncAPI billing events · Prisma schema · Storybook 9 library · 6 ADRs · WCAG 2.2 AA conformance report.</div>
+        </div>
+        <div class="scenario existing">
+          <h3>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            Existing system
+          </h3>
+          <div class="io"><span class="io-label">In</span>"Add metered billing to our existing subscription product."</div>
+          <div class="io"><span class="io-label out">Out</span>Delta C4 (4 new components + 3 touched modules) · migration ADR (blue-green vs. shadow-write) · additive OpenAPI diff · 2 new persona flows · Storybook stories reusing existing tokens · visual-regression baselines on 11 affected screens · Pact contracts for new billing-event consumers.</div>
+        </div>
+      </div>
+
+      <p class="why">
+        <strong>Why it holds together:</strong> every design decision is pinned to a source-cited requirement, a named ADR, and a diff-able artifact — Architecture, UX, Contracts, and Handoff all read from the same token file and the same requirement IDs, and a <span class="principle" tabindex="0" role="button" aria-expanded="false" aria-label="About Design Critique Loop">three-persona critique loop<svg class="icon-info" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span class="principle-tooltip"><span class="pt-title">Design Critique Loop (Consensus + Stateful Re-entry)</span><span class="pt-desc">Three personas — Architect, UX-lead, Accessibility-lead — vote on every non-trivial decision. Disagreement produces an ADR before the branch advances; rejection re-enters the authoring agent with structured failure context.</span><span class="pt-how"><strong>How:</strong> a LangGraph consensus node fans out to three model personas with distinct system prompts; unanimous → advance; split → ADR with "Alternatives considered"; rejection → stateful re-entry into the authoring agent.</span><span class="pt-examples"><span class="pt-ex-label">Examples</span><span class="ex-item">Architect preferred server-side pagination, UX-lead preferred infinite scroll — ADR-0007 picks hybrid virtualized pagination.</span><span class="ex-item">Accessibility-lead vetoed a drag-only interaction; agent re-entered and added keyboard + menu alternatives.</span></span></span></span> gates every branch point so a reviewer can trace any pixel back to a user story and any user story forward to a component stub.
+      </p>
+    </section>
+
+    <nav class="pipeline design" role="tablist" aria-label="Design agent workflow tabs">
+      <button type="button" class="stage current" data-tab="design-architecture" role="tab" aria-selected="true" aria-controls="panel-design-architecture"><div class="num"><span class="bullet">1</span> Agent</div><div class="name">System Architecture</div></button>
+      <button type="button" class="stage" data-tab="design-ux" role="tab" aria-selected="false" aria-controls="panel-design-ux"><div class="num"><span class="bullet">2</span> Agent</div><div class="name">UX / UI Design</div></button>
+      <button type="button" class="stage" data-tab="design-contract" role="tab" aria-selected="false" aria-controls="panel-design-contract"><div class="num"><span class="bullet">3</span> Agent</div><div class="name">API Contract &amp; Data Model</div></button>
+      <button type="button" class="stage" data-tab="design-handoff" role="tab" aria-selected="false" aria-controls="panel-design-handoff"><div class="num"><span class="bullet">4</span> Agent</div><div class="name">Prototyping &amp; Handoff</div></button>
+    </nav>
   </div>
 </header>
 
-<main class="tabs">
+<main class="tabs discovery">
 
   <div class="tab-panel active" id="panel-discovery" data-panel="discovery" role="tabpanel" aria-labelledby="tab-discovery">
     <div class="tab-head">
@@ -1631,16 +1697,635 @@
 
 </main>
 
-<div class="phase-placeholders">
-  <div class="phase-panel" data-phase="design">
-    <div class="placeholder">
-      <div class="ph-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
-      <span class="ph-tag">Phase 2 · Coming Soon</span>
-      <h2>Design</h2>
-      <p>Agents that translate approved requirements into system architecture, API contracts, data models, and UX wireframes — with trade-off analysis and stakeholder reviews baked in.</p>
+<main class="tabs design">
+
+  <div class="tab-panel active" id="panel-design-architecture" data-panel="design-architecture" role="tabpanel" aria-labelledby="tab-design-architecture">
+    <div class="tab-head">
+      <h2>System Architecture Agent</h2>
+      <p class="tab-subtitle">Turns the requirement brief into a decision-bearing architecture — C4 views, component boundaries, ADRs, and NFR budgets.</p>
+      <div class="tab-aliases"><strong>Also called:</strong> Architecture Agent · C4 Modeling Agent · ADR Agent</div>
+    </div>
+    <div class="tab-grid">
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></svg>
+          Purpose
+        </h2>
+        <p>Transform a validated requirement brief into a <strong>decision-bearing architecture</strong> — C4 views, component boundaries, non-functional budgets, and one ADR per trade-off — so every structural choice is traceable to a requirement and defensible under review.</p>
+      </div>
+
+      <div class="card col-6">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          Role · Greenfield Projects
+        </h2>
+        <ul>
+          <li>Reference-architecture selection</li>
+          <li>Component decomposition</li>
+          <li>Technology-choice trade-offs</li>
+          <li>NFR budgeting (latency, throughput, cost, SLO)</li>
+        </ul>
+      </div>
+
+      <div class="card col-6">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16"/><path d="M3 21v-5h5"/></svg>
+          Role · Existing Systems
+        </h2>
+        <ul>
+          <li>Delta architecture (additive C4 views)</li>
+          <li>Seam identification &amp; anti-corruption layers</li>
+          <li>Strangler-fig migration planning</li>
+          <li>Blast-radius &amp; coupling analysis</li>
+        </ul>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+          How It Works
+        </h2>
+        <div class="steps">
+          <div class="step">
+            <div class="idx">1</div>
+            <div>
+              <h3>Requirement-to-Container Mapping</h3>
+              <p>Reads the Discovery brief and the GraphRAG dependency map, proposes containers and their responsibilities.</p>
+              <div class="chips">
+                <span class="chip">Bounded contexts</span>
+                <span class="chip">Container boundaries</span>
+                <span class="chip">Data ownership</span>
+                <span class="chip">Integration seams</span>
+                <span class="chip">Blast radius</span>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">2</div>
+            <div>
+              <h3>Trade-off Analysis &amp; ADR Emission</h3>
+              <p>Runs a three-persona critique (Architect / Cost-lead / Reliability-lead) and forces an ADR for every branch point.</p>
+              <div class="chips">
+                <span class="chip accent">MADR 3.0</span>
+                <span class="chip">Status: Proposed → Accepted</span>
+                <span class="chip">Alternatives considered</span>
+                <span class="chip">Consequences</span>
+              </div>
+              <div class="example">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                <div><strong>Example:</strong> ADR-0003 — Event bus: Kafka vs. SNS. Chose Kafka for replayable audit and 7-year retention; accepted ops overhead.</div>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">3</div>
+            <div>
+              <h3>NFR Budget Derivation</h3>
+              <p>Converts requirements and SLOs into numbers engineers can test against.</p>
+              <div class="chips">
+                <span class="chip">p95 latency</span>
+                <span class="chip">RPS</span>
+                <span class="chip">Error budget</span>
+                <span class="chip">Cost ceiling</span>
+                <span class="chip">RPO / RTO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Technology Stack
+        </h2>
+        <div class="two-col" style="margin-top: 6px;">
+          <div>
+            <h3>Modeling &amp; Diagramming</h3>
+            <div class="chips">
+              <span class="chip accent">Structurizr DSL</span>
+              <span class="chip accent">C4-PlantUML</span>
+              <span class="chip accent">Mermaid.js</span>
+              <span class="chip accent">D2</span>
+            </div>
+            <p style="margin-top:6px;">C4-layered views rendered from text, diff-able in git.</p>
+          </div>
+          <div>
+            <h3>ADR Tooling</h3>
+            <div class="chips">
+              <span class="chip accent">MADR 3.0 template</span>
+              <span class="chip accent">adr-tools (npm)</span>
+              <span class="chip green">Log4Brains</span>
+            </div>
+            <p style="margin-top:6px;">One markdown file per decision; indexed and navigable.</p>
+          </div>
+          <div>
+            <h3>Reasoning Orchestration</h3>
+            <div class="chips">
+              <span class="chip accent">LangGraph</span>
+              <span class="chip accent">PydanticAI</span>
+              <span class="chip green">Claude Opus via MCP</span>
+            </div>
+            <p style="margin-top:6px;">Stateful critique loops; re-enters when a persona dissents.</p>
+          </div>
+          <div>
+            <h3>Grounding</h3>
+            <div class="chips">
+              <span class="chip amber">GraphRAG over Neo4j</span>
+              <span class="chip amber">LlamaIndex</span>
+            </div>
+            <p style="margin-top:6px;">Reuses the Discovery dependency map; no decision is made without dependency context.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+          Output — Structured Architecture Decision Package
+        </h2>
+        <div class="out-grid">
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>C4 context diagram</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>C4 container diagram</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>C4 component diagram</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>ADR ledger</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>NFR budget table</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Risk register</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Migration / strangler plan</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Reference-architecture citations</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
+  <div class="tab-panel" id="panel-design-ux" data-panel="design-ux" role="tabpanel" aria-labelledby="tab-design-ux">
+    <div class="tab-head">
+      <h2>UX / UI Design Agent</h2>
+      <p class="tab-subtitle">Grounds every wireframe and hi-fi mockup in design tokens, user stories, and accessibility rules — before a pixel is pushed.</p>
+      <div class="tab-aliases"><strong>Also called:</strong> UX Agent · Interaction Design Agent · Token-Grounded Design Agent</div>
+    </div>
+    <div class="tab-grid">
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></svg>
+          Purpose
+        </h2>
+        <p>Produce <strong>accessibility-first, token-grounded designs</strong> — from information architecture through hi-fi mockups — where every screen is bound to a user story, a persona, and a design-token reference, and every state is coverable by an automated visual test.</p>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          Role
+        </h2>
+        <ul>
+          <li>Information architecture &amp; navigation modeling</li>
+          <li>Low-fi flow generation (Claude Design, Stitch)</li>
+          <li>Hi-fi mockup synthesis (v0, Figma + MCP)</li>
+          <li>Design-token authoring (W3C DTCG <code>tokens.json</code>)</li>
+          <li>Accessibility pre-flight (WCAG 2.2 AA, axe-core)</li>
+          <li>Persona walk-through against the proposed screens</li>
+          <li>Empty / loading / error / dense-data state coverage</li>
+        </ul>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+          How It Works
+        </h2>
+        <div class="steps">
+          <div class="step">
+            <div class="idx">1</div>
+            <div>
+              <h3>Token-First Drafting</h3>
+              <p>Authors or reuses a <code>tokens.json</code> file (color, spacing, type, motion) that every subsequent artifact references.</p>
+              <div class="chips">
+                <span class="chip accent">W3C DTCG spec</span>
+                <span class="chip accent">Style Dictionary</span>
+                <span class="chip">Tokens Studio</span>
+                <span class="chip">Dark / Light modes</span>
+                <span class="chip">Contrast ratios computed</span>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">2</div>
+            <div>
+              <h3>Multi-Tool Mockup Synthesis</h3>
+              <p>Drafts flows with <strong>Claude Design</strong>, explores layout variants in <strong>Google Stitch</strong>, and lands production-grade screens in <strong>v0 by Vercel</strong> and <strong>Figma + MCP</strong>.</p>
+              <div class="chips">
+                <span class="chip accent">Claude Design</span>
+                <span class="chip accent">Google Stitch</span>
+                <span class="chip accent">v0 by Vercel</span>
+                <span class="chip accent">Figma + MCP</span>
+              </div>
+              <div class="example">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                <div><strong>Example:</strong> for the metered-billing dashboard, Stitch proposed three layouts (stacked, split, drawer); the critique loop picked split; v0 produced the final Shadcn-grounded screen.</div>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">3</div>
+            <div>
+              <h3>Accessibility &amp; State Gate</h3>
+              <p>Runs axe-core, contrast checks, and keyboard-traversal simulations on every screen before the mock leaves the agent.</p>
+              <div class="chips">
+                <span class="chip green">WCAG 2.2 AA</span>
+                <span class="chip green">axe-core</span>
+                <span class="chip">Keyboard-only traversal</span>
+                <span class="chip">Screen-reader order</span>
+                <span class="chip">Reduced motion</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Technology Stack
+        </h2>
+        <div class="two-col" style="margin-top: 6px;">
+          <div>
+            <h3>AI Design Tools</h3>
+            <div class="chips">
+              <span class="chip accent">Claude Design (Anthropic)</span>
+              <span class="chip accent">Google Stitch</span>
+              <span class="chip accent">v0 by Vercel</span>
+              <span class="chip accent">Galileo AI</span>
+            </div>
+            <p style="margin-top:6px;">Claude Design for conversational flow iteration; Stitch for multi-variant layout search; v0 for production-grade React + Tailwind output.</p>
+          </div>
+          <div>
+            <h3>Design Surfaces</h3>
+            <div class="chips">
+              <span class="chip accent">Figma + Dev Mode MCP</span>
+              <span class="chip green">Penpot (open-source fallback)</span>
+              <span class="chip green">Framer</span>
+            </div>
+            <p style="margin-top:6px;">Figma MCP lets the agent read frames, export tokens, and push artboards without a human intermediary.</p>
+          </div>
+          <div>
+            <h3>Tokens &amp; Accessibility</h3>
+            <div class="chips">
+              <span class="chip green">W3C Design Tokens (DTCG)</span>
+              <span class="chip green">Style Dictionary</span>
+              <span class="chip green">Tokens Studio</span>
+              <span class="chip green">axe-core</span>
+              <span class="chip green">Pa11y</span>
+            </div>
+            <p style="margin-top:6px;">Tokens are the single source of truth; axe-core + Pa11y run on every generated page.</p>
+          </div>
+          <div>
+            <h3>Reasoning &amp; Critique</h3>
+            <div class="chips">
+              <span class="chip amber">Claude (vision)</span>
+              <span class="chip amber">GPT-4o (vision)</span>
+              <span class="chip amber">LangGraph consensus node</span>
+            </div>
+            <p style="margin-top:6px;">Two vision models + one token-lint pass must agree before a mock is approved.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+          Output — Structured UX Design Package
+        </h2>
+        <div class="out-grid">
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><code>tokens.json</code> (W3C DTCG)</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Information architecture map</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>User-flow diagrams</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Hi-fi screen set (all states)</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Persona walk-through notes</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>WCAG 2.2 AA conformance report</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Motion &amp; interaction spec</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Dark-mode parity sheet</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-design-contract" data-panel="design-contract" role="tabpanel" aria-labelledby="tab-design-contract">
+    <div class="tab-head">
+      <h2>API Contract &amp; Data Model Agent</h2>
+      <p class="tab-subtitle">Locks the interface and the schema — OpenAPI 3.1, AsyncAPI, ERDs, event schemas, and consumer contracts — before code is written.</p>
+      <div class="tab-aliases"><strong>Also called:</strong> Contract Agent · Schema Agent · Interface Design Agent</div>
+    </div>
+    <div class="tab-grid">
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></svg>
+          Purpose
+        </h2>
+        <p>Convert the architecture and UX into <strong>executable contracts</strong> — OpenAPI for sync, AsyncAPI for events, an ERD and migration for persistence — so the first code change is a schema change, not a reverse-engineered surprise.</p>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          Role
+        </h2>
+        <ul>
+          <li>REST / gRPC contract authoring</li>
+          <li>Event &amp; message contract authoring</li>
+          <li>ERD + migration design</li>
+          <li>Contract-test generation (Pact)</li>
+          <li>Backwards-compatibility analysis</li>
+          <li>PII / data-classification tagging</li>
+          <li>Versioning &amp; deprecation policy</li>
+        </ul>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+          How It Works
+        </h2>
+        <div class="steps">
+          <div class="step">
+            <div class="idx">1</div>
+            <div>
+              <h3>Contract-First Interface Modeling</h3>
+              <p>Emits OpenAPI 3.1 from user stories and architecture containers; every endpoint ties back to a requirement ID.</p>
+              <div class="chips">
+                <span class="chip accent">OpenAPI 3.1</span>
+                <span class="chip accent">AsyncAPI 3.0</span>
+                <span class="chip">Protobuf</span>
+                <span class="chip">JSON Schema</span>
+                <span class="chip">Operation ↔ Requirement ID</span>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">2</div>
+            <div>
+              <h3>Data Model Synthesis</h3>
+              <p>Drafts the ERD, then the migration, then the ORM model — in that order.</p>
+              <div class="chips">
+                <span class="chip accent">Prisma</span>
+                <span class="chip accent">SQLAlchemy</span>
+                <span class="chip">Drizzle</span>
+                <span class="chip">Flyway</span>
+                <span class="chip">dbmate</span>
+              </div>
+              <div class="example">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                <div><strong>Example:</strong> for metered billing — <code>UsageEvent</code> (append-only, partitioned by tenant, PII: none), <code>Invoice</code> (tenant-owned, PII: billing_email).</div>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">3</div>
+            <div>
+              <h3>Contract Tests &amp; Compat Check</h3>
+              <p>Generates consumer-driven Pact tests and runs a compat diff against the previous spec.</p>
+              <div class="chips">
+                <span class="chip accent">Pact</span>
+                <span class="chip green">oasdiff</span>
+                <span class="chip green">buf breaking</span>
+                <span class="chip">Backward-compatible by default</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Technology Stack
+        </h2>
+        <div class="two-col" style="margin-top: 6px;">
+          <div>
+            <h3>Interface Specs</h3>
+            <div class="chips">
+              <span class="chip accent">OpenAPI 3.1</span>
+              <span class="chip accent">AsyncAPI 3.0</span>
+              <span class="chip accent">Protobuf</span>
+              <span class="chip accent">GraphQL SDL</span>
+            </div>
+            <p style="margin-top:6px;">Sync, async, RPC, and query-model — each covered by its native DSL.</p>
+          </div>
+          <div>
+            <h3>Data Modeling</h3>
+            <div class="chips">
+              <span class="chip accent">Prisma</span>
+              <span class="chip accent">SQLAlchemy 2.0</span>
+              <span class="chip green">Drizzle</span>
+              <span class="chip green">Mermaid ER</span>
+            </div>
+            <p style="margin-top:6px;">ERD first, migration second, ORM last — never the other way around.</p>
+          </div>
+          <div>
+            <h3>Contract Testing &amp; Validation</h3>
+            <div class="chips">
+              <span class="chip green">Pact</span>
+              <span class="chip green">Schemathesis</span>
+              <span class="chip green">oasdiff</span>
+              <span class="chip green">buf breaking</span>
+            </div>
+            <p style="margin-top:6px;">Consumer-driven contracts plus automated backwards-compat lint.</p>
+          </div>
+          <div>
+            <h3>Code Generation</h3>
+            <div class="chips">
+              <span class="chip amber">openapi-typescript</span>
+              <span class="chip amber">orval</span>
+              <span class="chip amber">prisma generate</span>
+              <span class="chip amber">Claude Code</span>
+            </div>
+            <p style="margin-top:6px;">Types, clients, and servers scaffolded from the spec — no hand-written duplication.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+          Output — Structured Contract Package
+        </h2>
+        <div class="out-grid">
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><code>openapi.yaml</code> (3.1)</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><code>asyncapi.yaml</code> (3.0)</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>ERD diagram</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Migration script</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Prisma / SQLAlchemy models</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pact consumer contracts</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Backwards-compat report</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Data-classification table</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-design-handoff" data-panel="design-handoff" role="tabpanel" aria-labelledby="tab-design-handoff">
+    <div class="tab-head">
+      <h2>Prototyping &amp; Handoff Agent</h2>
+      <p class="tab-subtitle">Converts tokens, mockups, and contracts into a component library, Storybook pages, visual-regression baselines, and a dev-ready pull request.</p>
+      <div class="tab-aliases"><strong>Also called:</strong> Handoff Agent · Design-to-Code Agent · Storybook Agent</div>
+    </div>
+    <div class="tab-grid">
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></svg>
+          Purpose
+        </h2>
+        <p>Close the gap between design and development by producing a <strong>runnable, typed, visually-tested component scaffold</strong> — so engineering starts from a PR, not from a Figma frame.</p>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          Role
+        </h2>
+        <ul>
+          <li>Token-bound component scaffolding</li>
+          <li>Storybook page authoring (one story per state)</li>
+          <li>Visual-regression baseline capture</li>
+          <li>Interaction-test authoring (Playwright CT)</li>
+          <li>Design-to-code parity diff</li>
+          <li>Dev-ready PR assembly (description, ADR links, checklist)</li>
+          <li>Design-system drift detection (for existing systems)</li>
+        </ul>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+          How It Works
+        </h2>
+        <div class="steps">
+          <div class="step">
+            <div class="idx">1</div>
+            <div>
+              <h3>Token-Bound Component Scaffolding</h3>
+              <p>Reads <code>tokens.json</code> and the v0 / Figma artifacts, emits Shadcn/ui + Tailwind components with strict typing.</p>
+              <div class="chips">
+                <span class="chip accent">Shadcn/ui</span>
+                <span class="chip accent">Tailwind 4</span>
+                <span class="chip">Radix primitives</span>
+                <span class="chip">Class Variance Authority</span>
+                <span class="chip">TSX strict</span>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">2</div>
+            <div>
+              <h3>Storybook-First Delivery</h3>
+              <p>Every component ships a <code>*.stories.tsx</code> file with one story per state, plus an MDX docs page citing the ADRs.</p>
+              <div class="chips">
+                <span class="chip accent">Storybook 9</span>
+                <span class="chip">One story per state</span>
+                <span class="chip">Args table</span>
+                <span class="chip">MDX docs</span>
+                <span class="chip">Linked ADRs</span>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="idx">3</div>
+            <div>
+              <h3>Visual &amp; Interaction Regression Baseline</h3>
+              <p>Captures baselines and interaction tests before the PR is opened.</p>
+              <div class="chips">
+                <span class="chip green">Chromatic</span>
+                <span class="chip green">Playwright CT</span>
+                <span class="chip">Lost Pixel</span>
+                <span class="chip">axe-core runtime</span>
+              </div>
+              <div class="example">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                <div><strong>Example:</strong> for the billing dashboard — 11 stories, 22 baselines (light + dark), 4 interaction tests, 0 axe violations — PR opened with review checklist and 6 linked ADRs.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Technology Stack
+        </h2>
+        <div class="two-col" style="margin-top: 6px;">
+          <div>
+            <h3>Component Framework</h3>
+            <div class="chips">
+              <span class="chip accent">Shadcn/ui</span>
+              <span class="chip accent">Tailwind 4</span>
+              <span class="chip accent">Radix primitives</span>
+              <span class="chip accent">CVA</span>
+            </div>
+            <p style="margin-top:6px;">Token-readable, accessible primitives — no bespoke CSS files.</p>
+          </div>
+          <div>
+            <h3>Documentation &amp; Stories</h3>
+            <div class="chips">
+              <span class="chip accent">Storybook 9</span>
+              <span class="chip green">MDX</span>
+              <span class="chip green">Docusaurus</span>
+            </div>
+            <p style="margin-top:6px;">The component library is the living spec.</p>
+          </div>
+          <div>
+            <h3>Visual &amp; Interaction Regression</h3>
+            <div class="chips">
+              <span class="chip green">Chromatic</span>
+              <span class="chip green">Lost Pixel</span>
+              <span class="chip green">Playwright Component Testing</span>
+              <span class="chip green">axe-core</span>
+            </div>
+            <p style="margin-top:6px;">Pixel diffs and a11y checks gate every PR from day one.</p>
+          </div>
+          <div>
+            <h3>Code Generation &amp; Repo Hygiene</h3>
+            <div class="chips">
+              <span class="chip amber">Claude Code</span>
+              <span class="chip amber">GitHub Copilot SDK</span>
+              <span class="chip amber">openapi-typescript</span>
+              <span class="chip amber">Figma MCP → code</span>
+            </div>
+            <p style="margin-top:6px;">Reads the repo (eslint config, import aliases, existing components) so output looks hand-written.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-12">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+          Output — Structured Handoff Package
+        </h2>
+        <div class="out-grid">
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Component source (<code>.tsx</code> + tests)</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Storybook stories (one per state)</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>MDX docs with ADR links</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Visual-regression baselines</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Playwright interaction tests</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Token-to-code parity report</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Design-system drift report</div>
+          <div class="out"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pull request with full checklist</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<div class="phase-placeholders">
   <div class="phase-panel" data-phase="develop">
     <div class="placeholder">
       <div class="ph-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
@@ -1796,23 +2481,29 @@
       h.addEventListener('blur', hide);
     });
 
-    // Agent tab switching (sub-level, inside Discovery)
-    const tabs = document.querySelectorAll('nav.pipeline .stage');
-    const panels = document.querySelectorAll('main.tabs .tab-panel');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const target = tab.dataset.tab;
-        tabs.forEach(t => {
-          const active = t === tab;
-          t.classList.toggle('current', active);
-          t.setAttribute('aria-selected', active ? 'true' : 'false');
+    // Agent tab switching (sub-level, scoped per phase so Discovery and Design don't clobber each other)
+    document.querySelectorAll('nav.pipeline').forEach(pipeline => {
+      const phaseClass = ['discovery', 'design'].find(c => pipeline.classList.contains(c));
+      if (!phaseClass) return;
+      const mainEl = document.querySelector(`main.tabs.${phaseClass}`);
+      if (!mainEl) return;
+      const tabs = pipeline.querySelectorAll('.stage');
+      const panels = mainEl.querySelectorAll('.tab-panel');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.tab;
+          tabs.forEach(t => {
+            const active = t === tab;
+            t.classList.toggle('current', active);
+            t.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          panels.forEach(p => {
+            p.classList.toggle('active', p.dataset.panel === target);
+          });
+          closeAllPrinciples();
+          const activePanel = mainEl.querySelector('.tab-panel.active');
+          if (activePanel) activePanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
-        panels.forEach(p => {
-          p.classList.toggle('active', p.dataset.panel === target);
-        });
-        closeAllPrinciples();
-        const activePanel = document.querySelector('main.tabs .tab-panel.active');
-        if (activePanel) activePanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
