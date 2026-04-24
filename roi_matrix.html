@@ -1,0 +1,4301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fastest path to ROI on AI Adoption — Techjays</title>
+<meta name="description" content="A guided 10-minute exercise for non-tech executives to find the one workflow where AI pays off fastest." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root {
+    --bg: #eef1f6;
+    --bg-card: #eef1f6;
+    --bg-elev: #e6eaf1;
+    --bg-sunken: #e2e7ee;
+    --border: rgba(163, 177, 198, 0.18);
+    --border-strong: rgba(163, 177, 198, 0.32);
+    --text: #1f2937;
+    --text-dim: #4b5563;
+    --text-muted: #7c8696;
+    --accent: #ff6b35;
+    --accent-hover: #ff5a1f;
+    --accent-soft: #ffe4d6;
+    --accent-2: #0ea5a4;
+    --accent-2-soft: #cdf3f0;
+    --accent-3: #e11d48;
+    --accent-3-soft: #ffe0e6;
+    --amber-soft: #fef0c7;
+    --amber-deep: #92520c;
+    --link: #2563eb;
+    --maxw: 1140px;
+    --neo-light: rgba(255, 255, 255, 0.95);
+    --neo-dark: rgba(163, 177, 198, 0.55);
+    --neo-dark-soft: rgba(163, 177, 198, 0.35);
+    --shadow: 6px 6px 14px var(--neo-dark-soft), -6px -6px 14px var(--neo-light);
+    --shadow-sm: 3px 3px 7px var(--neo-dark-soft), -3px -3px 7px var(--neo-light);
+    --shadow-lg: 12px 12px 28px var(--neo-dark), -12px -12px 28px var(--neo-light);
+    --shadow-inset: inset 4px 4px 8px var(--neo-dark-soft), inset -4px -4px 8px var(--neo-light);
+    --shadow-inset-sm: inset 2px 2px 5px var(--neo-dark-soft), inset -2px -2px 5px var(--neo-light);
+    --gradient-accent: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    --gradient-accent-2: linear-gradient(135deg, #0ea5a4 0%, #06b6d4 100%);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(1200px 600px at 10% -10%, rgba(255, 107, 53, 0.08), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(14, 165, 164, 0.07), transparent 60%);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding-bottom: 120px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 28px; }
+
+  /* ==================== Top bar ==================== */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: #1f2937;
+    color: #fff;
+    padding: 12px 28px;
+    min-height: 56px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .topbar-logo { display: inline-flex; align-items: center; text-decoration: none; }
+  .topbar-logo img { height: 22px; width: auto; display: block; }
+  .topbar-connect {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 18px;
+    border-radius: 999px;
+    background: var(--gradient-accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(255,107,53,0.32);
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+  }
+  .topbar-connect:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(255,107,53,0.45); }
+  .topbar-connect svg { opacity: 0.9; }
+  @media (max-width: 520px) {
+    .topbar { padding: 10px 16px; min-height: 48px; }
+    .topbar-logo img { height: 18px; }
+    .topbar-connect { padding: 7px 14px; font-size: 12px; }
+  }
+  @media print { .topbar { display: none !important; } }
+
+  /* ==================== Footer Let's Connect ==================== */
+  .footer-connect {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: var(--gradient-accent);
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 12px;
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(255,107,53,0.3);
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+  }
+  .footer-connect:hover { transform: translateY(-1px); box-shadow: 0 5px 14px rgba(255,107,53,0.42); color: #fff !important; }
+  @media print { .footer-connect { display: none !important; } }
+
+  /* ==================== Header ==================== */
+  header.page { background: transparent; }
+  header.page .wrap { padding-top: 48px; padding-bottom: 18px; }
+  .brand {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+    font-weight: 600;
+  }
+  .brand .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gradient-accent-2);
+    box-shadow: 0 0 0 3px rgba(14, 165, 164, 0.12), 0 0 10px rgba(14, 165, 164, 0.45);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(14, 165, 164, 0.12), 0 0 10px rgba(14, 165, 164, 0.45); }
+    50% { box-shadow: 0 0 0 5px rgba(14, 165, 164, 0.06), 0 0 14px rgba(14, 165, 164, 0.6); }
+  }
+  h1 {
+    margin: 22px 0 10px;
+    font-size: clamp(28px, 3.8vw, 42px);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    font-weight: 800;
+    color: var(--text);
+  }
+  h1 em {
+    font-style: normal;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-weight: 800;
+  }
+  .subtitle { color: var(--text-dim); max-width: 760px; font-size: 16px; margin: 0; line-height: 1.6; }
+  .meta {
+    margin-top: 22px;
+    display: flex; flex-wrap: wrap; gap: 10px 12px;
+    color: var(--text-muted);
+    font-size: 12.5px;
+    align-items: center;
+  }
+  .meta .kbd {
+    padding: 4px 10px; border-radius: 8px;
+    color: var(--text); background: var(--bg-card);
+    box-shadow: var(--shadow-inset-sm);
+    font-weight: 600; font-size: 11.5px;
+  }
+  .meta a.backlink, .meta button.resetbtn {
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+    color: var(--text-dim);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 11.5px;
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .meta a.backlink:hover, .meta button.resetbtn:hover { color: var(--accent); box-shadow: var(--shadow); }
+
+  /* ==================== Phase tabs ==================== */
+  nav.phases {
+    display: flex; flex-wrap: wrap; gap: 4px;
+    margin-top: 26px;
+    padding: 6px;
+    background: var(--bg-card);
+    border-radius: 16px;
+    box-shadow: var(--shadow-inset);
+  }
+  .phase {
+    flex: 1 1 auto; min-width: 96px;
+    padding: 11px 16px;
+    background: transparent; border: none;
+    border-radius: 11px;
+    font-size: 12.5px; font-weight: 600;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.25s ease, transform 0.2s ease;
+    text-align: center;
+    font-family: inherit;
+    letter-spacing: 0.02em;
+  }
+  .phase:hover { color: var(--text); transform: translateY(-1px); }
+  .phase.current {
+    background: var(--gradient-accent);
+    color: #fff;
+    cursor: default;
+    box-shadow: 0 6px 16px rgba(255, 107, 53, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+  .phase:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .phase .ph-num { display: inline-block; font-weight: 800; margin-right: 6px; opacity: 0.85; }
+  .phase.locked { opacity: 0.6; cursor: not-allowed; }
+  .phase.locked:hover { transform: none; }
+
+  /* ==================== Visibility per phase ==================== */
+  body:not([data-active-phase="identify"]) main.phase-content.identify { display: none; }
+  body:not([data-active-phase="quantify"]) main.phase-content.quantify { display: none; }
+  body:not([data-active-phase="plan"]) main.phase-content.plan { display: none; }
+  main.phase-content { animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ==================== Card + step + chip ==================== */
+  main.phase-content .wrap { padding-top: 18px; padding-bottom: 18px; }
+  .card {
+    background: var(--bg-card);
+    border-radius: 18px;
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    margin-bottom: 16px;
+  }
+  .card:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+  .card h2 {
+    margin: 0 0 14px;
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .card h2 svg { flex-shrink: 0; color: var(--accent); }
+  .card h3 {
+    margin: 14px 0 6px;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text);
+    display: flex; align-items: center; gap: 8px;
+    letter-spacing: -0.005em;
+  }
+  .card h3 svg { color: var(--accent-2); flex-shrink: 0; }
+  .card p, .card li { color: var(--text-dim); font-size: 14px; }
+  .card strong { color: var(--text); font-weight: 600; }
+  .card p { margin: 8px 0; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .chip {
+    font-size: 11.5px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--bg-card);
+    color: var(--text);
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .chip.accent { background: var(--accent-soft); color: #b8480f; box-shadow: var(--shadow-inset-sm); }
+  .chip.green  { background: var(--accent-2-soft); color: #086a69; box-shadow: var(--shadow-inset-sm); }
+  .chip.amber  { background: var(--amber-soft); color: var(--amber-deep); box-shadow: var(--shadow-inset-sm); }
+  .chip.rose   { background: var(--accent-3-soft); color: #be123c; box-shadow: var(--shadow-inset-sm); }
+  .chip.ghost  { background: transparent; box-shadow: none; color: var(--text-muted); }
+
+  .steps { display: grid; gap: 12px; }
+  .step {
+    display: grid; grid-template-columns: 44px 1fr; gap: 16px;
+    align-items: start;
+    padding: 18px 20px;
+    background: var(--bg-card);
+    border-radius: 14px;
+    box-shadow: var(--shadow-inset-sm);
+  }
+  .step .idx {
+    width: 38px; height: 38px; border-radius: 12px;
+    display: grid; place-items: center;
+    background: var(--gradient-accent);
+    color: #fff; font-weight: 700; font-size: 15px;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.32);
+  }
+  .step.teal .idx { background: var(--gradient-accent-2); box-shadow: 0 4px 12px rgba(14, 165, 164, 0.32); }
+  .step h3 { margin: 0 0 4px; font-size: 15px; }
+  .step p { margin: 0 0 6px; font-size: 13.5px; color: var(--text-dim); }
+
+  /* ==================== Section intro (tab head) ==================== */
+  .section-head { margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--border-strong); }
+  .section-head h2 { margin: 0 0 6px; font-size: 24px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; }
+  .section-head p { margin: 0; color: var(--text-dim); font-size: 14px; line-height: 1.55; max-width: 740px; }
+
+  /* ==================== Value-Loss banner (6 areas) ==================== */
+  .value-loss {
+    margin-top: 18px;
+    padding: 22px 26px;
+    border-radius: 22px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow);
+    position: relative; overflow: hidden;
+  }
+  .value-loss::before {
+    content: ""; position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--gradient-accent);
+    border-radius: 22px 0 0 22px;
+  }
+  .value-loss h2 {
+    margin: 0 0 10px;
+    font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .value-loss p { margin: 0 0 14px; font-size: 14.5px; color: var(--text); line-height: 1.6; }
+  .vl-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 10px;
+  }
+  @media (max-width: 900px) { .vl-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 520px) { .vl-grid { grid-template-columns: repeat(2, 1fr); } }
+  .vl-item {
+    padding: 12px 14px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-inset-sm);
+    text-align: center;
+    cursor: default;
+  }
+  .vl-item .vl-label { font-size: 12px; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 0.08em; }
+  .vl-item .vl-desc { font-size: 11.5px; color: var(--text-dim); line-height: 1.45; margin-top: 4px; }
+
+  /* ==================== Industry preset picker ==================== */
+  .preset-wrap { margin-top: 4px; }
+  .preset-wrap .preset-hint {
+    font-size: 12.5px; color: var(--text-dim); margin-bottom: 8px;
+  }
+  .preset-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .preset-chip {
+    padding: 9px 16px;
+    border-radius: 999px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+    color: var(--text);
+    font-weight: 600;
+    font-size: 13px;
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, color 0.2s ease;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .preset-chip:hover { transform: translateY(-1px); box-shadow: var(--shadow); color: var(--accent); }
+  .preset-chip.active {
+    background: var(--gradient-accent);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(255, 107, 53, 0.32);
+  }
+  .preset-chip .pc-emoji { font-size: 15px; line-height: 1; }
+  .seeded-note {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 10px;
+    padding: 4px 11px;
+    background: var(--accent-2-soft); color: #086a69;
+    border-radius: 999px;
+    font-size: 11.5px; font-weight: 600;
+    box-shadow: var(--shadow-inset-sm);
+  }
+
+  /* ==================== Workflow table ==================== */
+  .wf-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .wf-table {
+    width: 100%;
+    min-width: 1240px;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+  }
+  .wf-table thead th {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 700;
+    text-align: center;
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+  .wf-table thead th.wf-col-name { text-align: left; padding-left: 14px; min-width: 260px; }
+  .wf-table thead th.wf-col-score { min-width: 160px; }
+  .wf-table thead th.wf-col-total, .wf-table thead th.wf-col-actions { text-align: center; }
+  .wf-row td {
+    background: var(--bg-card);
+    padding: 10px 12px;
+    vertical-align: middle;
+  }
+  .wf-row td.wf-score-cell { padding: 10px 14px; }
+  .wf-row td:first-child { border-radius: 12px 0 0 12px; padding-left: 14px; }
+  .wf-row td:last-child  { border-radius: 0 12px 12px 0; padding-right: 10px; }
+  .wf-row { box-shadow: var(--shadow-inset-sm); }
+  .wf-name-input {
+    background: transparent; border: none; outline: none;
+    font-family: inherit; font-size: 13.5px; font-weight: 600;
+    color: var(--text);
+    width: 100%;
+    padding: 4px 6px;
+    border-radius: 6px;
+    transition: background 0.15s ease;
+  }
+  .wf-name-input:focus { background: var(--bg-elev); }
+  .wf-dept {
+    display: block;
+    font-size: 10.5px; color: var(--text-muted);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding-left: 6px;
+    margin-top: 2px;
+  }
+  .score-group-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .score-group {
+    display: inline-flex;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 10px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-inset-sm);
+  }
+  .wf-cell-info { width: 18px; height: 18px; }
+  .wf-cell-info svg { width: 11px; height: 11px; }
+  .score-btn {
+    width: 26px; height: 26px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+    display: inline-grid; place-items: center;
+  }
+  .score-btn:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+  .score-btn.active {
+    background: var(--gradient-accent);
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(255,107,53,0.3);
+  }
+  .total-badge {
+    display: inline-grid; place-items: center;
+    min-width: 54px; padding: 8px 10px;
+    border-radius: 10px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-inset-sm);
+    font-weight: 800;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .total-badge small { font-size: 10.5px; font-weight: 600; color: var(--text-muted); letter-spacing: 0; }
+  .total-badge.tier-start    { background: var(--accent-soft); color: #b8480f; }
+  .total-badge.tier-explore  { background: var(--accent-2-soft); color: #086a69; }
+  .total-badge.tier-backlog  { background: var(--amber-soft); color: var(--amber-deep); }
+  .total-badge.tier-skip     { background: var(--bg-elev); color: var(--text-muted); }
+  .total-badge.tier-unscored { background: var(--bg-elev); color: var(--text-muted); opacity: 0.8; }
+  .wf-remove {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: inline-grid; place-items: center;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+  .wf-remove:hover { color: var(--accent-3); background: var(--accent-3-soft); }
+  .wf-add-row {
+    margin-top: 10px;
+    padding: 14px 18px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-inset-sm);
+    display: flex; align-items: center; gap: 12px;
+    color: var(--text-dim);
+    font-size: 13.5px;
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+    width: 100%;
+    text-align: left;
+    transition: color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .wf-add-row:hover { color: var(--accent); box-shadow: var(--shadow-sm); }
+  .wf-add-row .plus {
+    display: inline-grid; place-items: center;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: #b8480f;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .wf-empty {
+    padding: 40px 28px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 14.5px;
+    background: var(--bg-card);
+    border-radius: 18px;
+    box-shadow: var(--shadow-inset-sm);
+  }
+  .wf-empty strong { color: var(--text); font-weight: 700; display: block; margin-bottom: 6px; }
+
+  /* Mobile: workflow rows as cards */
+  .wf-card { display: none; }
+  @media (max-width: 820px) {
+    .wf-table-wrap { overflow: visible; }
+    .wf-table { display: none; }
+    .wf-card { display: block; }
+    .wf-card-item {
+      background: var(--bg-card);
+      border-radius: 14px;
+      padding: 14px 14px 12px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow-inset-sm);
+    }
+    .wf-card-head {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 10px; margin-bottom: 10px;
+    }
+    .wf-card-head .wf-name-input { font-size: 14px; }
+    .wf-card-scores { display: grid; grid-template-columns: 1fr auto; gap: 6px 10px; align-items: center; }
+    .wf-card-scores .wf-dim-label {
+      font-size: 11px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .wf-card-scores .wf-dim-label .wf-info { width: 16px; height: 16px; }
+    .wf-card-scores .wf-dim-label .wf-info svg { width: 11px; height: 11px; }
+    .wf-card-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+  }
+
+  /* ==================== Priority board ==================== */
+  .priority-board { margin-top: 6px; }
+  .priority-band {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+  .priority-band::before {
+    content: "";
+    position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+    border-radius: 16px 0 0 16px;
+  }
+  .priority-band.tier-start::before   { background: var(--gradient-accent); }
+  .priority-band.tier-explore::before { background: var(--gradient-accent-2); }
+  .priority-band.tier-backlog::before { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+  .priority-band.tier-skip::before    { background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%); }
+  .priority-band.tier-unscored::before{ background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%); }
+  .priority-band.tier-unscored .priority-band-title { color: var(--text-dim); }
+  .priority-card.unscored {
+    background: var(--bg-card);
+    box-shadow: var(--shadow-inset-sm);
+    opacity: 0.92;
+  }
+  .priority-card .pc-progress {
+    font-size: 10.5px; font-weight: 700;
+    padding: 3px 8px; border-radius: 999px;
+    background: var(--bg-elev);
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .legend-i {
+    display: inline-grid; place-items: center;
+    width: 16px; height: 16px;
+    background: var(--accent-2-soft);
+    color: #086a69;
+    border-radius: 50%;
+    vertical-align: -3px;
+    margin: 0 2px;
+  }
+  .priority-band-head {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+    margin-bottom: 8px;
+  }
+  .priority-band-title {
+    font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--text);
+  }
+  .priority-band.tier-start .priority-band-title   { color: #b8480f; }
+  .priority-band.tier-explore .priority-band-title { color: #086a69; }
+  .priority-band.tier-backlog .priority-band-title { color: var(--amber-deep); }
+  .priority-band.tier-skip .priority-band-title    { color: var(--text-muted); }
+  .priority-band-range { font-size: 11.5px; color: var(--text-muted); font-weight: 600; }
+  .priority-items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .priority-card {
+    padding: 10px 14px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    display: inline-flex; align-items: center; gap: 10px;
+    max-width: 100%;
+  }
+  .priority-card .pc-score {
+    font-size: 11px; font-weight: 800;
+    padding: 2px 8px; border-radius: 999px;
+    background: var(--bg-card); box-shadow: var(--shadow-inset-sm);
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+  .priority-card .pc-name { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .priority-card.top {
+    box-shadow: 0 6px 16px rgba(255,107,53,0.28), var(--shadow-sm);
+  }
+  .priority-carry {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--gradient-accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    animation: carry-pulse 2s ease-in-out infinite;
+    text-decoration: none;
+  }
+  @keyframes carry-pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 2px 8px rgba(255,107,53,0.4); }
+    50%      { transform: scale(1.04); box-shadow: 0 4px 14px rgba(255,107,53,0.55); }
+  }
+  .priority-empty {
+    font-size: 12px; color: var(--text-muted); font-style: italic;
+    padding: 4px 0;
+  }
+  .pc-rec {
+    font-size: 10px; font-weight: 700;
+    padding: 3px 9px;
+    background: var(--gradient-accent);
+    color: #fff;
+    border-radius: 999px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+
+  /* ==================== Workflow info-icon tooltip ==================== */
+  .wf-name-wrap { display: inline-flex; align-items: center; gap: 4px; width: 100%; }
+  .wf-info {
+    display: inline-grid; place-items: center;
+    width: 20px; height: 20px;
+    border: none; background: transparent;
+    color: var(--accent-2);
+    opacity: 0.55;
+    cursor: pointer;
+    border-radius: 50%;
+    flex-shrink: 0;
+    padding: 0;
+    transition: opacity 0.15s ease, background 0.15s ease, color 0.15s ease;
+    outline: none;
+  }
+  .wf-info:hover, .wf-info:focus, .wf-info[aria-expanded="true"] {
+    opacity: 1;
+    color: var(--accent);
+    background: rgba(255,107,53,0.12);
+  }
+  .wf-tooltip {
+    --arrow-x: 50%;
+    visibility: hidden; opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: min(340px, calc(100vw - 40px));
+    padding: 12px 14px;
+    background: #2d2a24;
+    color: #fefcf5;
+    font-size: 12.5px;
+    line-height: 1.55;
+    text-align: left;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    border-radius: 12px;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.3), 0 4px 10px rgba(0,0,0,0.18);
+    z-index: 9999;
+    transition: opacity 0.18s ease, visibility 0.18s ease, transform 0.18s ease;
+    transform: translateY(4px);
+  }
+  .wf-tooltip.visible { visibility: visible; opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .wf-tooltip .pt-title {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #ffd79a;
+    margin-bottom: 4px;
+  }
+  .wf-tooltip .pt-sub {
+    display: block;
+    font-size: 11px;
+    color: #d8d4c5;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .wf-tooltip .ex-item {
+    display: block;
+    margin: 5px 0;
+    padding-left: 14px;
+    position: relative;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #e7e3d6;
+  }
+  .wf-tooltip .ex-item::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #ffd79a;
+  }
+  .wf-tooltip .ex-item strong {
+    display: inline-grid; place-items: center;
+    width: 18px; height: 18px;
+    margin-right: 6px;
+    background: #ffd79a;
+    color: #2d2a24;
+    border-radius: 50%;
+    font-weight: 800;
+    font-size: 11px;
+    vertical-align: -2px;
+  }
+  .wf-tooltip .pt-how {
+    display: block;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(255,215,154,0.25);
+    font-size: 12px;
+    line-height: 1.5;
+    color: #d8d4c5;
+  }
+  .wf-tooltip .pt-how strong { color: #ffd79a; }
+  .wf-tooltip .cell-hint {
+    display: block;
+    margin: 10px 0 2px;
+    padding: 10px 12px;
+    background: rgba(255, 215, 154, 0.08);
+    border-left: 2px solid #ffd79a;
+    border-radius: 6px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: #fefcf5;
+    font-weight: 500;
+  }
+  .col-head-wrap { display: inline-flex; align-items: center; gap: 4px; }
+  .wf-tooltip::after {
+    content: "";
+    position: absolute;
+    left: var(--arrow-x);
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+  }
+  .wf-tooltip[data-placement="top"]::after { top: 100%; border-top-color: #2d2a24; }
+  .wf-tooltip[data-placement="bottom"]::after { bottom: 100%; border-bottom-color: #2d2a24; }
+
+  /* ==================== Next-Phase CTA ==================== */
+  .next-phase {
+    margin-top: 16px;
+    padding: 20px 22px;
+    background: var(--bg-card);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+  }
+  .next-phase::before {
+    content: "";
+    position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--gradient-accent);
+    border-radius: 16px 0 0 16px;
+  }
+  .next-phase .np-text {
+    font-size: 14px;
+    color: var(--text-dim);
+    flex: 1 1 320px;
+    line-height: 1.5;
+  }
+  .next-phase .np-text strong { color: var(--text); font-weight: 700; }
+  .next-phase .np-text .np-label {
+    display: block;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .next-phase .np-btn {
+    padding: 12px 22px;
+    border-radius: 12px;
+    background: var(--gradient-accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255,107,53,0.3);
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+    flex-shrink: 0;
+  }
+  .next-phase .np-btn:hover { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(255,107,53,0.4); }
+  .next-phase .np-btn:disabled {
+    background: var(--bg-elev);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    box-shadow: var(--shadow-inset-sm);
+    transform: none;
+  }
+  @media print {
+    .next-phase { box-shadow: none !important; border: 1px solid #ccc !important; }
+    .next-phase .np-btn { display: none !important; }
+  }
+
+  /* ==================== Lock card (for Phase 2/3 when empty) ==================== */
+  .lock-card {
+    padding: 48px 32px;
+    text-align: center;
+    background: var(--bg-card);
+    border-radius: 22px;
+    box-shadow: var(--shadow-inset);
+    color: var(--text-dim);
+  }
+  .lock-card .lock-icon {
+    display: inline-grid; place-items: center;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--bg-card);
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-inset-sm);
+  }
+  .lock-card h3 { color: var(--text); font-size: 18px; font-weight: 700; margin: 0 0 8px; }
+  .lock-card p { font-size: 14px; color: var(--text-dim); margin: 0 auto; max-width: 420px; }
+
+  /* ==================== Phase 2 — Quantify ==================== */
+  .q-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 900px) { .q-grid { grid-template-columns: 1fr; } }
+
+  .wf-picker {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border-radius: 14px;
+    box-shadow: var(--shadow-inset-sm);
+    margin-bottom: 14px;
+  }
+  .wf-picker label { font-size: 12px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; }
+  .wf-picker select {
+    flex: 1;
+    min-width: 220px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-inset-sm);
+    border: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    outline: none;
+    cursor: pointer;
+  }
+  .wf-picker select:focus { box-shadow: var(--shadow-inset-sm), 0 0 0 2px var(--accent); }
+
+  .value-inputs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (max-width: 520px) { .value-inputs { grid-template-columns: 1fr; } }
+  .vc-field {
+    padding: 12px 14px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-inset-sm);
+  }
+  .vc-field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+  .vc-field .vc-input-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 12px;
+    background: #fff;
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    min-height: 42px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .vc-field .vc-input-row:hover { border-color: rgba(163,177,198,0.55); }
+  .vc-field .vc-input-row:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255,107,53,0.18);
+  }
+  .vc-field .vc-prefix { color: var(--text-muted); font-size: 15px; font-weight: 600; flex-shrink: 0; }
+  .vc-field input[type="number"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    -moz-appearance: textfield;
+  }
+  .vc-field input::-webkit-outer-spin-button,
+  .vc-field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .vc-field input::placeholder { color: var(--text-muted); opacity: 0.85; font-weight: 500; }
+  .vc-field .vc-hint { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+
+  .reduction-group {
+    grid-column: span 2;
+    padding: 12px 14px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-inset-sm);
+  }
+  @media (max-width: 520px) { .reduction-group { grid-column: span 1; } }
+  .reduction-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+  .reduction-btns { display: flex; gap: 4px; padding: 3px; border-radius: 10px; background: var(--bg-card); box-shadow: var(--shadow-inset-sm); }
+  .reduction-btn {
+    flex: 1;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .reduction-btn:hover { color: var(--text); }
+  .reduction-btn.active {
+    background: var(--gradient-accent-2);
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(14,165,164,0.35);
+  }
+  .reduction-note {
+    margin-top: 8px; font-size: 11.5px; color: var(--text-muted);
+  }
+
+  /* Collapsible optional block */
+  .vc-collapsible {
+    padding: 12px 14px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-inset-sm);
+    margin-top: 10px;
+  }
+  .vc-collapsible-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    cursor: pointer;
+    font-size: 12.5px; font-weight: 700;
+    color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    background: transparent; border: none; width: 100%; padding: 0; font-family: inherit;
+    text-align: left;
+  }
+  .vc-collapsible-head:hover { color: var(--accent); }
+  .vc-collapsible-body { margin-top: 10px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  @media (max-width: 520px) { .vc-collapsible-body { grid-template-columns: 1fr; } }
+  .vc-collapsible.collapsed .vc-collapsible-body { display: none; }
+  .vc-collapsible .caret { transition: transform 0.2s ease; color: var(--text-muted); }
+  .vc-collapsible.collapsed .caret { transform: rotate(-90deg); }
+
+  /* ==================== Savings readout ==================== */
+  .savings-readout {
+    background: var(--bg-card);
+    border-radius: 18px;
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .savings-readout::before {
+    content: "";
+    position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--gradient-accent);
+    border-radius: 18px 0 0 18px;
+  }
+  .savings-label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 700;
+  }
+  .savings-hero {
+    margin: 8px 0 4px;
+    font-size: 44px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-variant-numeric: tabular-nums;
+  }
+  .savings-hero.dim {
+    background: none;
+    color: var(--text-muted);
+    -webkit-text-fill-color: var(--text-muted);
+  }
+  .savings-sub { font-size: 13.5px; color: var(--text-dim); }
+  .savings-lines {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+    margin: 14px 0 6px;
+    font-size: 13.5px;
+    text-align: left;
+  }
+  .savings-line {
+    display: flex; justify-content: space-between; padding: 8px 12px;
+    background: var(--bg-card);
+    border-radius: 8px;
+    box-shadow: var(--shadow-inset-sm);
+  }
+  .savings-line .sl-label { color: var(--text-dim); }
+  .savings-line .sl-value { font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+  .savings-foot {
+    font-size: 11px; color: var(--text-muted); font-style: italic;
+    margin-top: 10px;
+  }
+
+  /* ==================== Before / After table ==================== */
+  .ba-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  .ba-table thead th {
+    font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 700;
+    padding: 10px 12px;
+    text-align: left;
+  }
+  .ba-table thead th:not(:first-child) { text-align: center; }
+  .ba-table tbody td {
+    padding: 12px;
+    background: var(--bg-card);
+    font-size: 13.5px;
+    color: var(--text);
+    vertical-align: middle;
+  }
+  .ba-table tbody tr { box-shadow: var(--shadow-inset-sm); }
+  .ba-table tbody tr td:first-child { border-radius: 10px 0 0 10px; font-weight: 600; }
+  .ba-table tbody tr td:last-child  { border-radius: 0 10px 10px 0; }
+  .ba-table tbody tr + tr td { border-top: none; }
+  .ba-table tbody tr { display: table-row; }
+  .ba-table .ba-cell-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text);
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.15s ease;
+  }
+  .ba-table .ba-cell-input:focus { background: var(--bg-elev); }
+  .ba-table td.ba-after .ba-cell-input { color: #086a69; }
+  .ba-wrap { margin-top: 14px; padding-top: 8px; }
+
+  /* ==================== AI role chips (Phase 3) ==================== */
+  .role-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 900px) { .role-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .role-grid { grid-template-columns: 1fr; } }
+  .role-card {
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+    text-align: left;
+    font-family: inherit;
+    border: none;
+    color: var(--text);
+  }
+  .role-card:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+  .role-card.active {
+    background: var(--gradient-accent-2);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(14,165,164,0.32);
+  }
+  .role-card .role-name { font-size: 13.5px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+  .role-card .role-desc { font-size: 11.5px; color: var(--text-dim); line-height: 1.45; margin-top: 4px; }
+  .role-card.active .role-desc { color: rgba(255,255,255,0.9); }
+  .role-card .role-check {
+    float: right;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--bg-card);
+    color: var(--accent-2);
+    display: inline-grid; place-items: center;
+    box-shadow: var(--shadow-inset-sm);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .role-card.active .role-check { opacity: 1; }
+
+  /* ==================== Pilot charter (Phase 3) ==================== */
+  .charter-header { position: relative; overflow: hidden; }
+  .charter-header::before {
+    content: "";
+    position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--gradient-accent);
+    border-radius: 18px 0 0 18px;
+  }
+  .charter-head-row {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+    flex-wrap: wrap;
+  }
+  .charter-title { flex: 1 1 320px; }
+  .charter-eyebrow {
+    font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700; margin-bottom: 4px;
+  }
+  .charter-title h3 {
+    margin: 0 0 8px;
+    font-size: 22px; font-weight: 800; color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .charter-goal {
+    font-size: 14px; color: var(--text-dim); line-height: 1.55;
+    max-width: 640px;
+  }
+  .charter-meta {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border-strong);
+  }
+  @media (max-width: 720px) { .charter-meta { grid-template-columns: 1fr; } }
+  .cm-field label {
+    display: block;
+    font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .cm-input {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .cm-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255,107,53,0.18);
+  }
+  .charter-metrics, .charter-gng {
+    list-style: none; padding: 0; margin: 6px 0 0;
+  }
+  .charter-metrics li, .charter-gng li {
+    padding: 10px 14px;
+    background: var(--bg-card);
+    border-radius: 10px;
+    box-shadow: var(--shadow-inset-sm);
+    margin-bottom: 8px;
+    font-size: 13.5px; line-height: 1.55;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .charter-metrics li strong, .charter-gng li strong { color: var(--text); font-weight: 700; }
+  .charter-metrics .cm-label {
+    flex: 1;
+    color: var(--text-dim);
+  }
+  .charter-metrics .cm-values {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .charter-metrics .cm-before { color: var(--accent-3); }
+  .charter-metrics .cm-arrow  { color: var(--text-muted); margin: 0 8px; }
+  .charter-metrics .cm-after  { color: #086a69; }
+  .charter-gng li::before {
+    content: "";
+    display: inline-block;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gradient-accent-2);
+    flex-shrink: 0;
+  }
+
+  /* Charter-focused print: hide Phase 1 + Phase 2 while printing */
+  body.print-charter main.phase-content.identify,
+  body.print-charter main.phase-content.quantify { display: none !important; }
+  @media print {
+    body.print-charter main.phase-content.plan { display: block !important; }
+    .charter-header::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    #printCharterBtn { display: none !important; }
+  }
+
+  /* ==================== Human flow ==================== */
+  .hf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 820px) { .hf-grid { grid-template-columns: 1fr; } }
+  .hf-col h3 {
+    margin: 0 0 10px;
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    font-weight: 700;
+  }
+  .hf-col.before h3 { color: var(--accent-3); }
+  .hf-col.after h3 { color: var(--accent-2); }
+
+  /* ==================== Pilot timeline ==================== */
+  .pilot-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 900px) { .pilot-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .pilot-grid { grid-template-columns: 1fr; } }
+  .pilot-week {
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border-radius: 14px;
+    box-shadow: var(--shadow-sm);
+  }
+  .pilot-week .pw-num {
+    display: inline-block;
+    font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+    padding: 3px 10px;
+    background: var(--accent-soft);
+    border-radius: 999px;
+    box-shadow: var(--shadow-inset-sm);
+  }
+  .pilot-week h4 { margin: 8px 0 4px; font-size: 14px; font-weight: 700; color: var(--text); }
+  .pilot-week p { margin: 0 0 10px; font-size: 12.5px; color: var(--text-dim); line-height: 1.45; }
+  .pilot-week textarea {
+    width: 100%;
+    min-height: 56px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-inset-sm);
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 12.5px;
+    color: var(--text);
+    resize: vertical;
+  }
+  .pilot-week textarea::placeholder { color: var(--text-muted); font-style: italic; }
+  .pilot-outcome {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    padding: 2px 8px;
+    background: var(--accent-2-soft); color: #086a69;
+    border-radius: 999px;
+    margin-top: 8px;
+    box-shadow: var(--shadow-inset-sm);
+  }
+
+  /* ==================== Summary strip ==================== */
+  .summary-strip {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #ffffff;
+    border-top: 2px solid var(--accent);
+    padding: 12px 20px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    z-index: 999;
+    box-shadow: 0 -8px 28px rgba(31, 41, 55, 0.18);
+  }
+  .summary-strip-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .ss-items { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .ss-item { display: inline-flex; align-items: baseline; gap: 6px; font-size: 12.5px; }
+  .ss-item .ss-label { color: var(--text-muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+  .ss-item .ss-value { font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+  .ss-item .ss-value.accent { color: var(--accent); }
+  .ss-item .ss-value.teal { color: var(--accent-2); }
+  .ss-item .ss-value.dim { color: var(--text-muted); font-weight: 600; }
+  .ss-actions { display: flex; gap: 8px; position: relative; }
+  .ss-btn {
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+    color: var(--text);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 12.5px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color 0.15s ease, box-shadow 0.2s ease;
+  }
+  .ss-btn:hover { color: var(--accent); box-shadow: var(--shadow); }
+  .ss-btn.primary {
+    background: var(--gradient-accent);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(255,107,53,0.3);
+  }
+  .ss-btn.primary:hover { color: #fff; box-shadow: 0 8px 20px rgba(255,107,53,0.4); }
+  .export-menu {
+    position: absolute;
+    bottom: calc(100% + 8px); right: 0;
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    padding: 6px;
+    min-width: 220px;
+    display: none;
+    z-index: 101;
+  }
+  .export-menu.open { display: block; }
+  .export-item {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    text-align: left;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .export-item:hover { background: var(--bg-elev); }
+  .export-item .ei-label { font-weight: 600; display: block; }
+  .export-item .ei-sub { font-size: 11px; color: var(--text-muted); display: block; margin-top: 2px; }
+  .toast {
+    position: fixed;
+    bottom: 92px; left: 50%; transform: translateX(-50%) translateY(10px);
+    padding: 10px 18px;
+    background: #2d2a24; color: #fefcf5;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 200;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ==================== Footer ==================== */
+  footer {
+    padding: 24px 28px 48px;
+    margin-top: 14px;
+    color: var(--text-muted);
+    font-size: 12.5px;
+    max-width: var(--maxw);
+    margin-left: auto; margin-right: auto;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    border-top: 1px solid var(--border-strong);
+  }
+  footer a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+  footer a:hover { color: var(--accent); }
+
+  /* ==================== Responsive ==================== */
+  @media (max-width: 820px) {
+    .wrap { padding: 22px 18px; }
+    header.page .wrap { padding-top: 32px; padding-bottom: 14px; }
+    h1 { font-size: 26px; line-height: 1.15; }
+    .subtitle { font-size: 14.5px; }
+    .meta { font-size: 11.5px; gap: 6px 10px; }
+    .brand { font-size: 11px; padding: 6px 13px; }
+    nav.phases { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    nav.phases::-webkit-scrollbar { height: 4px; }
+    .phase { flex: 0 0 auto; min-width: auto; padding: 9px 14px; font-size: 12.5px; }
+    .card { padding: 16px 18px; }
+    .value-loss { padding: 16px 18px; }
+    .section-head h2 { font-size: 20px; }
+    .savings-hero { font-size: 36px; }
+    body { padding-bottom: 180px; }
+    .summary-strip-inner { flex-direction: column; align-items: stretch; gap: 8px; }
+    .ss-items { justify-content: space-between; gap: 8px 14px; }
+    .ss-item { font-size: 12px; }
+    .ss-actions { justify-content: stretch; }
+    .ss-btn {
+      flex: 1;
+      justify-content: center;
+      background: var(--gradient-accent);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(255,107,53,0.35);
+      padding: 11px 16px;
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+    .ss-btn:hover { color: #fff; }
+  }
+  @media (max-width: 520px) {
+    .wrap { padding: 18px 14px; }
+    h1 { font-size: 23px; }
+    .brand { font-size: 10.5px; padding: 4px 10px; }
+    .card { padding: 13px 14px; }
+    .savings-hero { font-size: 30px; }
+    .preset-chip { padding: 8px 13px; font-size: 12px; }
+    .preset-chip .pc-emoji { font-size: 13px; }
+    .score-btn { width: 24px; height: 24px; font-size: 11.5px; }
+    body { padding-bottom: 200px; }
+    .summary-strip {
+      padding: 10px 14px;
+      padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    }
+    .ss-item { font-size: 11.5px; }
+    .ss-item .ss-label { font-size: 10px; }
+    .ss-btn { padding: 8px 12px; font-size: 12px; }
+    .ss-items { gap: 6px 12px; }
+    footer { flex-direction: column; gap: 6px; text-align: left; padding: 20px 14px 40px; }
+  }
+
+  /* ==================== Print ==================== */
+  @media print {
+    body {
+      background: #fff;
+      background-image: none;
+      padding-bottom: 0;
+    }
+    nav.phases, .summary-strip, .preset-chip, .wf-add-row, .wf-remove,
+    .ss-actions, .vc-collapsible-head .caret, button.resetbtn,
+    .priority-carry, .reset-btn, .export-menu { display: none !important; }
+    body:not(.print-charter) main.phase-content.identify,
+    body:not(.print-charter) main.phase-content.quantify,
+    body:not(.print-charter) main.phase-content.plan {
+      display: block !important;
+      page-break-after: always;
+    }
+    body:not(.print-charter) main.phase-content.plan { page-break-after: auto; }
+    .card, .step, .priority-band, .savings-readout, .value-loss,
+    .pilot-week, .wf-row, .vc-collapsible, .lock-card, .vc-field,
+    .wf-picker, .reduction-group { box-shadow: none !important; border: 1px solid #ccc !important; }
+    .total-badge, .priority-band::before, .savings-hero,
+    .role-card.active, .phase.current {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .section-head { page-break-after: avoid; }
+    .vc-collapsible.collapsed .vc-collapsible-body { display: grid !important; }
+    footer { page-break-before: avoid; }
+    .wf-table { min-width: auto; }
+    .wf-table thead { display: table-header-group; }
+    h1, h2, h3 { color: #1f2937 !important; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body data-active-phase="identify">
+
+<div class="topbar">
+  <a class="topbar-logo" href="https://www.techjays.com" target="_blank" rel="noopener noreferrer" aria-label="Techjays">
+    <img src="https://www.techjays.com/images/logos/techjays-white.svg" alt="Techjays" />
+  </a>
+  <a class="topbar-connect" href="https://www.techjays.com/contact" target="_blank" rel="noopener noreferrer">
+    Let's Connect
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+  </a>
+</div>
+
+<header class="page">
+  <div class="wrap">
+    <h1>Fastest path to <em>ROI</em> on AI Adoption</h1>
+    <p class="subtitle">A guided 10-minute exercise to find the one workflow where AI pays off fastest. Built for CEOs, CFOs, and COOs in construction, manufacturing, accounting, agriculture, recycling, and logistics.</p>
+    <div class="meta">
+      <span>3 phases · <span class="kbd">Identify → Quantify → Plan</span>
+      <button type="button" class="resetbtn" id="resetBtn" title="Clear all inputs and start over">Reset</button>
+    </div>
+
+    <nav class="phases" role="tablist" aria-label="ROI Matrix phase tabs">
+      <button type="button" class="phase current" data-phase="identify" role="tab" aria-selected="true"><span class="ph-num">1</span>Identify</button>
+      <button type="button" class="phase" data-phase="quantify" role="tab" aria-selected="false"><span class="ph-num">2</span>Quantify</button>
+      <button type="button" class="phase" data-phase="plan" role="tab" aria-selected="false"><span class="ph-num">3</span>Plan</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ==================== PHASE 1: IDENTIFY ==================== -->
+<main class="phase-content identify">
+  <div class="wrap">
+
+    <div class="section-head">
+      <h2>Phase 1 — Identify: where are you losing the most value?</h2>
+      <p>Pick your industry to preload realistic workflows, score each one on five dimensions, and watch the priority board rank them live. The best AI starting point is the workflow that is high-pain, high-repetition, high-impact, and AI-feasible all at once.</p>
+    </div>
+
+    <div class="value-loss">
+      <h2>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+        The better question is not "Where can we use AI?" — it is "Where are we losing the most value?"
+      </h2>
+      <p>Value loss in every business shows up in six areas. The workflows that leak the most value in these six areas are exactly the workflows where AI pays back fastest.</p>
+      <div class="vl-grid">
+        <div class="vl-item"><div class="vl-label">Time</div><div class="vl-desc">Hours lost to repetitive work</div></div>
+        <div class="vl-item"><div class="vl-label">Cost</div><div class="vl-desc">Manual effort & overhead</div></div>
+        <div class="vl-item"><div class="vl-label">Speed</div><div class="vl-desc">Slow approvals & turnarounds</div></div>
+        <div class="vl-item"><div class="vl-label">Accuracy</div><div class="vl-desc">Errors, rework, missed steps</div></div>
+        <div class="vl-item"><div class="vl-label">Margin</div><div class="vl-desc">Leakage, overpayment, loss</div></div>
+        <div class="vl-item"><div class="vl-label">Scale</div><div class="vl-desc">Growth needs more people</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-3V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v3H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+        Step 1 — Pick your industry (preloads typical workflows)
+      </h2>
+      <div class="preset-wrap">
+        <div class="preset-hint">Click to preload 5 representative workflows with seeded scores. You can add, rename, or remove any of them.</div>
+        <div class="preset-chips" id="presetChips"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg>
+        Step 2 — Score each workflow 1–5 on five dimensions
+      </h2>
+      <p style="margin-top:-4px;">Score each workflow <strong>1 (low)</strong> to <strong>5 (high)</strong> on every dimension — Manual Effort · Repetition · Business Impact · Error Risk · AI Feasibility. Tap <span class="legend-i" aria-hidden="true"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span> on any column header for what each score means.</p>
+      <div id="workflowsArea" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="card">
+      <h2>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Step 3 — Priority board (auto-ranked by score)
+      </h2>
+      <p style="margin-top:-4px;">21–25 <strong>Start here</strong> · 16–20 Explore next · 11–15 Backlog · below 10 Skip. The top-scoring workflow is your fastest-ROI starting point.</p>
+      <div class="priority-board" id="priorityBoard"></div>
+    </div>
+
+    <div id="nextPhaseCTA"></div>
+
+  </div>
+</main>
+
+<!-- ==================== PHASE 2: QUANTIFY ==================== -->
+<main class="phase-content quantify">
+  <div class="wrap">
+
+    <div class="section-head">
+      <h2>Phase 2 — Quantify: what does it save in dollars?</h2>
+      <p>Pick the workflow you want to quantify. Enter a few inputs — we compute monthly and annual labor savings, and optionally error-cost savings. Add a volume number to reframe the math as cost per transaction, which is what your CFO actually cares about.</p>
+    </div>
+
+    <div id="quantifyLock" style="display:none;">
+      <div class="lock-card">
+        <div class="lock-icon">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Add at least one workflow in Phase 1 to unlock this phase.</h3>
+        <p>Go back to Identify, pick an industry or add a workflow, and return here to calculate its ROI.</p>
+      </div>
+    </div>
+
+    <div id="quantifyBody">
+      <div class="wf-picker">
+        <label for="wfPicker">Workflow</label>
+        <select id="wfPicker"></select>
+      </div>
+
+      <div class="q-grid">
+
+        <div class="card">
+          <h2>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Step 4 — Your current state
+          </h2>
+          <div class="value-inputs">
+            <div class="vc-field">
+              <label for="vcPeople">People involved today</label>
+              <div class="vc-input-row">
+                <input type="number" id="vcPeople" min="0" step="1" placeholder="e.g. 3" />
+              </div>
+              <div class="vc-hint">How many staff touch this workflow weekly</div>
+            </div>
+            <div class="vc-field">
+              <label for="vcHours">Hours per week each</label>
+              <div class="vc-input-row">
+                <input type="number" id="vcHours" min="0" step="0.5" placeholder="e.g. 12" />
+              </div>
+              <div class="vc-hint">Per-person time on this workflow</div>
+            </div>
+            <div class="vc-field">
+              <label for="vcRate">Fully-loaded hourly cost</label>
+              <div class="vc-input-row">
+                <span class="vc-prefix">$</span>
+                <input type="number" id="vcRate" min="0" step="1" placeholder="e.g. 50" />
+              </div>
+              <div class="vc-hint">Salary + benefits + overhead. Typical: $30–$90</div>
+            </div>
+            <div class="vc-field">
+              <label>Typical weeks per month</label>
+              <div class="vc-input-row">
+                <input type="number" id="vcWeeks" min="1" step="0.1" value="4.33" />
+              </div>
+              <div class="vc-hint">4.33 matches a calendar month</div>
+            </div>
+            <div class="reduction-group">
+              <label>How much of that time can AI remove?</label>
+              <div class="reduction-btns" role="radiogroup" id="reductionBtns">
+                <button type="button" class="reduction-btn" data-reduction="20">20%</button>
+                <button type="button" class="reduction-btn" data-reduction="40">40%</button>
+                <button type="button" class="reduction-btn active" data-reduction="60">60%</button>
+                <button type="button" class="reduction-btn" data-reduction="80">80%</button>
+              </div>
+              <div class="reduction-note">This is the reduction we've typically observed for this workflow — actuals vary with your organization's size, tooling, and data quality. Humans still approve exceptions (cap: 80%).</div>
+            </div>
+          </div>
+
+          <div class="vc-collapsible collapsed" id="volumeBlock">
+            <button type="button" class="vc-collapsible-head" data-toggle="volumeBlock">
+              <span>+ Add monthly transaction volume (optional)</span>
+              <svg class="caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="vc-collapsible-body">
+              <div class="vc-field">
+                <label for="vcVolume">Transactions per month</label>
+                <div class="vc-input-row">
+                  <input type="number" id="vcVolume" min="0" step="100" placeholder="e.g. 1200" />
+                </div>
+                <div class="vc-hint">Invoices, RFIs, orders, tickets, etc.</div>
+              </div>
+              <div class="vc-field" style="background: transparent; box-shadow: none; padding: 12px 0;">
+                <label>Reframes savings as</label>
+                <div class="vc-hint" style="font-size: 13px; color: var(--text-dim); margin-top: 6px;">Cost-per-transaction before and after AI — the number your CFO tracks.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vc-collapsible collapsed" id="errorBlock">
+            <button type="button" class="vc-collapsible-head" data-toggle="errorBlock">
+              <span>+ Add error-cost exposure (optional)</span>
+              <svg class="caret" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="vc-collapsible-body">
+              <div class="vc-field">
+                <label for="vcErrorRate">Current error rate</label>
+                <div class="vc-input-row">
+                  <input type="number" id="vcErrorRate" min="0" max="100" step="0.1" placeholder="e.g. 8" />
+                  <span class="vc-prefix">%</span>
+                </div>
+                <div class="vc-hint">Of transactions needing rework</div>
+              </div>
+              <div class="vc-field">
+                <label for="vcErrorCost">Cost per error</label>
+                <div class="vc-input-row">
+                  <span class="vc-prefix">$</span>
+                  <input type="number" id="vcErrorCost" min="0" step="10" placeholder="e.g. 120" />
+                </div>
+                <div class="vc-hint">Rework + downstream impact</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="savings-readout" id="savingsReadout">
+            <div class="savings-label">Estimated annual savings</div>
+            <div class="savings-hero dim" id="savingsHero">—</div>
+            <div class="savings-sub" id="savingsSub">Enter people, hours, and rate to estimate.</div>
+            <div class="savings-lines" id="savingsLines"></div>
+            <div class="savings-foot">Estimates only. Use for direction, not budget.</div>
+          </div>
+
+          <div class="card ba-wrap">
+            <h2>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              Step 8 — Before / After metrics
+            </h2>
+            <p style="margin-top:-4px;">Editable — tweak any cell to fit your workflow's reality.</p>
+            <table class="ba-table" id="baTable">
+              <thead>
+                <tr><th>Metric</th><th>Before AI</th><th>After AI</th></tr>
+              </thead>
+              <tbody id="baTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="nextPlanCTA"></div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ==================== PHASE 3: PLAN ==================== -->
+<main class="phase-content plan">
+  <div class="wrap">
+
+    <div class="section-head">
+      <h2>Phase 3 — Your 30-day pilot charter</h2>
+      <p>This is your takeaway artifact: a one-page pilot brief you can print, email, or hand to your COO. Everything is auto-drafted from your earlier choices — edit any field, then Print.</p>
+    </div>
+
+    <div id="planLock" style="display:none;">
+      <div class="lock-card">
+        <div class="lock-icon">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Complete Phase 1 first.</h3>
+        <p>Pick your top workflow in Identify, then return here to plan the pilot.</p>
+      </div>
+    </div>
+
+    <div id="planBody">
+
+      <div class="card charter-header">
+        <div class="charter-head-row">
+          <div class="charter-title">
+            <div class="charter-eyebrow">30-Day AI Pilot Charter</div>
+            <h3 id="charterTitle">Pilot</h3>
+            <div class="charter-goal" id="charterGoal">Pilot goal auto-generated here.</div>
+          </div>
+          <button type="button" class="np-btn" id="printCharterBtn">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Print Charter
+          </button>
+        </div>
+        <div class="charter-meta">
+          <div class="cm-field">
+            <label for="charterOwner">Pilot owner</label>
+            <input type="text" id="charterOwner" class="cm-input" placeholder="e.g., Priya — COO" />
+          </div>
+          <div class="cm-field">
+            <label for="charterSponsor">Exec sponsor</label>
+            <input type="text" id="charterSponsor" class="cm-input" placeholder="e.g., CFO" />
+          </div>
+          <div class="cm-field">
+            <label for="charterStart">Start date</label>
+            <input type="date" id="charterStart" class="cm-input" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          What AI will do (roles)
+        </h2>
+        <p style="margin-top:-4px;">Pre-selected from the workflow's AI-feasibility profile. Click any card to toggle — you own the final list for <strong id="planWfName">your workflow</strong>.</p>
+        <div class="role-grid" id="roleGrid"></div>
+      </div>
+
+      <div class="card">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          What humans still own
+        </h2>
+        <div class="hf-grid">
+          <div class="hf-col before">
+            <h3>Before AI</h3>
+            <div class="steps">
+              <div class="step"><div class="idx">1</div><div><h3>Human reads</h3></div></div>
+              <div class="step"><div class="idx">2</div><div><h3>Human extracts</h3></div></div>
+              <div class="step"><div class="idx">3</div><div><h3>Human updates systems</h3></div></div>
+              <div class="step"><div class="idx">4</div><div><h3>Human follows up</h3></div></div>
+              <div class="step"><div class="idx">5</div><div><h3>Human checks</h3></div></div>
+              <div class="step"><div class="idx">6</div><div><h3>Human reports</h3></div></div>
+            </div>
+          </div>
+          <div class="hf-col after">
+            <h3>After AI</h3>
+            <div class="steps">
+              <div class="step teal"><div class="idx">1</div><div><h3>AI reads</h3></div></div>
+              <div class="step teal"><div class="idx">2</div><div><h3>AI extracts</h3></div></div>
+              <div class="step teal"><div class="idx">3</div><div><h3>AI prepares draft / update</h3></div></div>
+              <div class="step teal"><div class="idx">4</div><div><h3>AI flags exceptions</h3></div></div>
+              <div class="step"><div class="idx">5</div><div><h3>Human approves</h3></div></div>
+              <div class="step teal"><div class="idx">6</div><div><h3>AI executes</h3></div></div>
+            </div>
+          </div>
+        </div>
+        <p style="margin-top: 14px; font-size: 14px; color: var(--text-dim); font-style: italic;">Humans should not be the workflow engine. Humans should be the decision makers.</p>
+      </div>
+
+      <div class="card">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          The 4-week plan
+        </h2>
+        <p style="margin-top:-4px;">Four weeks, three questions at the end: Did AI reduce manual work? Did AI improve speed or accuracy? Is this worth expanding?</p>
+        <div class="pilot-grid" id="pilotGrid"></div>
+      </div>
+
+      <div class="card">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          Success metrics we'll track
+        </h2>
+        <p style="margin-top:-4px;">Measured before and after — same numbers the CFO will ask about.</p>
+        <ul class="charter-metrics" id="charterMetrics"></ul>
+      </div>
+
+      <div class="card">
+        <h2>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Go / No-Go at day 30
+        </h2>
+        <p style="margin-top:-4px;">Green-light the scale-up if the pilot clears these bars. Red-light or iterate if not.</p>
+        <ul class="charter-gng" id="charterGng"></ul>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<!-- ==================== SUMMARY STRIP ==================== -->
+<aside class="summary-strip" id="summaryStrip">
+  <div class="summary-strip-inner">
+    <div class="ss-items">
+      <div class="ss-item"><span class="ss-label">Top</span><span class="ss-value accent" id="ssTop">—</span></div>
+      <div class="ss-item"><span class="ss-label">Score</span><span class="ss-value" id="ssScore">—</span></div>
+      <div class="ss-item"><span class="ss-label">Est. savings</span><span class="ss-value teal" id="ssSavings">—</span></div>
+      <div class="ss-item"><span class="ss-label">Pilot</span><span class="ss-value dim" id="ssPilot">—</span></div>
+    </div>
+    <div class="ss-actions">
+      <button type="button" class="ss-btn" id="exportBtn">
+        Export
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+      </button>
+      <div class="export-menu" id="exportMenu">
+        <button type="button" class="export-item" data-export="print">
+          <span class="ei-label">Print / Save as PDF</span>
+          <span class="ei-sub">One-pager report for your team</span>
+        </button>
+        <button type="button" class="export-item" data-export="markdown">
+          <span class="ei-label">Copy summary as Markdown</span>
+          <span class="ei-sub">Paste into email or Slack</span>
+        </button>
+        <button type="button" class="export-item" data-export="link">
+          <span class="ei-label">Copy shareable link</span>
+          <span class="ei-sub">Your state encoded in the URL</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<footer>
+  <div>© Techjays · ROI Matrix · A guided AI-opportunity exercise for non-tech operators</div>
+  <a class="footer-connect" href="https://www.techjays.com/contact" target="_blank" rel="noopener noreferrer">
+    Let's Connect
+    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+  </a>
+  <div>3 Phases · 8 Steps · <a href="index.html">Agentic SDLC</a> · <a href="org_rewiring.html">Organization ReWiring</a></div>
+</footer>
+
+<script>
+// =======================================================
+//                  DATA: Industry Presets
+// =======================================================
+const PRESETS = {
+  construction: {
+    id: "construction", label: "Construction", emoji: "🏗️",
+    workflows: [
+      { name: "RFI response", dept: "Operations",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Subcontractor asks about rebar spacing on drawing A-203",
+          "GC needs clarification on HVAC spec before tomorrow's pour",
+          "Electrical crew logs an RFI on conduit routing conflict"
+        ]
+      },
+      { name: "Drawing takeoffs / quantity extraction", dept: "Estimation",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Extract wall linear-feet and concrete cubic yards from an architectural set",
+          "Count doors, windows, and plumbing fixtures across 180 sheets",
+          "Pull rebar bending schedules from structural drawings"
+        ]
+      },
+      { name: "Daily site logs", dept: "Operations",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Log manpower counts, equipment, weather, visitors for 3 trades",
+          "Capture delays and safety incidents tied to a schedule activity",
+          "Compile photos and notes into a PDF for the PM daily report"
+        ]
+      },
+      { name: "Subcontractor invoice matching", dept: "Finance",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Match an invoice to its committed PO and change orders",
+          "Verify retention % and lien waivers before approval",
+          "Flag unit-price variance from the subcontract"
+        ]
+      },
+      { name: "Bid proposal generation", dept: "Sales",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Draft scope, assumptions, and exclusions for a $4M office fit-out",
+          "Pull historical unit prices from past bids",
+          "Assemble qualification, insurance, and schedule sections"
+        ]
+      }
+    ]
+  },
+  manufacturing: {
+    id: "manufacturing", label: "Manufacturing", emoji: "🏭",
+    workflows: [
+      { name: "Purchase order matching", dept: "Finance",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "3-way match: PO, receiving slip, and supplier invoice",
+          "Flag unit-price variance vs. the contract",
+          "Reconcile partial deliveries and backorders"
+        ]
+      },
+      { name: "Quality inspection reports", dept: "Operations",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Log defect type, lot number, and disposition for each batch",
+          "Photograph and tag deviations against spec",
+          "Generate a CAR/NCR ticket for out-of-spec product"
+        ]
+      },
+      { name: "Supplier quote comparison", dept: "Procurement",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Compare 4 supplier quotes on spec, price, lead time, MOQ",
+          "Normalize incoterms and tax differences",
+          "Flag gaps in quote completeness before award"
+        ]
+      },
+      { name: "Production schedule adjustments", dept: "Operations",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Shift a hot customer order into tomorrow's run",
+          "Rebalance lines when a machine goes down",
+          "Update MRP with revised demand from sales"
+        ]
+      },
+      { name: "Customer order change management", dept: "Sales Ops",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Change quantity, spec, or ship date mid-order",
+          "Propagate changes to production, inventory, shipping",
+          "Notify customer with a revised confirmation"
+        ]
+      }
+    ]
+  },
+  accounting: {
+    id: "accounting", label: "Accounting", emoji: "📒",
+    workflows: [
+      { name: "Invoice processing", dept: "AP",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Read a vendor PDF invoice and post to AP",
+          "Match to PO and contract terms",
+          "Flag duplicates and missing fields"
+        ]
+      },
+      { name: "Bank reconciliation", dept: "Finance",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Match bank statement lines to GL entries",
+          "Flag outstanding checks older than 90 days",
+          "Reconcile foreign-currency accounts with FX variance"
+        ]
+      },
+      { name: "Expense classification", dept: "Finance",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Categorize receipts by GL account and project",
+          "Flag policy violations (alcohol, first-class, out-of-policy)",
+          "Route to approver by amount threshold"
+        ]
+      },
+      { name: "Month-end close checklist", dept: "Finance",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Run accrual calculations and prep JEs",
+          "Reconcile subledgers to the GL",
+          "Draft the management reporting package"
+        ]
+      },
+      { name: "Client query triage", dept: "Client Svcs",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Route client tax / invoice / audit questions to the right team",
+          "Draft first-pass responses with citations",
+          "Track SLA on open queries with auto-escalation"
+        ]
+      }
+    ]
+  },
+  agriculture: {
+    id: "agriculture", label: "Agriculture / Food", emoji: "🌾",
+    workflows: [
+      { name: "Harvest & yield logs", dept: "Operations",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Record per-field yield by crop and date",
+          "Tag weather and pest events tied to yield drops",
+          "Export to the buyer's required reporting format"
+        ]
+      },
+      { name: "Cold-chain / temperature compliance", dept: "Quality",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Log temperature and humidity every hour per storage unit",
+          "Flag excursions and capture root-cause documentation",
+          "Generate the HACCP audit trail on demand"
+        ]
+      },
+      { name: "Regulatory paperwork (FDA/USDA/FSSAI)", dept: "Compliance",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Complete FDA FSMA, USDA organic, or FSSAI filings",
+          "Cross-reference batch lot numbers to certificates",
+          "Renew licenses before expiry with reminders"
+        ]
+      },
+      { name: "Buyer contract & PO matching", dept: "Sales Ops",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Match a shipment to the committed buyer PO",
+          "Verify grade, moisture, and pricing adjustments",
+          "Flag short-ships or quality deductions"
+        ]
+      },
+      { name: "Crop / batch traceability records", dept: "Operations",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Trace a batch from field to packhouse to buyer",
+          "Recall a lot on an adverse event in minutes",
+          "Export traceability records to the certifier"
+        ]
+      }
+    ]
+  },
+  recycling: {
+    id: "recycling", label: "Recycling", emoji: "♻️",
+    workflows: [
+      { name: "Inbound load documentation", dept: "Operations",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Record gross/tare weights, driver, source, and material",
+          "Photograph the load for quality-tier classification",
+          "Generate the weight ticket PDF automatically"
+        ]
+      },
+      { name: "Weighbridge ticket reconciliation", dept: "Finance",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Match scale ticket to driver manifest and BOL",
+          "Flag unscheduled loads or quantity anomalies",
+          "Export to the revenue-recognition system"
+        ]
+      },
+      { name: "Commodity price quote updates", dept: "Sales",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Publish today's HMS1, shred, and copper bare-bright prices",
+          "Update across customer portal, POS, and SMS alerts",
+          "Sync to the brokerage quoting platform"
+        ]
+      },
+      { name: "Hazmat classification", dept: "Compliance",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Tag loads for EPA / DOT hazard class",
+          "Generate manifests and shipping papers",
+          "Trigger the special-handling workflow"
+        ]
+      },
+      { name: "Customer pickup scheduling", dept: "Customer Svc",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Route dispatch based on container, location, and material",
+          "Send ETA notifications to customers",
+          "Rebalance after cancellations or additions"
+        ]
+      }
+    ]
+  },
+  logistics: {
+    id: "logistics", label: "Logistics", emoji: "🚚",
+    workflows: [
+      { name: "Proof-of-delivery processing", dept: "Operations",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Read driver-captured POD signatures and photos",
+          "Reconcile exceptions (damaged, short, refused)",
+          "Post to customer billing or EDI automatically"
+        ]
+      },
+      { name: "Carrier rate comparison", dept: "Procurement",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Compare 5 carriers on lane, weight, and transit time",
+          "Apply fuel surcharge and accessorial rules",
+          "Pick best rate per shipment within policy"
+        ]
+      },
+      { name: "Exception / delay notifications", dept: "Operations",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Detect a stuck shipment (no scan in 24h)",
+          "Draft a customer-facing status email",
+          "Offer alternative ETAs with the carrier"
+        ]
+      },
+      { name: "Customs / HS code classification", dept: "Compliance",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Assign HS / HTS code from the commercial invoice",
+          "Validate country-of-origin rules",
+          "Generate customs entry documents"
+        ]
+      },
+      { name: "Invoice-to-BOL matching", dept: "Finance",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Match carrier invoice to BOL and quoted rate",
+          "Dispute fuel surcharge and detention charges",
+          "Post net-of-disputes to AP"
+        ]
+      }
+    ]
+  },
+  realestate: {
+    id: "realestate", label: "Real Estate / Property", emoji: "🏢",
+    workflows: [
+      { name: "Lease renewal & amendment drafting", dept: "Leasing",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Draft a renewal with escalation per the lease schedule",
+          "Incorporate red-line edits from the tenant's attorney",
+          "Track digital signature and countersign status"
+        ]
+      },
+      { name: "Tenant maintenance ticket triage", dept: "Operations",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Classify tickets as plumbing vs. electrical vs. appliance",
+          "Assign to in-house staff vs. outside vendor",
+          "Auto-reply to tenant with ETA and vendor info"
+        ]
+      },
+      { name: "Vendor invoice & utility-bill matching", dept: "Finance",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Match vendor invoice to work order and unit",
+          "Split shared utility bills by sqft or sub-meter",
+          "Flag over-budget line items for approval"
+        ]
+      },
+      { name: "Vacancy / occupancy reporting", dept: "Asset Mgmt",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Roll up occupancy % across 42 properties",
+          "Reconcile to leasing CRM and accounting",
+          "Produce the investor board-packet slide"
+        ]
+      },
+      { name: "Application & background-check review", dept: "Leasing",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Score applicants on income, credit, and eviction history",
+          "Flag incomplete docs needing follow-up",
+          "Route borderline cases to the manager"
+        ]
+      }
+    ]
+  },
+  healthcare: {
+    id: "healthcare", label: "Healthcare / Clinics", emoji: "🏥",
+    workflows: [
+      { name: "Patient intake form digitization", dept: "Front Office",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Transcribe handwritten intake forms into the EHR",
+          "Parse insurance card front/back into billing fields",
+          "Flag missing consents and forms before the visit"
+        ]
+      },
+      { name: "Insurance pre-authorization", dept: "Billing",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Draft pre-auth with CPT/ICD codes and supporting notes",
+          "Submit to the payer portal and track status",
+          "Re-submit on denial with additional documentation"
+        ]
+      },
+      { name: "Claims coding & denial review", dept: "Revenue Cycle",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Code an encounter from physician notes",
+          "Scrub the claim before submission for clean-claim rate",
+          "Analyze denial reason and resubmit with corrections"
+        ]
+      },
+      { name: "Appointment triage & no-show follow-up", dept: "Operations",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Route urgency (same-day vs. weeks) from reason-for-visit",
+          "Send no-show reminders via SMS and auto-call",
+          "Rebook cancellations into open slots"
+        ]
+      },
+      { name: "Discharge summary drafting", dept: "Clinical",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Draft discharge summary from progress notes",
+          "Include medication reconciliation and follow-up plan",
+          "Send to primary care within 48 hours"
+        ]
+      }
+    ]
+  },
+  retail: {
+    id: "retail", label: "Retail / E-commerce", emoji: "🛒",
+    workflows: [
+      { name: "Return / refund processing", dept: "Customer Svc",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Read return reason and condition photos",
+          "Auto-decision: refund, replace, restock, or deny",
+          "Generate return shipping label and restock instruction"
+        ]
+      },
+      { name: "Product listing & content creation", dept: "Merchandising",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Generate SEO title, description, and bullets from SKU data",
+          "Resize and tag product images for multiple channels",
+          "Sync listings across Amazon, Shopify, and eBay"
+        ]
+      },
+      { name: "Customer query handling", dept: "Customer Svc",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Answer order-status, sizing, and return-policy questions",
+          "Escalate abusive or complex cases to humans",
+          "Draft personalized responses and cite FAQ articles"
+        ]
+      },
+      { name: "Promotion & pricing setup", dept: "Marketing",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Configure BOGO, tiered discount, and bundle rules",
+          "Schedule campaigns across channels",
+          "Validate promo-stacking conflicts before go-live"
+        ]
+      },
+      { name: "Fraud / chargeback review", dept: "Risk",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Score orders for fraud signals (velocity, device, geo)",
+          "Assemble evidence package for chargeback dispute",
+          "Block repeat offenders across accounts"
+        ]
+      }
+    ]
+  },
+  proservices: {
+    id: "proservices", label: "Professional Services", emoji: "💼",
+    workflows: [
+      { name: "Proposal & SOW drafting", dept: "Sales",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Draft scope, deliverables, and timeline from an RFP",
+          "Pull past SOWs on similar engagements",
+          "Generate pricing, assumptions, and exclusions"
+        ]
+      },
+      { name: "Timesheet classification & approval", dept: "Operations",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Categorize hours by client, project, and phase",
+          "Flag over-budget or non-billable time",
+          "Route approvals per delegation-of-authority rules"
+        ]
+      },
+      { name: "Client status reporting", dept: "Delivery",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Roll up weekly progress, risks, and decisions",
+          "Generate the executive dashboard deliverable",
+          "Customize content per client template"
+        ]
+      },
+      { name: "Expense categorization & reconciliation", dept: "Finance",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Categorize receipts as client-billable vs. firm overhead",
+          "Reconcile corporate card to expense report",
+          "Flag policy exceptions for review"
+        ]
+      },
+      { name: "Knowledge-base / case-study reuse", dept: "Practice",
+        scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+        examples: [
+          "Search past deliverables for a similar client situation",
+          "Suggest proven templates or frameworks",
+          "Extract anonymized case-study content for bids"
+        ]
+      }
+    ]
+  }
+};
+const PRESET_ORDER = ["construction", "manufacturing", "accounting", "agriculture", "recycling", "logistics", "realestate", "healthcare", "retail", "proservices"];
+
+// Per-cell hints: HINTS[presetId][workflowName][dim] -> short sentence.
+// Falls back to DIM_GUIDE when a hint is missing (custom / manually-added workflows).
+const HINTS = {
+  construction: {
+    "RFI response": {
+      effort: "Field engineers and PMs draft, route, and chase RFIs for hours every week — this sits in the critical path of the schedule.",
+      repetition: "An active job generates dozens of RFIs per month across all trades — same structure every time.",
+      impact: "A late RFI stalls a trade on-site; every hour of idle crew compounds the cost of the project.",
+      error: "A wrong or missed clarification leads to field rework measured in days, not hours — often a back-charge to the sub.",
+      feasibility: "RFIs are structured PDFs and emails with clear fields (drawing, trade, question, response) — AI reads and routes them reliably."
+    },
+    "Drawing takeoffs / quantity extraction": {
+      effort: "An estimator spends days combing a full drawing set to count walls, doors, fixtures, and rebar.",
+      repetition: "Every bid needs a fresh takeoff, and your firm bids dozens per quarter — same drawing conventions each time.",
+      impact: "Missed quantities eat margin directly; an under-takeoff converts a profitable bid into a loss.",
+      error: "A miscount or missed sheet shows up as a change order at best — a cost overrun at worst.",
+      feasibility: "CAD and PDF drawings have geometry and labels AI vision models read cleanly today."
+    },
+    "Daily site logs": {
+      effort: "Superintendents spend an hour every evening compiling manpower, equipment, weather, and incidents.",
+      repetition: "One log per day, per project — hundreds per year across your portfolio.",
+      impact: "Owners and attorneys rely on logs; gaps weaken your claim position on delays or disputes.",
+      error: "A log that contradicts a schedule or a missing safety event creates legal exposure down the line.",
+      feasibility: "Voice memos, photos, and templated forms are exactly what AI transcription and extraction handle."
+    },
+    "Subcontractor invoice matching": {
+      effort: "Your PM and accounting team match invoices to POs, retention, and lien waivers for hours each cycle.",
+      repetition: "Every pay-application cycle, across every active job — monthly, reliably.",
+      impact: "Late or over-payments hurt cash flow; under-applied retention creates audit headaches.",
+      error: "Double-paying an invoice or mis-applying retention is expensive to claw back.",
+      feasibility: "Invoices and PO / change-order documents are structured text and tables AI reconciles well."
+    },
+    "Bid proposal generation": {
+      effort: "A proposal engineer spends days assembling scope, schedule, assumptions, insurance, and qualifications.",
+      repetition: "Your firm responds to dozens of bids per quarter — same structure, different specifics.",
+      impact: "Proposal quality directly drives hit rate; the margin between winning and losing is the whole business.",
+      error: "A misstated assumption or missed exclusion becomes a scope dispute three months into the job.",
+      feasibility: "Past bids, unit-price databases, and template boilerplate are exactly what AI drafts well."
+    }
+  },
+  manufacturing: {
+    "Purchase order matching": {
+      effort: "Your AP team manually reconciles PO, receiving, and invoice for hundreds of line items each cycle.",
+      repetition: "Every supplier invoice — thousands per month — follows the same 3-way-match shape.",
+      impact: "Mismatches delay vendor payments, break early-payment discounts, and strain supplier relationships.",
+      error: "Paying the wrong price or qty costs you margin silently until an auditor or supplier flags it.",
+      feasibility: "POs, GRNs, and invoices are all structured documents AI extracts fields from reliably."
+    },
+    "Quality inspection reports": {
+      effort: "QC inspectors spend hours per shift tagging defects, logging lot numbers, and routing NCRs.",
+      repetition: "Every batch, every shift — thousands of inspection records monthly.",
+      impact: "Missed defects reach customers as returns or warranty claims; caught defects drive RCA and CAPA.",
+      error: "A misclassified defect or wrong disposition is a direct quality-system failure — regulatory if audited.",
+      feasibility: "Defect photos, check-sheet forms, and tabular measurements are all model-friendly inputs."
+    },
+    "Supplier quote comparison": {
+      effort: "A buyer normalizes four to six quotes on spec, price, lead time, MOQ, and incoterms for every material.",
+      repetition: "Every sourcing cycle — monthly or quarterly across dozens of categories.",
+      impact: "Better comparison drives direct cost savings; missed best-bids erode margin.",
+      error: "Awarding the wrong supplier because a term was missed costs more than the savings the quote promised.",
+      feasibility: "Supplier quotes are structured tables and emails AI normalizes into apples-to-apples comparisons."
+    },
+    "Production schedule adjustments": {
+      effort: "Schedulers reshuffle lines every time an order changes, a machine breaks, or a shipment slips.",
+      repetition: "Multiple adjustments per day in most plants — constant firefighting.",
+      impact: "Bad sequencing misses customer dates and wastes capacity; good sequencing is direct margin.",
+      error: "A misrouted order or missed dependency creates cascading delays and late deliveries.",
+      feasibility: "Scheduling is rules, constraints, and MRP inputs — structured enough but still needs human sign-off on trade-offs."
+    },
+    "Customer order change management": {
+      effort: "Sales Ops manually propagates order changes through production, inventory, shipping, and billing.",
+      repetition: "Every active customer generates changes — qty, spec, date — multiple per week.",
+      impact: "A dropped change means a wrong shipment — returns, re-work, and a damaged customer relationship.",
+      error: "Updating some systems but not others creates silent discrepancies that surface at month-end close.",
+      feasibility: "Change requests are structured messages and system updates AI propagates reliably."
+    }
+  },
+  accounting: {
+    "Invoice processing": {
+      effort: "Your AP team opens PDFs and types vendor, PO, line items, and totals into the ERP — hours per day.",
+      repetition: "Every vendor invoice, every cycle — the highest-volume workflow in most AP shops.",
+      impact: "Late or inaccurate postings break month-end close and damage vendor relationships.",
+      error: "A missed duplicate or wrong-PO match pays a vendor twice or incorrectly — cash leaves incorrectly.",
+      feasibility: "PDF invoices and vendor-portal data are exactly where AI extraction shines."
+    },
+    "Bank reconciliation": {
+      effort: "Accountants tick-and-tie statement lines to GL entries manually — hours per account per month.",
+      repetition: "Every bank, every card, every cycle — dozens of reconciliations monthly.",
+      impact: "Un-reconciled accounts hide fraud, errors, and real cash position from leadership.",
+      error: "A missed reversal or duplicated entry understates or overstates cash and cascades into financial statements.",
+      feasibility: "Statement lines and GL entries are structured transactional data — prime territory for AI matching."
+    },
+    "Expense classification": {
+      effort: "Staff and reviewers spend minutes per receipt coding GL accounts and catching policy violations.",
+      repetition: "Every receipt, every employee, every month — dozens to thousands of items.",
+      impact: "Miscoded expenses misstate department spend and flag audit questions later.",
+      error: "A missed policy violation (alcohol, first-class, unreceipted cash) leaves exposure unchecked.",
+      feasibility: "Receipts are images with structured vendor, date, and amount — AI categorization is straightforward."
+    },
+    "Month-end close checklist": {
+      effort: "The close cycle consumes days of senior-accountant time running accruals, JEs, and sub-ledger ties.",
+      repetition: "Monthly close is a fixed cadence — the same 80 checklist items every cycle.",
+      impact: "Late close delays reporting to leadership, board, and investors — damages credibility.",
+      error: "A missed accrual or wrong reclass misstates the P&L — auditable exposure if material.",
+      feasibility: "Most close tasks are rules and sub-ledger ties; AI accelerates the 70% rule-driven work."
+    },
+    "Client query triage": {
+      effort: "Your client-services team reads every incoming query to decide who owns it and what the SLA is.",
+      repetition: "Dozens of queries daily across email, phone, and portal — same categorization each time.",
+      impact: "Slow routing damages client satisfaction and puts SLAs at risk.",
+      error: "Misrouting a tax-deadline query to the wrong team can cause a missed filing date.",
+      feasibility: "Client emails and portal tickets are text-rich — AI classifies and drafts first responses reliably."
+    }
+  },
+  agriculture: {
+    "Harvest & yield logs": {
+      effort: "Field managers collect yield by block, crop, and date — then compile it into buyer-ready reports.",
+      repetition: "Every harvest day across every field and variety — hundreds of entries per season.",
+      impact: "Yield data drives pricing, buyer allocations, and next-season planting decisions.",
+      error: "A miscounted or missed field entry distorts yield averages and buyer forecasts.",
+      feasibility: "Handwritten logs, scale data, and buyer templates are structured and repeatable — AI handles them well."
+    },
+    "Cold-chain / temperature compliance": {
+      effort: "QA manages temperature logs, excursion investigations, and HACCP reports across storage and transit.",
+      repetition: "Every hour per unit, every shipment — thousands of readings monthly.",
+      impact: "A temperature excursion can disqualify product; compliance is gate-keeping for retail sales.",
+      error: "A missed excursion investigation becomes an FDA observation or a retailer chargeback — possibly a recall.",
+      feasibility: "Temperature telemetry is structured time-series data — exactly what AI monitors and flags."
+    },
+    "Regulatory paperwork (FDA/USDA/FSSAI)": {
+      effort: "Compliance staff spend days per filing compiling batch records, certificates, and lab results.",
+      repetition: "Every filing cycle — monthly, quarterly, annually — same structure, different data.",
+      impact: "A missed or late filing can revoke certification and close your buyer channels overnight.",
+      error: "An inaccurate filing triggers re-inspection at best, suspension at worst.",
+      feasibility: "Regulatory forms map to known batch and lot data — AI assembles and validates filings reliably."
+    },
+    "Buyer contract & PO matching": {
+      effort: "Sales Ops matches each shipment to buyer POs, grade specs, and pricing adjustments per lot.",
+      repetition: "Every shipment to every buyer — dozens per week during peak season.",
+      impact: "Mismatches trigger quality deductions and revenue leakage on every load.",
+      error: "Shipping off-spec or short against a committed PO damages the buyer relationship and triggers penalties.",
+      feasibility: "Buyer POs and specifications are structured — AI reconciles shipment-to-PO line items cleanly."
+    },
+    "Crop / batch traceability records": {
+      effort: "Ops staff log field-to-packhouse-to-buyer chain for every lot — hours per batch per day.",
+      repetition: "Every lot, every day — the backbone of traceability audits.",
+      impact: "A recall without clean traceability widens the blast radius dramatically — could disqualify all your product.",
+      error: "Missing or inconsistent lot linkage is an FDA-observation-grade failure.",
+      feasibility: "Lot tracking is structured IDs and timestamps — ideal for AI extraction and validation."
+    }
+  },
+  recycling: {
+    "Inbound load documentation": {
+      effort: "Weighbridge operators and dispatch spend minutes per load capturing weights, source, material, and photos.",
+      repetition: "Every inbound load — hundreds per day at a busy yard.",
+      impact: "Accurate intake records drive revenue recognition and commodity-tier allocation.",
+      error: "Wrong material tier or weight on a ticket undercharges the customer and misstates inventory.",
+      feasibility: "Scale outputs and load photos are structured sensor and image data — ideal AI inputs."
+    },
+    "Weighbridge ticket reconciliation": {
+      effort: "AR reconciles scale tickets to driver manifests and BOLs every day — line by line.",
+      repetition: "Every ticket, every truck — thousands monthly.",
+      impact: "Unreconciled tickets become revenue leakage or disputes with customers.",
+      error: "A wrong-weight or wrong-source ticket either over-invoices (dispute) or under-invoices (lost revenue).",
+      feasibility: "Tickets, manifests, and BOLs are structured — AI matches them with high accuracy."
+    },
+    "Commodity price quote updates": {
+      effort: "Sales Ops posts today's HMS1, shred, and copper prices across portal, POS, and alerts — every day.",
+      repetition: "Daily, sometimes intraday — a fixed ritual.",
+      impact: "Stale prices cost you margin on inbound or send suppliers to competitors on outbound.",
+      error: "A price typo across channels sustains a wrong rate until someone catches it — directly hitting margin.",
+      feasibility: "Index-driven pricing and channel sync is exactly the kind of structured update AI handles."
+    },
+    "Hazmat classification": {
+      effort: "Compliance tags every qualifying load for EPA/DOT hazard class and generates manifests.",
+      repetition: "Every hazmat load — daily at most operators.",
+      impact: "Correct classification is the difference between a legal load and an EPA violation.",
+      error: "A misclassified load on public roads is a fine, a spill liability, and possibly criminal exposure.",
+      feasibility: "Hazmat codes map to structured material descriptions — AI classifies and generates paperwork reliably."
+    },
+    "Customer pickup scheduling": {
+      effort: "Dispatchers route trucks across materials, locations, and container sizes all day.",
+      repetition: "Dozens of pickups routed daily per yard.",
+      impact: "Good routing is direct fuel and labor savings; bad routing costs you a customer to a competitor.",
+      error: "A missed pickup window burns the customer relationship and eats margin on the redo.",
+      feasibility: "Routing inputs (materials, locations, windows) are structured — classic optimization territory for AI."
+    }
+  },
+  logistics: {
+    "Proof-of-delivery processing": {
+      effort: "Billing clerks read driver-captured PODs, reconcile exceptions, and post to customer systems.",
+      repetition: "Every delivery — thousands per day at a mid-size carrier.",
+      impact: "Un-processed PODs delay invoicing and tie up cash; unresolved exceptions stall customer payments.",
+      error: "A wrong POD attached to a customer account creates billing errors and chargebacks.",
+      feasibility: "POD signatures and photos are image data — AI extracts and matches them at scale."
+    },
+    "Carrier rate comparison": {
+      effort: "Procurement normalizes rates across carriers for every lane, weight class, and accessorial — hours per cycle.",
+      repetition: "Every shipment needs a rate decision — hundreds to thousands daily.",
+      impact: "A few cents per mile compounds into material freight-spend swings across the year.",
+      error: "Picking the wrong carrier or missing a fuel-surcharge increase overpays silently until month-end.",
+      feasibility: "Rate tables and surcharge rules are structured — AI applies them per shipment effortlessly."
+    },
+    "Exception / delay notifications": {
+      effort: "Your track-and-trace team monitors in-flight shipments and drafts customer updates on exceptions.",
+      repetition: "Every stuck or late shipment — dozens daily in any decent-size network.",
+      impact: "Proactive updates turn a bad delivery into a retained customer; silence turns it into a lost one.",
+      error: "A missed or late update to a key customer damages the relationship — sometimes permanently.",
+      feasibility: "Tracking events are structured telemetry — AI detects stalls and drafts notifications cleanly."
+    },
+    "Customs / HS code classification": {
+      effort: "Compliance staff assign HS/HTS codes and country-of-origin rules per invoice line — minutes each.",
+      repetition: "Every international shipment, every line item — dozens to thousands monthly.",
+      impact: "Wrong codes trigger customs holds, delays, and potential duty-underpayment penalties.",
+      error: "A misclassified line is a penalty event — and a pattern of them triggers an audit.",
+      feasibility: "Commercial invoices and HS taxonomy are structured text — AI classifies and validates reliably."
+    },
+    "Invoice-to-BOL matching": {
+      effort: "AP and audit teams match carrier invoices to BOLs and quoted rates, disputing any gaps.",
+      repetition: "Every carrier invoice — thousands per month at scale.",
+      impact: "Unaudited invoices pay inflated fuel surcharges and detention — a direct margin hit.",
+      error: "Paying without auditing leaks freight spend quietly; over-disputing damages carrier relations.",
+      feasibility: "Carrier invoices and BOLs are structured — AI reconciles them and flags disputes at scale."
+    }
+  },
+  realestate: {
+    "Lease renewal & amendment drafting": {
+      effort: "Leasing staff draft renewals, incorporate tenant red-lines, and track signatures — hours per lease.",
+      repetition: "Every lease expiration cycle — dozens per quarter across a portfolio.",
+      impact: "Renewal terms drive NOI; clean red-lines close deals faster.",
+      error: "A missed escalation clause or wrong date is missed revenue for the full lease term.",
+      feasibility: "Leases are structured legal documents — AI drafts, compares, and flags deviations accurately."
+    },
+    "Tenant maintenance ticket triage": {
+      effort: "Property managers read every ticket, classify it, and assign to the right vendor — every day.",
+      repetition: "Dozens of tickets daily across a portfolio.",
+      impact: "Fast triage is tenant satisfaction; slow triage is a renewal you lose at year-end.",
+      error: "Misrouting a plumbing issue to an HVAC vendor costs a day and frustrates the tenant.",
+      feasibility: "Ticket text is classification-shaped data — AI routes and auto-replies with ETAs reliably."
+    },
+    "Vendor invoice & utility-bill matching": {
+      effort: "Accounting matches vendor invoices to work orders and splits shared utility bills by unit — hours weekly.",
+      repetition: "Every vendor and utility cycle — monthly, hundreds of lines.",
+      impact: "Un-matched invoices hurt cash flow; wrong utility splits misstate per-unit NOI.",
+      error: "Paying a vendor without a WO or splitting utilities wrong over-spends or under-recovers.",
+      feasibility: "Invoices, WOs, and utility bills are structured documents — AI reconciles them cleanly."
+    },
+    "Vacancy / occupancy reporting": {
+      effort: "Asset managers roll up occupancy across leasing CRM, accounting, and ops — days per cycle.",
+      repetition: "Every reporting cycle — weekly, monthly, or quarterly for investors.",
+      impact: "Occupancy is the top metric investors watch — accurate, timely reporting is table stakes.",
+      error: "A wrong occupancy number in an investor pack damages credibility for quarters.",
+      feasibility: "Lease, rent-roll, and financial data sources are structured — AI assembles the packet reliably."
+    },
+    "Application & background-check review": {
+      effort: "Leasing staff score each applicant on income, credit, and eviction history — minutes per file.",
+      repetition: "Every application — dozens to hundreds per quarter per portfolio.",
+      impact: "Better scoring reduces bad debt and evictions — direct NOI protection.",
+      error: "Missing a red flag in income or eviction history costs you months of lost rent.",
+      feasibility: "Applications are structured fields plus reports — AI scores and flags consistently."
+    }
+  },
+  healthcare: {
+    "Patient intake form digitization": {
+      effort: "Front-office staff spend 5–10 minutes per patient transcribing handwritten intake into the EHR.",
+      repetition: "Every new patient, every returning patient with updates — dozens daily at a clinic.",
+      impact: "Bad intake data pollutes the whole downstream chain — clinical, billing, compliance.",
+      error: "A wrong insurance number, med allergy, or contact field cascades into denied claims and safety events.",
+      feasibility: "Intake forms and insurance cards are structured documents — OCR and AI handle them reliably."
+    },
+    "Insurance pre-authorization": {
+      effort: "Billing staff assemble CPT/ICD codes, notes, and supporting docs for each pre-auth — hours per case.",
+      repetition: "Every procedure requiring pre-auth — dozens weekly for a mid-size clinic.",
+      impact: "A pre-auth delay delays care and postpones revenue recognition.",
+      error: "Missing codes or documentation triggers denials — re-work and possible write-offs.",
+      feasibility: "Pre-auth is payer-rule-driven — AI drafts, checks, and submits against payer templates well."
+    },
+    "Claims coding & denial review": {
+      effort: "Coders translate physician notes into CPT/ICD — minutes per encounter, thousands monthly.",
+      repetition: "Every patient encounter — the highest-volume revenue-cycle workflow.",
+      impact: "Coding accuracy is the first-pass yield of your entire revenue cycle.",
+      error: "Miscoded claims trigger denials, down-coding, or upcoding audits — all expensive.",
+      feasibility: "Physician notes are text — AI suggests codes, flags inconsistencies, and drafts appeals effectively."
+    },
+    "Appointment triage & no-show follow-up": {
+      effort: "Front office routes new requests by urgency and chases no-shows daily.",
+      repetition: "Every request and every cancellation — continuous.",
+      impact: "Poor triage fills slots with wrong-urgency patients; no-shows waste clinician capacity.",
+      error: "Mis-triaging an urgent case is a clinical risk; ignoring no-shows is direct revenue loss.",
+      feasibility: "Reason-for-visit text and schedule data are structured — AI handles routing and reminders well."
+    },
+    "Discharge summary drafting": {
+      effort: "Clinicians spend 20–30 minutes per discharge drafting the summary, med rec, and follow-up plan.",
+      repetition: "Every discharge — dozens per day in a hospital, fewer but still steady in a clinic.",
+      impact: "Late or vague summaries delay primary-care follow-up and increase readmission risk.",
+      error: "A missing med-rec entry is a direct patient-safety issue.",
+      feasibility: "Progress notes and orders are text — AI drafts summaries for clinician review reliably."
+    }
+  },
+  retail: {
+    "Return / refund processing": {
+      effort: "Your customer-service team reads return reasons and photos, then decides refund, replace, restock, or deny.",
+      repetition: "Every return — thousands monthly at a decent-size store.",
+      impact: "Faster, more accurate returns lift customer satisfaction and repurchase rate.",
+      error: "A wrong refund decision is either margin loss or a furious customer — often both.",
+      feasibility: "Return reasons and photos are structured and image data — AI auto-decisions the easy cases."
+    },
+    "Product listing & content creation": {
+      effort: "Merchandisers write SEO titles, bullets, and descriptions — hours per SKU across launches.",
+      repetition: "Every SKU, every channel — thousands of listings across catalogs.",
+      impact: "Better listings win search rank, lift conversion, and reduce returns from wrong expectations.",
+      error: "A wrong size or spec in a listing is a mass-returns event and a rating hit.",
+      feasibility: "SKU data, images, and style guides are structured — AI generates SEO-strong listings on brand."
+    },
+    "Customer query handling": {
+      effort: "Support reads every question (order status, sizing, returns) and drafts a response.",
+      repetition: "Hundreds of queries per day, repeating patterns — 80% is templated answers.",
+      impact: "Fast, accurate replies retain customers; slow replies push them to competitors and refund requests.",
+      error: "A wrong policy quote or order-status claim breaks trust and spawns chargebacks.",
+      feasibility: "Text queries and a knowledge base are classic AI-assistant territory."
+    },
+    "Promotion & pricing setup": {
+      effort: "Marketing and merchandising build BOGO, tiered, and bundle promos across channels — hours per campaign.",
+      repetition: "Campaigns weekly to monthly, often stacking with each other.",
+      impact: "Promotions drive top-line; a misconfigured promo can blow through margin or under-deliver traffic.",
+      error: "A stacking conflict or wrong start date costs money fast and is visible to customers.",
+      feasibility: "Promo rules, dates, and channel configs are structured — AI validates stacks and pushes to channels."
+    },
+    "Fraud / chargeback review": {
+      effort: "Risk staff review flagged orders, assemble evidence, and dispute chargebacks — hours per case.",
+      repetition: "Every flagged order — dozens to hundreds daily at scale.",
+      impact: "False declines lose sales; missed fraud loses goods and triggers chargeback ratios that risk your MID.",
+      error: "Chargeback-ratio breaches get you put on card-network monitoring — expensive and reputationally damaging.",
+      feasibility: "Fraud signals (velocity, device, geo) are structured data — AI scores and drafts dispute packs effectively."
+    }
+  },
+  proservices: {
+    "Proposal & SOW drafting": {
+      effort: "Practice leads and sales spend days drafting scope, deliverables, timeline, pricing, and assumptions per RFP.",
+      repetition: "Every RFP response — dozens per quarter across practice areas.",
+      impact: "Proposal quality is the top conversion lever; bad SOWs lose or under-price deals.",
+      error: "A misstated assumption or missed exclusion creates scope disputes that erode project margin.",
+      feasibility: "Past SOWs, pricing sheets, and RFP text are structured — AI drafts strong first cuts."
+    },
+    "Timesheet classification & approval": {
+      effort: "Consultants log hours and managers review for client, project, and phase accuracy — hours per week across the firm.",
+      repetition: "Weekly and bi-weekly cycles — hundreds of timesheets at mid-size firms.",
+      impact: "Clean timesheets are clean invoices; dirty timesheets delay billings and lose revenue.",
+      error: "Mis-coded hours mis-bill clients or over-run internal projects silently.",
+      feasibility: "Timesheet entries and project codes are structured — AI classifies and flags anomalies reliably."
+    },
+    "Client status reporting": {
+      effort: "Engagement leads assemble weekly status — progress, risks, decisions, asks — for every active client.",
+      repetition: "Weekly cadence per engagement — dozens of reports per week across a practice.",
+      impact: "Good reporting builds trust and unlocks expansion; bad reporting surfaces problems late.",
+      error: "Missed risks in a status report turn into escalations and blown deadlines.",
+      feasibility: "Project data, Jira/Asana, and notes are structured and text — AI drafts status in the client's template."
+    },
+    "Expense categorization & reconciliation": {
+      effort: "Finance and consultants categorize receipts as client-billable vs. firm overhead — minutes per receipt.",
+      repetition: "Every corporate-card cycle — hundreds of items monthly.",
+      impact: "Misclassified expenses either under-bill clients or over-state firm overhead.",
+      error: "A client-billable expense miscoded as overhead is direct lost revenue; the reverse is a tough client conversation.",
+      feasibility: "Receipts, policies, and project codes are structured — AI classifies and explains its choice."
+    },
+    "Knowledge-base / case-study reuse": {
+      effort: "Consultants search past deliverables for similar situations — hours per engagement start.",
+      repetition: "Every new engagement, every proposal — constant.",
+      impact: "Knowledge reuse speeds deliverables, protects IP, and improves win rates.",
+      error: "Reusing outdated or mis-anonymized content creates brand, client, or IP exposure.",
+      feasibility: "Past deliverables are text — AI searches, summarizes, and anonymizes reliably."
+    }
+  }
+};
+
+// Recommended reduction-percentage per (industry, workflow). One of 20/40/60/80.
+// Capped at 80 (humans still approve exceptions). Fallbacks to 60 when missing.
+const RECOMMENDED_REDUCTIONS = {
+  construction: {
+    "RFI response": 60,
+    "Drawing takeoffs / quantity extraction": 80,
+    "Daily site logs": 40,
+    "Subcontractor invoice matching": 80,
+    "Bid proposal generation": 40
+  },
+  manufacturing: {
+    "Purchase order matching": 80,
+    "Quality inspection reports": 40,
+    "Supplier quote comparison": 60,
+    "Production schedule adjustments": 40,
+    "Customer order change management": 60
+  },
+  accounting: {
+    "Invoice processing": 80,
+    "Bank reconciliation": 80,
+    "Expense classification": 80,
+    "Month-end close checklist": 40,
+    "Client query triage": 60
+  },
+  agriculture: {
+    "Harvest & yield logs": 60,
+    "Cold-chain / temperature compliance": 60,
+    "Regulatory paperwork (FDA/USDA/FSSAI)": 60,
+    "Buyer contract & PO matching": 80,
+    "Crop / batch traceability records": 60
+  },
+  recycling: {
+    "Inbound load documentation": 80,
+    "Weighbridge ticket reconciliation": 80,
+    "Commodity price quote updates": 80,
+    "Hazmat classification": 40,
+    "Customer pickup scheduling": 60
+  },
+  logistics: {
+    "Proof-of-delivery processing": 80,
+    "Carrier rate comparison": 80,
+    "Exception / delay notifications": 60,
+    "Customs / HS code classification": 60,
+    "Invoice-to-BOL matching": 80
+  },
+  realestate: {
+    "Lease renewal & amendment drafting": 60,
+    "Tenant maintenance ticket triage": 60,
+    "Vendor invoice & utility-bill matching": 80,
+    "Vacancy / occupancy reporting": 60,
+    "Application & background-check review": 60
+  },
+  healthcare: {
+    "Patient intake form digitization": 80,
+    "Insurance pre-authorization": 60,
+    "Claims coding & denial review": 60,
+    "Appointment triage & no-show follow-up": 60,
+    "Discharge summary drafting": 40
+  },
+  retail: {
+    "Return / refund processing": 60,
+    "Product listing & content creation": 80,
+    "Customer query handling": 60,
+    "Promotion & pricing setup": 40,
+    "Fraud / chargeback review": 40
+  },
+  proservices: {
+    "Proposal & SOW drafting": 60,
+    "Timesheet classification & approval": 80,
+    "Client status reporting": 60,
+    "Expense categorization & reconciliation": 80,
+    "Knowledge-base / case-study reuse": 60
+  }
+};
+
+// =======================================================
+//                  Dimension guide (scoring)
+// =======================================================
+const DIM_GUIDE = [
+  {
+    key: "effort",
+    name: "Manual Effort",
+    question: "Does this consume a lot of human time?",
+    anchors: [
+      { at: 1, desc: "A few minutes, once a month, by one person (e.g., renewing a single annual license)" },
+      { at: 3, desc: "A few hours per week, by one person (e.g., drafting weekly status emails)" },
+      { at: 5, desc: "Many hours per day, by multiple people (e.g., an AP team keying hundreds of invoices)" }
+    ],
+    how: "Estimate total human-hours spent on this workflow in a typical month."
+  },
+  {
+    key: "repetition",
+    name: "Repetition",
+    question: "Does the same type of work happen repeatedly?",
+    anchors: [
+      { at: 1, desc: "Happens once or rarely (e.g., annual strategic planning)" },
+      { at: 3, desc: "Weekly or monthly (e.g., payroll run, monthly close)" },
+      { at: 5, desc: "Dozens to hundreds of times daily (e.g., customer support tickets)" }
+    ],
+    how: "Count how often the same shape of work recurs."
+  },
+  {
+    key: "impact",
+    name: "Business Impact",
+    question: "Does this affect revenue, cost, margin, compliance, or customer experience?",
+    anchors: [
+      { at: 1, desc: "Nice-to-have — no one notices if late or wrong (e.g., internal doc polish)" },
+      { at: 3, desc: "Affects a department's KPIs or one customer's experience (e.g., a delayed internal report)" },
+      { at: 5, desc: "Direct revenue, margin, compliance, or brand impact (e.g., late customer invoice, missed filing)" }
+    ],
+    how: "Ask what breaks if this workflow fails for a month."
+  },
+  {
+    key: "error",
+    name: "Error Risk",
+    question: "Do mistakes create rework, losses, delays, or customer issues?",
+    anchors: [
+      { at: 1, desc: "Errors are trivially fixable, no downstream impact (e.g., a typo in a comment)" },
+      { at: 3, desc: "Errors create rework, delay, or minor customer friction (e.g., wrong shipping label)" },
+      { at: 5, desc: "Errors cost money, violate compliance, or damage brand (e.g., miscoded claim, tax error)" }
+    ],
+    how: "Estimate the cost of one mistake — time, money, or customer risk."
+  },
+  {
+    key: "feasibility",
+    name: "AI Feasibility",
+    question: "Does the workflow involve documents, emails, calls, images, numbers, or rule-based decisions AI can assist with?",
+    anchors: [
+      { at: 1, desc: "Novel judgment, tacit relationships, or complex negotiation (e.g., leadership strategy)" },
+      { at: 3, desc: "Mostly structured but needs human sign-off on exceptions (e.g., vendor onboarding)" },
+      { at: 5, desc: "Document-, data-, or rule-driven — exactly where AI excels (e.g., invoice reading, classification)" }
+    ],
+    how: "How much of the work is reading, classifying, extracting, or applying rules vs. judgment?"
+  }
+];
+const DIM_GUIDE_BY_KEY = Object.fromEntries(DIM_GUIDE.map(g => [g.key, g]));
+
+// =======================================================
+//                    AI Roles catalog
+// =======================================================
+const AI_ROLES = [
+  { id: "reader",      name: "Reader",              desc: "Reads emails, PDFs, invoices, contracts, drawings" },
+  { id: "extractor",   name: "Extractor",           desc: "Pulls numbers, entities, dates, quantities, terms" },
+  { id: "classifier",  name: "Classifier",          desc: "Categorizes requests, documents, vendors, tickets" },
+  { id: "validator",   name: "Validator",           desc: "Checks against rules, contracts, POs, SOPs" },
+  { id: "draft",       name: "Draft Creator",       desc: "Prepares responses, estimates, proposals, summaries" },
+  { id: "executor",    name: "Workflow Executor",   desc: "Updates systems, triggers next steps" },
+  { id: "exceptions",  name: "Exception Router",    desc: "Sends unclear or risky cases to humans" },
+  { id: "knowledge",   name: "Knowledge Assistant", desc: "Answers based on company knowledge" }
+];
+
+// =======================================================
+//                    Pilot weeks template
+// =======================================================
+const PILOT_WEEKS = [
+  { n: 1, title: "Study the workflow",       activity: "Sample documents, map systems, list edge cases",        outcome: "Clear workflow map" },
+  { n: 2, title: "Build the AI prototype",   activity: "Extraction, classification, or drafting on real data",  outcome: "Working AI flow" },
+  { n: 3, title: "Wire in human approval",   activity: "Exception handling + integration with systems",          outcome: "Usable pilot" },
+  { n: 4, title: "Test & measure",           activity: "Run real cases; compare to baseline",                    outcome: "ROI evidence" }
+];
+
+// =======================================================
+//                      State model
+// =======================================================
+const STORAGE_KEY = "roi-matrix-v1";
+const SCHEMA_VERSION = 1;
+const DIMS = ["effort", "repetition", "impact", "error", "feasibility"];
+
+function defaultState() {
+  return {
+    version: SCHEMA_VERSION,
+    industry: null,
+    workflows: [],
+    selectedWorkflowId: null,
+    value: { people: null, hoursPerWeek: null, hourlyCost: null, weeksPerMonth: 4.33, reductionPct: 60, monthlyVolume: null, errorRate: null, errorCost: null },
+    ba: {}, // optional overrides keyed by metric name
+    pilot: { aiRoles: [], weekNotes: { 1: "", 2: "", 3: "", 4: "" }, owner: "", sponsor: "", startDate: "" },
+    ui: { activePhase: "identify", volumeOpen: false, errorOpen: false }
+  };
+}
+
+let state = defaultState();
+
+function genId() { return "w-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 6); }
+
+let saveTimer = null;
+function saveState() {
+  if (saveTimer) clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) { /* private mode, ignore */ }
+  }, 300);
+}
+
+function loadState() {
+  // 1) URL hash takes precedence (shareable link)
+  try {
+    const h = window.location.hash;
+    const m = h.match(/#s=([^&]+)/);
+    if (m && m[1]) {
+      const decoded = decodeStateFromHash(m[1]);
+      if (decoded) return decoded;
+    }
+  } catch (e) { /* ignore */ }
+  // 2) localStorage
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.version === SCHEMA_VERSION) return Object.assign(defaultState(), parsed);
+    }
+  } catch (e) { /* ignore */ }
+  return defaultState();
+}
+
+function encodeStateToHash(s) {
+  try {
+    const json = JSON.stringify(s);
+    // UTF-8 safe base64
+    const b64 = btoa(unescape(encodeURIComponent(json)));
+    return b64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  } catch (e) { return ""; }
+}
+function decodeStateFromHash(str) {
+  try {
+    const b64 = str.replace(/-/g, "+").replace(/_/g, "/");
+    const pad = b64.length % 4 === 0 ? "" : "=".repeat(4 - (b64.length % 4));
+    const json = decodeURIComponent(escape(atob(b64 + pad)));
+    const parsed = JSON.parse(json);
+    if (parsed && parsed.version === SCHEMA_VERSION) return Object.assign(defaultState(), parsed);
+  } catch (e) { /* ignore */ }
+  return null;
+}
+
+// =======================================================
+//                    Pure calc functions
+// =======================================================
+function isFullyScored(wf) {
+  if (!wf || !wf.scores) return false;
+  return DIMS.every(d => {
+    const v = wf.scores[d];
+    return typeof v === "number" && v >= 1 && v <= 5;
+  });
+}
+function scoredCount(wf) {
+  if (!wf || !wf.scores) return 0;
+  return DIMS.reduce((n, d) => {
+    const v = wf.scores[d];
+    return n + (typeof v === "number" && v >= 1 && v <= 5 ? 1 : 0);
+  }, 0);
+}
+function computeTotal(scores) {
+  return DIMS.reduce((a, d) => a + (Number(scores[d]) || 0), 0);
+}
+function tierForWorkflow(wf) {
+  if (!isFullyScored(wf)) return "unscored";
+  const total = computeTotal(wf.scores);
+  if (total >= 21) return "start";
+  if (total >= 16) return "explore";
+  if (total >= 11) return "backlog";
+  return "skip";
+}
+function tierFor(total) {
+  if (total >= 21) return "start";
+  if (total >= 16) return "explore";
+  if (total >= 11) return "backlog";
+  return "skip";
+}
+function tierLabel(t) {
+  return ({ unscored: "Unscored", start: "Start here", explore: "Explore next", backlog: "Backlog", skip: "Skip" })[t];
+}
+function tierRange(t) {
+  return ({ unscored: "rate all 5 dimensions", start: "21–25", explore: "16–20", backlog: "11–15", skip: "below 10" })[t];
+}
+function topWorkflow(workflows) {
+  const scored = workflows.filter(isFullyScored);
+  if (!scored.length) return null;
+  return scored.slice().sort((a, b) => computeTotal(b.scores) - computeTotal(a.scores))[0];
+}
+function primaryWorkflow(workflows) {
+  if (!workflows || !workflows.length) return null;
+  const scored = workflows.filter(isFullyScored);
+  if (scored.length) {
+    return scored.slice().sort((a, b) => computeTotal(b.scores) - computeTotal(a.scores))[0];
+  }
+  return workflows.slice().sort((a, b) => computeTotal(b.scores) - computeTotal(a.scores))[0];
+}
+function recommendedReduction(st) {
+  const wf = st.workflows.find(w => w.id === st.selectedWorkflowId);
+  if (!wf) return 60;
+  if (st.industry && RECOMMENDED_REDUCTIONS[st.industry] && RECOMMENDED_REDUCTIONS[st.industry][wf.name] != null) {
+    return RECOMMENDED_REDUCTIONS[st.industry][wf.name];
+  }
+  return 60;
+}
+function sortByTier(workflows) {
+  const groups = { unscored: [], start: [], explore: [], backlog: [], skip: [] };
+  workflows.forEach(w => {
+    groups[tierForWorkflow(w)].push(w);
+  });
+  ["start", "explore", "backlog", "skip"].forEach(k => {
+    groups[k].sort((a, b) => computeTotal(b.scores) - computeTotal(a.scores));
+  });
+  return groups;
+}
+function computeLaborSavings(v) {
+  const p = Number(v.people), h = Number(v.hoursPerWeek), r = Number(v.hourlyCost);
+  const w = Number(v.weeksPerMonth) || 4.33;
+  const red = Number(v.reductionPct) / 100;
+  if (!p || !h || !r || !red) return null;
+  const monthly = p * h * w * r * red;
+  return { monthly, annual: monthly * 12 };
+}
+function computeErrorSavings(v) {
+  const vol = Number(v.monthlyVolume), rate = Number(v.errorRate), cost = Number(v.errorCost);
+  if (!vol || !rate || !cost) return null;
+  const monthlyAvoided = vol * (rate / 100) * cost * 0.7; // assume 70% reduction
+  return { monthly: monthlyAvoided, annual: monthlyAvoided * 12 };
+}
+function roundForDisplay(n) {
+  if (n == null || isNaN(n)) return null;
+  if (n < 50000) return Math.round(n / 500) * 500;
+  return Math.round(n / 5000) * 5000;
+}
+function formatMoney(n) {
+  if (n == null || isNaN(n)) return "—";
+  const rounded = roundForDisplay(n);
+  return "$" + rounded.toLocaleString("en-US");
+}
+function suggestAIRolesFor(workflow) {
+  if (!workflow) return [];
+  const s = workflow.scores;
+  const roles = [];
+  if (s.feasibility >= 3) { roles.push("reader"); roles.push("extractor"); }
+  if (s.error >= 3) roles.push("validator");
+  if (s.repetition >= 4) roles.push("classifier");
+  if (s.impact >= 4) roles.push("draft");
+  roles.push("exceptions");
+  if (s.feasibility >= 4 && s.repetition >= 4) roles.push("executor");
+  return Array.from(new Set(roles));
+}
+
+// =======================================================
+//                      DOM helpers
+// =======================================================
+function el(html) {
+  const t = document.createElement("template");
+  t.innerHTML = html.trim();
+  return t.content.firstChild;
+}
+function escapeHtml(str) {
+  if (str == null) return "";
+  return String(str).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+// =======================================================
+//                   PHASE 1 rendering
+// =======================================================
+function renderPresetChips() {
+  const wrap = document.getElementById("presetChips");
+  wrap.innerHTML = "";
+  PRESET_ORDER.forEach(id => {
+    const p = PRESETS[id];
+    const b = el(`<button type="button" class="preset-chip${state.industry === id ? " active" : ""}" data-preset="${id}"><span class="pc-emoji">${p.emoji}</span>${escapeHtml(p.label)}</button>`);
+    b.addEventListener("click", () => applyPreset(id));
+    wrap.appendChild(b);
+  });
+  // Custom (start blank)
+  const custom = el(`<button type="button" class="preset-chip${state.industry === null && state.workflows.length > 0 ? " active" : ""}" data-preset="custom"><span class="pc-emoji">✎</span>Custom / start blank</button>`);
+  custom.addEventListener("click", () => applyCustom());
+  wrap.appendChild(custom);
+}
+
+function applyPreset(id) {
+  if (state.industry === id) return; // no-op if already active
+  const p = PRESETS[id];
+  const presetHints = HINTS[id] || {};
+  state.industry = id;
+  state.workflows = p.workflows.map(w => ({
+    id: genId(),
+    name: w.name,
+    dept: w.dept,
+    scores: Object.assign({}, w.scores),
+    examples: Array.isArray(w.examples) ? w.examples.slice() : null,
+    hints: presetHints[w.name] ? Object.assign({}, presetHints[w.name]) : null
+  }));
+  const top = topWorkflow(state.workflows) || primaryWorkflow(state.workflows);
+  state.selectedWorkflowId = top ? top.id : null;
+  state.value.reductionPct = recommendedReduction(state);
+  state.pilot.aiRoles = []; // reset suggestions for the new top workflow
+  saveState();
+  renderAll();
+}
+
+function applyCustom() {
+  state.industry = null;
+  state.workflows = [{
+    id: genId(),
+    name: "My first workflow",
+    dept: "Operations",
+    scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null },
+    examples: null
+  }];
+  state.selectedWorkflowId = state.workflows[0].id;
+  state.value.reductionPct = 60;
+  state.pilot.aiRoles = [];
+  saveState();
+  renderAll();
+}
+
+function renderWorkflowsArea() {
+  const wrap = document.getElementById("workflowsArea");
+  wrap.innerHTML = "";
+
+  if (state.workflows.length === 0) {
+    wrap.appendChild(el(`<div class="wf-empty"><strong>No workflows yet.</strong>Pick an industry above to preload examples, or click "Custom / start blank" to enter your own.</div>`));
+    return;
+  }
+
+  const dimLabels = { effort: "Manual Effort", repetition: "Repetition", impact: "Business Impact", error: "Error Risk", feasibility: "AI Feasibility" };
+
+  // Desktop table
+  const tableWrap = el(`<div class="wf-table-wrap"></div>`);
+  const table = el(`<table class="wf-table">
+    <thead>
+      <tr>
+        <th class="wf-col-name">Workflow</th>
+        ${DIMS.map(d => `<th class="wf-col-score"><span class="col-head-wrap">${escapeHtml(dimLabels[d])}${dimInfoIconHTML(d)}</span></th>`).join("")}
+        <th class="wf-col-total">Total</th>
+        <th class="wf-col-actions"></th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>`);
+  const tbody = table.querySelector("tbody");
+  state.workflows.forEach(wf => {
+    const badgeHTML = totalBadgeHTML(wf);
+    const row = el(`<tr class="wf-row" data-id="${wf.id}">
+      <td>
+        <div class="wf-name-wrap">
+          <input type="text" class="wf-name-input" data-id="${wf.id}" value="${escapeHtml(wf.name)}" aria-label="Workflow name" />
+          ${infoIconHTML(wf)}
+        </div>
+        <span class="wf-dept">${escapeHtml(wf.dept || "")}</span>
+      </td>
+      ${DIMS.map(d => `<td class="wf-score-cell" style="text-align:center;">${scoreGroupHTML(wf.id, d, wf.scores[d])}</td>`).join("")}
+      <td style="text-align:center;">${badgeHTML}</td>
+      <td style="text-align:center;"><button type="button" class="wf-remove" data-remove="${wf.id}" aria-label="Remove">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button></td>
+    </tr>`);
+    tbody.appendChild(row);
+  });
+  tableWrap.appendChild(table);
+  wrap.appendChild(tableWrap);
+
+  // Mobile cards
+  const cardsWrap = el(`<div class="wf-card"></div>`);
+  state.workflows.forEach(wf => {
+    const badgeHTML = totalBadgeHTML(wf);
+    const card = el(`<div class="wf-card-item" data-id="${wf.id}">
+      <div class="wf-card-head">
+        <div class="wf-name-wrap">
+          <input type="text" class="wf-name-input" data-id="${wf.id}" value="${escapeHtml(wf.name)}" aria-label="Workflow name" />
+          ${infoIconHTML(wf)}
+        </div>
+        <button type="button" class="wf-remove" data-remove="${wf.id}" aria-label="Remove">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="wf-card-scores">
+        ${DIMS.map(d => `<div class="wf-dim-label"><span>${escapeHtml(dimLabels[d])}</span>${dimInfoIconHTML(d)}</div><div>${scoreGroupHTML(wf.id, d, wf.scores[d])}</div>`).join("")}
+      </div>
+      <div class="wf-card-foot">
+        <span class="wf-dept">${escapeHtml(wf.dept || "")}</span>
+        ${badgeHTML}
+      </div>
+    </div>`);
+    cardsWrap.appendChild(card);
+  });
+  wrap.appendChild(cardsWrap);
+
+  if (state.workflows.length < 8) {
+    const addBtn = el(`<button type="button" class="wf-add-row" id="addWfBtn"><span class="plus">+</span>Add another workflow</button>`);
+    addBtn.addEventListener("click", addWorkflow);
+    wrap.appendChild(addBtn);
+  }
+
+  // Wire events (delegated)
+  wrap.querySelectorAll(".wf-name-input").forEach(inp => {
+    inp.addEventListener("input", (e) => {
+      const id = e.target.dataset.id;
+      const wf = state.workflows.find(w => w.id === id);
+      if (wf) { wf.name = e.target.value; saveState(); updateSummaryStrip(); refreshPhase3WfName(); refreshWfPicker(); renderPriorityBoard(); }
+    });
+  });
+  wrap.querySelectorAll(".score-btn").forEach(btn => {
+    btn.addEventListener("click", onScoreClick);
+  });
+  wrap.querySelectorAll(".wf-remove").forEach(btn => {
+    btn.addEventListener("click", (e) => removeWorkflow(e.currentTarget.dataset.remove));
+  });
+  wireInfoTooltips(wrap);
+}
+
+function infoIconHTML(wf) {
+  if (!wf.examples || wf.examples.length === 0) return "";
+  return `<button type="button" class="wf-info" data-wf-info="${wf.id}" aria-expanded="false" aria-label="Show examples for ${escapeHtml(wf.name)}">
+    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+  </button>`;
+}
+
+const openWfTips = new Set();
+function wireInfoTooltips(scope) {
+  scope.querySelectorAll(".wf-info").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      closeAllWfTips();
+      if (!isOpen) {
+        let html = "";
+        if (btn.dataset.wfInfo) {
+          const wf = state.workflows.find(w => w.id === btn.dataset.wfInfo);
+          if (!wf || !wf.examples) return;
+          html = wfTooltipContent(wf);
+        } else if (btn.dataset.dimInfo) {
+          const g = DIM_GUIDE_BY_KEY[btn.dataset.dimInfo];
+          if (!g) return;
+          html = dimTooltipContent(g);
+        } else if (btn.dataset.cellWf && btn.dataset.cellDim) {
+          const wf = state.workflows.find(w => w.id === btn.dataset.cellWf);
+          const g = DIM_GUIDE_BY_KEY[btn.dataset.cellDim];
+          if (!wf || !g) return;
+          html = cellTooltipContent(wf, btn.dataset.cellDim);
+        } else {
+          return;
+        }
+        btn.setAttribute("aria-expanded", "true");
+        showWfTip(btn, html);
+      }
+    });
+    btn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); btn.click(); }
+      else if (e.key === "Escape") { closeAllWfTips(); btn.blur(); }
+    });
+  });
+}
+function wfTooltipContent(wf) {
+  return `
+    <span class="pt-title">${escapeHtml(wf.name)}</span>
+    <span class="pt-sub">Examples of what this workflow looks like:</span>
+    ${wf.examples.map(x => `<span class="ex-item">${escapeHtml(x)}</span>`).join("")}
+  `;
+}
+function dimTooltipContent(g) {
+  const anchors = g.anchors.map(a => `<span class="ex-item"><strong>${a.at}</strong> — ${escapeHtml(a.desc)}</span>`).join("");
+  return `
+    <span class="pt-title">${escapeHtml(g.name)}</span>
+    <span class="pt-sub">${escapeHtml(g.question)}</span>
+    ${anchors}
+    <span class="pt-how"><strong>How to evaluate:</strong> ${escapeHtml(g.how)}</span>
+  `;
+}
+function cellTooltipContent(wf, dim) {
+  const g = DIM_GUIDE_BY_KEY[dim];
+  const hint = wf.hints && wf.hints[dim];
+  if (!hint) return dimTooltipContent(g); // fallback for custom workflows
+  const lowDesc = (g.anchors[0].desc.split("(")[0] || "").trim().replace(/[,;.]+$/, "");
+  const highDesc = (g.anchors[2].desc.split("(")[0] || "").trim().replace(/[,;.]+$/, "");
+  return `
+    <span class="pt-title">${escapeHtml(wf.name)} — ${escapeHtml(g.name)}</span>
+    <span class="pt-sub">${escapeHtml(g.question)}</span>
+    <span class="cell-hint">${escapeHtml(hint)}</span>
+    <span class="pt-how"><strong>Scale:</strong> <strong>1</strong> ${escapeHtml(lowDesc)} · <strong>5</strong> ${escapeHtml(highDesc)}.</span>
+  `;
+}
+function showWfTip(btn, innerHTML) {
+  const tip = document.createElement("div");
+  tip.className = "wf-tooltip";
+  tip.innerHTML = innerHTML;
+  tip.addEventListener("click", (e) => e.stopPropagation());
+  document.body.appendChild(tip);
+  requestAnimationFrame(() => {
+    tip.classList.add("visible");
+    positionTooltip(btn, tip);
+  });
+  openWfTips.add({ trigger: btn, tip });
+}
+function closeAllWfTips() {
+  document.querySelectorAll(".wf-info[aria-expanded=\"true\"]").forEach(b => b.setAttribute("aria-expanded", "false"));
+  openWfTips.forEach(({ tip }) => { if (tip && tip.parentNode) tip.parentNode.removeChild(tip); });
+  openWfTips.clear();
+}
+function repositionWfTips() {
+  openWfTips.forEach(({ trigger, tip }) => { if (trigger && tip) positionTooltip(trigger, tip); });
+}
+
+function scoreGroupHTML(wfId, dim, val) {
+  let html = `<div class="score-group-wrap">`;
+  html += `<div class="score-group" role="radiogroup" data-wf="${wfId}" data-dim="${dim}" aria-label="Score for ${dim}">`;
+  for (let i = 1; i <= 5; i++) {
+    html += `<button type="button" class="score-btn${val === i ? " active" : ""}" data-wf="${wfId}" data-dim="${dim}" data-val="${i}" role="radio" aria-checked="${val === i ? "true" : "false"}" aria-label="${i}">${i}</button>`;
+  }
+  html += `</div>`;
+  html += `<button type="button" class="wf-info wf-cell-info" data-cell-wf="${wfId}" data-cell-dim="${dim}" aria-expanded="false" aria-label="Scoring hint for this cell">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+  </button>`;
+  html += `</div>`;
+  return html;
+}
+
+function totalBadgeHTML(wf) {
+  const tier = tierForWorkflow(wf);
+  if (tier === "unscored") {
+    return `<span class="total-badge tier-unscored"><span>—</span><small>/25</small></span>`;
+  }
+  const total = computeTotal(wf.scores);
+  return `<span class="total-badge tier-${tier}"><span>${total}</span><small>/25</small></span>`;
+}
+
+function dimInfoIconHTML(dim) {
+  const g = DIM_GUIDE_BY_KEY[dim];
+  if (!g) return "";
+  return `<button type="button" class="wf-info wf-dim-info" data-dim-info="${dim}" aria-expanded="false" aria-label="About ${escapeHtml(g.name)}">
+    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+  </button>`;
+}
+
+function onScoreClick(e) {
+  const btn = e.currentTarget;
+  const wfId = btn.dataset.wf;
+  const dim = btn.dataset.dim;
+  const val = Number(btn.dataset.val);
+  const wf = state.workflows.find(w => w.id === wfId);
+  if (!wf) return;
+  wf.scores[dim] = val;
+  // Update all matching score groups (desktop + mobile share same data attrs)
+  document.querySelectorAll(`.score-group[data-wf="${wfId}"][data-dim="${dim}"] .score-btn`).forEach(b => {
+    const v = Number(b.dataset.val);
+    b.classList.toggle("active", v === val);
+    b.setAttribute("aria-checked", v === val ? "true" : "false");
+  });
+  // Update total badges for this workflow (there may be two: table + card)
+  const tier = tierForWorkflow(wf);
+  const badgeInner = tier === "unscored"
+    ? `<span>—</span><small>/25</small>`
+    : `<span>${computeTotal(wf.scores)}</span><small>/25</small>`;
+  document.querySelectorAll(`.wf-row[data-id="${wfId}"] .total-badge, .wf-card-item[data-id="${wfId}"] .total-badge`).forEach(b => {
+    b.className = "total-badge tier-" + tier;
+    b.innerHTML = badgeInner;
+  });
+  // Re-render priority board
+  renderPriorityBoard();
+  updateSummaryStrip();
+  saveState();
+}
+
+function addWorkflow() {
+  if (state.workflows.length >= 8) return;
+  state.workflows.push({
+    id: genId(),
+    name: "New workflow",
+    dept: "",
+    scores: { effort: null, repetition: null, impact: null, error: null, feasibility: null }
+  });
+  saveState();
+  renderWorkflowsArea();
+  renderPriorityBoard();
+  refreshWfPicker();
+  updateSummaryStrip();
+}
+
+function removeWorkflow(id) {
+  const wf = state.workflows.find(w => w.id === id);
+  if (!wf) return;
+  state.workflows = state.workflows.filter(w => w.id !== id);
+  if (state.selectedWorkflowId === id) {
+    const top = topWorkflow(state.workflows);
+    state.selectedWorkflowId = top ? top.id : null;
+  }
+  saveState();
+  renderWorkflowsArea();
+  renderPriorityBoard();
+  refreshWfPicker();
+  renderBATable();
+  renderRoleGrid();
+  renderSavings();
+  updateSummaryStrip();
+}
+
+function renderPriorityBoard() {
+  const board = document.getElementById("priorityBoard");
+  board.innerHTML = "";
+  if (state.workflows.length === 0) {
+    board.appendChild(el(`<div class="priority-empty" style="padding: 12px 0;">Add workflows above to see priorities.</div>`));
+    renderNextPhaseCTA();
+    return;
+  }
+  const groups = sortByTier(state.workflows);
+  const top = topWorkflow(state.workflows);
+
+  // Unscored first (only if any)
+  if (groups.unscored.length > 0) {
+    const band = el(`<div class="priority-band tier-unscored">
+      <div class="priority-band-head">
+        <div class="priority-band-title">📝 Unscored — ${groups.unscored.length} workflow${groups.unscored.length === 1 ? "" : "s"} still to rate</div>
+        <div class="priority-band-range">rate all 5 dimensions</div>
+      </div>
+      <div class="priority-items"></div>
+    </div>`);
+    const ic = band.querySelector(".priority-items");
+    groups.unscored.forEach(wf => {
+      const n = scoredCount(wf);
+      ic.appendChild(el(`<div class="priority-card unscored">
+        <span class="pc-name" title="${escapeHtml(wf.name)}">${escapeHtml(wf.name)}</span>
+        <span class="pc-progress">${n}/5 rated</span>
+      </div>`));
+    });
+    board.appendChild(band);
+  }
+
+  const tiers = ["start", "explore", "backlog", "skip"];
+  tiers.forEach(t => {
+    const items = groups[t];
+    const band = el(`<div class="priority-band tier-${t}">
+      <div class="priority-band-head">
+        <div class="priority-band-title">${tierLabel(t)}</div>
+        <div class="priority-band-range">${tierRange(t)}</div>
+      </div>
+      <div class="priority-items"></div>
+    </div>`);
+    const items_container = band.querySelector(".priority-items");
+    if (items.length === 0) {
+      items_container.appendChild(el(`<div class="priority-empty">No workflows in this tier.</div>`));
+    } else {
+      items.forEach((wf, idx) => {
+        const total = computeTotal(wf.scores);
+        const isTop = top && wf.id === top.id && t === "start";
+        const rankMark = (t === "start" || t === "explore") ? `<span class="pc-score">#${idx + 1}</span>` : "";
+        const card = el(`<div class="priority-card${isTop ? " top" : ""}">
+          ${rankMark}
+          <span class="pc-name" title="${escapeHtml(wf.name)}">${escapeHtml(wf.name)}</span>
+          <span class="pc-score">${total}/25</span>
+          ${isTop ? `<span class="pc-rec">✓ Recommended</span>` : ""}
+        </div>`);
+        items_container.appendChild(card);
+      });
+    }
+    board.appendChild(band);
+  });
+
+  // Degenerate all-skip callout (only when fully scored)
+  const fullyScored = state.workflows.filter(isFullyScored);
+  const skipCount = groups.skip.length;
+  if (fullyScored.length > 0 && skipCount === fullyScored.length) {
+    board.appendChild(el(`<div class="priority-empty" style="padding: 16px; background: var(--amber-soft); color: var(--amber-deep); border-radius: 12px; margin-top: 10px; font-style: normal; font-size: 13px;"><strong>All scored workflows landed in Skip.</strong> Try scoring them on a typical week rather than a best-case week.</div>`));
+  }
+
+  renderNextPhaseCTA();
+}
+
+function renderNextPhaseCTA() {
+  const wrap = document.getElementById("nextPhaseCTA");
+  if (!wrap) return;
+  wrap.innerHTML = "";
+
+  // Zero workflows — keep CTA disabled
+  if (state.workflows.length === 0) {
+    wrap.appendChild(el(`<div class="next-phase">
+      <div class="np-text">
+        <span class="np-label">Ready for Step 4?</span>
+        <strong>Add a workflow above</strong> to see your recommended starting point.
+      </div>
+      <button type="button" class="np-btn" disabled>Next: Quantify the ROI →</button>
+    </div>`));
+    return;
+  }
+
+  const top = topWorkflow(state.workflows);
+  // No fully-scored workflow yet — still allow advance, using the primary workflow
+  if (!top) {
+    const primary = primaryWorkflow(state.workflows);
+    const n = scoredCount(primary);
+    const cta = el(`<div class="next-phase">
+      <div class="np-text">
+        <span class="np-label">Primary workflow</span>
+        <strong>${escapeHtml(primary.name)}</strong> — ${n}/5 rated · you can finish scoring later to refine the ranking.
+      </div>
+      <button type="button" class="np-btn" id="nextPhaseBtn">Next: Quantify the ROI →</button>
+    </div>`);
+    wrap.appendChild(cta);
+    cta.querySelector("#nextPhaseBtn").addEventListener("click", () => advanceToPhase("quantify", primary.id));
+    return;
+  }
+  const total = computeTotal(top.scores);
+  const tier = tierFor(total);
+  const tierLine = tier === "start"
+    ? "strongest AI opportunity — highest ROI potential"
+    : tier === "explore"
+      ? "a good AI opportunity"
+      : tier === "backlog"
+        ? "a medium opportunity; consider scoring again or adding a higher-ROI workflow"
+        : "low priority by current scores — add or re-score workflows for a better starting point";
+  const cta = el(`<div class="next-phase">
+    <div class="np-text">
+      <span class="np-label">Recommended starting point</span>
+      <strong>${escapeHtml(top.name)}</strong> — ${total}/25 · ${tierLine}
+    </div>
+    <button type="button" class="np-btn" id="nextPhaseBtn">Next: Quantify the ROI →</button>
+  </div>`);
+  wrap.appendChild(cta);
+  const btn = cta.querySelector("#nextPhaseBtn");
+  btn.addEventListener("click", () => advanceToPhase("quantify", top.id));
+}
+
+function advanceToPhase(target, selectedId) {
+  if (selectedId) state.selectedWorkflowId = selectedId;
+  state.pilot.aiRoles = []; // re-suggest for the selected workflow
+  if (target === "quantify") {
+    state.value.reductionPct = recommendedReduction(state);
+  }
+  state.ui.activePhase = target;
+  saveState();
+  document.body.dataset.activePhase = target;
+  document.querySelectorAll("nav.phases .phase").forEach(t => {
+    const active = t.dataset.phase === target;
+    t.classList.toggle("current", active);
+    t.setAttribute("aria-selected", active ? "true" : "false");
+  });
+  closeAllWfTips();
+  // Re-render dependents
+  refreshWfPicker();
+  renderPhase2Inputs();
+  renderSavings();
+  renderBATable();
+  renderNextPlanCTA();
+  refreshPhase3WfName();
+  renderCharterHeader();
+  renderCharterMetrics();
+  renderCharterGng();
+  renderRoleGrid();
+  renderPilot();
+  updateSummaryStrip();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (target === "quantify") focusFirstQuantifyInput();
+}
+
+function renderNextPlanCTA() {
+  const wrap = document.getElementById("nextPlanCTA");
+  if (!wrap) return;
+  wrap.innerHTML = "";
+  const wf = state.workflows.find(w => w.id === state.selectedWorkflowId);
+  if (!wf) return;
+  const cta = el(`<div class="next-phase">
+    <div class="np-text">
+      <span class="np-label">Next step</span>
+      Turn this into a <strong>30-day pilot plan</strong> — define the AI roles and the week-by-week rollout for <strong>${escapeHtml(wf.name)}</strong>.
+    </div>
+    <button type="button" class="np-btn" id="nextPlanBtn">Next: Plan the pilot →</button>
+  </div>`);
+  wrap.appendChild(cta);
+  cta.querySelector("#nextPlanBtn").addEventListener("click", () => advanceToPhase("plan", wf.id));
+}
+
+function focusFirstQuantifyInput() {
+  requestAnimationFrame(() => {
+    try {
+      const body = document.getElementById("quantifyBody");
+      if (!body || body.style.display === "none") return;
+      const inp = document.getElementById("vcPeople");
+      if (!inp) return;
+      if (inp.value && inp.value.trim() !== "") return; // don't clobber existing entry
+      inp.focus({ preventScroll: true });
+    } catch (e) { /* ignore */ }
+  });
+}
+
+// =======================================================
+//                   PHASE 2 rendering
+// =======================================================
+function refreshWfPicker() {
+  const sel = document.getElementById("wfPicker");
+  if (!sel) return;
+  sel.innerHTML = "";
+  if (state.workflows.length === 0) return;
+  const sorted = state.workflows.slice().sort((a, b) => computeTotal(b.scores) - computeTotal(a.scores));
+  sorted.forEach(wf => {
+    const opt = document.createElement("option");
+    opt.value = wf.id;
+    const total = computeTotal(wf.scores);
+    opt.textContent = `${wf.name} — ${total}/25 (${tierLabel(tierFor(total))})`;
+    sel.appendChild(opt);
+  });
+  // If selected doesn't exist, pick top
+  if (!state.workflows.find(w => w.id === state.selectedWorkflowId)) {
+    state.selectedWorkflowId = sorted[0].id;
+  }
+  sel.value = state.selectedWorkflowId;
+}
+
+function renderPhase2Inputs() {
+  const v = state.value;
+  const setVal = (id, val) => { const e = document.getElementById(id); if (e) e.value = (val == null ? "" : val); };
+  setVal("vcPeople", v.people);
+  setVal("vcHours", v.hoursPerWeek);
+  setVal("vcRate", v.hourlyCost);
+  setVal("vcWeeks", v.weeksPerMonth);
+  setVal("vcVolume", v.monthlyVolume);
+  setVal("vcErrorRate", v.errorRate);
+  setVal("vcErrorCost", v.errorCost);
+  document.querySelectorAll(".reduction-btn").forEach(b => {
+    b.classList.toggle("active", Number(b.dataset.reduction) === v.reductionPct);
+  });
+  // Collapsible states
+  const vol = document.getElementById("volumeBlock");
+  const err = document.getElementById("errorBlock");
+  if (vol) vol.classList.toggle("collapsed", !state.ui.volumeOpen);
+  if (err) err.classList.toggle("collapsed", !state.ui.errorOpen);
+}
+
+function onValueInput(id, val) {
+  state.value[id] = val === "" || val == null ? null : Number(val);
+  saveState();
+  renderSavings();
+  renderBATable();
+  renderCharterHeader();
+  renderCharterMetrics();
+  renderCharterGng();
+  updateSummaryStrip();
+}
+
+function renderSavings() {
+  const hero = document.getElementById("savingsHero");
+  const sub  = document.getElementById("savingsSub");
+  const lines = document.getElementById("savingsLines");
+  if (!hero) return;
+  const labor = computeLaborSavings(state.value);
+  const err   = computeErrorSavings(state.value);
+  const annualTotal = (labor ? labor.annual : 0) + (err ? err.annual : 0);
+  lines.innerHTML = "";
+  if (!labor) {
+    hero.classList.add("dim");
+    hero.textContent = "—";
+    sub.textContent = "Enter people, hours, and hourly rate to estimate.";
+    return;
+  }
+  hero.classList.remove("dim");
+  hero.textContent = formatMoney(annualTotal) + "/yr";
+  const wf = state.workflows.find(w => w.id === state.selectedWorkflowId);
+  sub.textContent = wf ? `Estimated for ${wf.name}` : "Estimated annual labor + error savings";
+
+  lines.innerHTML = `
+    <div class="savings-line"><span class="sl-label">Labor savings</span><span class="sl-value">${formatMoney(labor.annual)}/yr</span></div>
+    <div class="savings-line"><span class="sl-label">Per month</span><span class="sl-value">${formatMoney(labor.monthly)}</span></div>
+    ${err ? `<div class="savings-line"><span class="sl-label">Error-cost avoided</span><span class="sl-value">${formatMoney(err.annual)}/yr</span></div>` : ""}
+    ${state.value.monthlyVolume ? (function() {
+      const vol = Number(state.value.monthlyVolume);
+      const beforeCost = (state.value.people || 0) * (state.value.hoursPerWeek || 0) * (state.value.weeksPerMonth || 4.33) * (state.value.hourlyCost || 0);
+      const afterCost = beforeCost * (1 - state.value.reductionPct / 100);
+      if (vol <= 0 || beforeCost <= 0) return "";
+      const beforePer = beforeCost / vol;
+      const afterPer  = afterCost / vol;
+      return `<div class="savings-line"><span class="sl-label">Cost / transaction</span><span class="sl-value">$${beforePer.toFixed(2)} → $${afterPer.toFixed(2)}</span></div>`;
+    })() : ""}
+  `;
+}
+
+function renderBATable() {
+  const tbody = document.getElementById("baTableBody");
+  if (!tbody) return;
+  const v = state.value;
+  const red = v.reductionPct / 100;
+  const before = {
+    "Time per task":      "30 min",
+    "Monthly volume":     v.monthlyVolume ? Number(v.monthlyVolume).toLocaleString() : "1,000",
+    "Error rate":         v.errorRate != null ? v.errorRate + "%" : "8%",
+    "Approval cycle":     "3 days",
+    "Human effort":       v.people ? (v.people + " people") : "5 people",
+    "Missed follow-ups":  "Frequent"
+  };
+  const after = {
+    "Time per task":      Math.max(1, Math.round(30 * (1 - red))) + " min",
+    "Monthly volume":     v.monthlyVolume ? Math.round(Number(v.monthlyVolume) * (1 + red)).toLocaleString() : "3,000",
+    "Error rate":         v.errorRate != null ? (Math.max(0, Number(v.errorRate) * 0.3)).toFixed(1) + "%" : "2%",
+    "Approval cycle":     "Same day",
+    "Human effort":       v.people ? Math.max(1, Math.ceil(Number(v.people) * (1 - red))) + " + AI" : "2 + AI",
+    "Missed follow-ups":  "Tracked by AI"
+  };
+  const rows = Object.keys(before);
+  tbody.innerHTML = "";
+  rows.forEach(metric => {
+    const b = state.ba[metric + "__before"] != null ? state.ba[metric + "__before"] : before[metric];
+    const a = state.ba[metric + "__after"]  != null ? state.ba[metric + "__after"]  : after[metric];
+    const tr = el(`<tr>
+      <td>${escapeHtml(metric)}</td>
+      <td><input type="text" class="ba-cell-input" data-metric="${escapeHtml(metric)}" data-side="before" value="${escapeHtml(b)}" /></td>
+      <td class="ba-after"><input type="text" class="ba-cell-input" data-metric="${escapeHtml(metric)}" data-side="after" value="${escapeHtml(a)}" /></td>
+    </tr>`);
+    tbody.appendChild(tr);
+  });
+  tbody.querySelectorAll(".ba-cell-input").forEach(inp => {
+    inp.addEventListener("change", (e) => {
+      const key = e.target.dataset.metric + "__" + e.target.dataset.side;
+      state.ba[key] = e.target.value;
+      saveState();
+    });
+  });
+}
+
+// =======================================================
+//                   PHASE 3 rendering
+// =======================================================
+function refreshPhase3WfName() {
+  const el = document.getElementById("planWfName");
+  if (!el) return;
+  const wf = state.workflows.find(w => w.id === state.selectedWorkflowId);
+  el.textContent = wf ? wf.name : "your workflow";
+}
+
+function renderCharterHeader() {
+  const wf = state.workflows.find(w => w.id === state.selectedWorkflowId);
+  const title = document.getElementById("charterTitle");
+  const goal = document.getElementById("charterGoal");
+  const ownerIn = document.getElementById("charterOwner");
+  const sponsorIn = document.getElementById("charterSponsor");
+  const startIn = document.getElementById("charterStart");
+  if (!title || !wf) return;
+  const industryLabel = state.industry && PRESETS[state.industry] ? PRESETS[state.industry].label : "your organization";
+  title.textContent = `${wf.name} — 30-day AI pilot`;
+  const red = state.value.reductionPct || 60;
+  const labor = computeLaborSavings(state.value);
+  const goalSavings = labor ? ` — targeting ~${formatMoney(labor.annual)}/yr in labor savings at scale.` : ".";
+  goal.textContent = `Prove AI can take over the high-volume parts of ${wf.name} at ${industryLabel}, reduce manual effort by ~${red}%, and hand humans a clear approver role${goalSavings}`;
+  if (ownerIn)   ownerIn.value   = state.pilot.owner || "";
+  if (sponsorIn) sponsorIn.value = state.pilot.sponsor || "";
+  if (startIn)   startIn.value   = state.pilot.startDate || "";
+}
+
+function renderCharterMetrics() {
+  const ul = document.getElementById("charterMetrics");
+  if (!ul) return;
+  ul.innerHTML = "";
+  const v = state.value;
+  const red = (v.reductionPct || 60) / 100;
+  const peopleBefore = v.people || 5;
+  const peopleAfter = Math.max(1, Math.ceil(peopleBefore * (1 - red)));
+  const volumeBefore = v.monthlyVolume || 1000;
+  const volumeAfter = Math.round(volumeBefore * (1 + red));
+  const errBefore = v.errorRate != null ? v.errorRate : 8;
+  const errAfter = (errBefore * 0.3).toFixed(1);
+  const metrics = [
+    { label: "Time per task", before: "30 min", after: Math.max(1, Math.round(30 * (1 - red))) + " min" },
+    { label: "Monthly volume handled", before: volumeBefore.toLocaleString(), after: volumeAfter.toLocaleString() },
+    { label: "Error rate", before: errBefore + "%", after: errAfter + "%" },
+    { label: "Approval cycle", before: "3 days", after: "Same day" },
+    { label: "Human effort on this workflow", before: peopleBefore + " people", after: peopleAfter + " people + AI" }
+  ];
+  metrics.forEach(m => {
+    ul.appendChild(el(`<li>
+      <span class="cm-label">${escapeHtml(m.label)}</span>
+      <span class="cm-values"><span class="cm-before">${escapeHtml(m.before)}</span><span class="cm-arrow">→</span><span class="cm-after">${escapeHtml(m.after)}</span></span>
+    </li>`));
+  });
+}
+
+function renderCharterGng() {
+  const ul = document.getElementById("charterGng");
+  if (!ul) return;
+  ul.innerHTML = "";
+  const red = state.value.reductionPct || 60;
+  const labor = computeLaborSavings(state.value);
+  const criteria = [
+    `Manual effort on this workflow reduced by at least <strong>${Math.max(20, red - 20)}%</strong> vs. the Week-0 baseline.`,
+    `Error rate reduced by at least <strong>50%</strong>, with every exception routed to a named human approver.`,
+    labor
+      ? `Projected annualized savings of at least <strong>${formatMoney(labor.annual * 0.6)}</strong> validated on real pilot volume.`
+      : `Clear cost-per-transaction reduction validated on real pilot volume.`,
+    `No customer-facing or compliance incidents traceable to AI during the 30-day window.`
+  ];
+  criteria.forEach(c => ul.appendChild(el(`<li><span>${c}</span></li>`)));
+}
+
+function renderRoleGrid() {
+  const grid = document.getElementById("roleGrid");
+  if (!grid) return;
+  grid.innerHTML = "";
+  // Auto-suggest if none chosen yet and we have a selected workflow
+  const wf = state.workflows.find(w => w.id === state.selectedWorkflowId);
+  if (state.pilot.aiRoles.length === 0 && wf) {
+    state.pilot.aiRoles = suggestAIRolesFor(wf);
+  }
+  AI_ROLES.forEach(r => {
+    const active = state.pilot.aiRoles.includes(r.id);
+    const card = el(`<button type="button" class="role-card${active ? " active" : ""}" data-role="${r.id}">
+      <span class="role-check">
+        <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <span class="role-name">${escapeHtml(r.name)}</span>
+      <span class="role-desc">${escapeHtml(r.desc)}</span>
+    </button>`);
+    card.addEventListener("click", () => toggleRole(r.id));
+    grid.appendChild(card);
+  });
+}
+
+function toggleRole(id) {
+  const idx = state.pilot.aiRoles.indexOf(id);
+  if (idx >= 0) state.pilot.aiRoles.splice(idx, 1);
+  else state.pilot.aiRoles.push(id);
+  saveState();
+  renderRoleGrid();
+  updateSummaryStrip();
+}
+
+function renderPilot() {
+  const grid = document.getElementById("pilotGrid");
+  if (!grid) return;
+  grid.innerHTML = "";
+  PILOT_WEEKS.forEach(w => {
+    const note = (state.pilot.weekNotes && state.pilot.weekNotes[w.n]) || "";
+    const card = el(`<div class="pilot-week">
+      <span class="pw-num">Week ${w.n}</span>
+      <h4>${escapeHtml(w.title)}</h4>
+      <p>${escapeHtml(w.activity)}</p>
+      <span class="pilot-outcome">✓ ${escapeHtml(w.outcome)}</span>
+      <textarea data-week="${w.n}" placeholder="Your notes for Week ${w.n}…">${escapeHtml(note)}</textarea>
+    </div>`);
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll("textarea").forEach(ta => {
+    ta.addEventListener("input", (e) => {
+      state.pilot.weekNotes[Number(e.target.dataset.week)] = e.target.value;
+      saveState();
+      updateSummaryStrip();
+    });
+  });
+}
+
+// =======================================================
+//                 Summary strip + locks
+// =======================================================
+function updateSummaryStrip() {
+  const top = topWorkflow(state.workflows);
+  const selected = state.workflows.find(w => w.id === state.selectedWorkflowId) || top;
+  document.getElementById("ssTop").textContent    = selected ? (selected.name.length > 32 ? selected.name.slice(0, 30) + "…" : selected.name) : "—";
+  document.getElementById("ssScore").textContent  = selected ? (isFullyScored(selected) ? (computeTotal(selected.scores) + "/25") : "—/25") : "—";
+  const labor = computeLaborSavings(state.value);
+  const err   = computeErrorSavings(state.value);
+  const annual = (labor ? labor.annual : 0) + (err ? err.annual : 0);
+  document.getElementById("ssSavings").textContent = labor ? (formatMoney(annual) + "/yr") : "—";
+  const pilotReady = state.pilot.aiRoles.length >= 2 && Object.values(state.pilot.weekNotes).some(n => n && n.trim().length > 0);
+  document.getElementById("ssPilot").textContent  = pilotReady ? "Drafted" : "Not set";
+  // Update locks
+  const hasWf = state.workflows.length > 0;
+  const qLock = document.getElementById("quantifyLock");
+  const qBody = document.getElementById("quantifyBody");
+  const pLock = document.getElementById("planLock");
+  const pBody = document.getElementById("planBody");
+  if (qLock) qLock.style.display = hasWf ? "none" : "block";
+  if (qBody) qBody.style.display = hasWf ? "block" : "none";
+  if (pLock) pLock.style.display = hasWf ? "none" : "block";
+  if (pBody) pBody.style.display = hasWf ? "block" : "none";
+}
+
+function renderAll() {
+  renderPresetChips();
+  renderWorkflowsArea();
+  renderPriorityBoard();
+  refreshWfPicker();
+  renderPhase2Inputs();
+  renderSavings();
+  renderBATable();
+  renderNextPlanCTA();
+  refreshPhase3WfName();
+  renderCharterHeader();
+  renderCharterMetrics();
+  renderCharterGng();
+  renderRoleGrid();
+  renderPilot();
+  updateSummaryStrip();
+}
+
+// =======================================================
+//                   Export helpers
+// =======================================================
+function exportMarkdown() {
+  const industry = state.industry && PRESETS[state.industry] ? PRESETS[state.industry].label : "Custom / blank";
+  const now = new Date();
+  const pad = n => String(n).padStart(2, "0");
+  const stamp = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+
+  let md = "";
+  md += "# ROI Matrix Summary\n\n";
+  md += `**Industry:** ${industry}\n`;
+  md += `**Exported:** ${stamp}\n`;
+  md += `**Workflows:** ${state.workflows.length}\n`;
+
+  // ---- Phase 1: Workflow Scoring ----
+  md += "\n## Phase 1 — Workflow Scoring\n\n";
+  if (state.workflows.length === 0) {
+    md += "_No workflows added yet._\n";
+  } else {
+    md += "| # | Workflow | Dept | Effort | Repetition | Impact | Error | Feasibility | Total | Tier |\n";
+    md += "|---|---|---|---:|---:|---:|---:|---:|---:|---|\n";
+    const sorted = state.workflows.slice().sort((a, b) => computeTotal(b.scores) - computeTotal(a.scores));
+    sorted.forEach((wf, idx) => {
+      const s = wf.scores || {};
+      const cell = k => (typeof s[k] === "number" ? s[k] : "—");
+      const full = isFullyScored(wf);
+      const total = full ? computeTotal(s) : "—";
+      const tier = full ? tierLabel(tierFor(computeTotal(s))) : `Unscored (${scoredCount(wf)}/5)`;
+      md += `| ${idx+1} | ${wf.name} | ${wf.dept || "—"} | ${cell("effort")} | ${cell("repetition")} | ${cell("impact")} | ${cell("error")} | ${cell("feasibility")} | ${total} | ${tier} |\n`;
+    });
+
+    // Priority ranking
+    const groups = sortByTier(state.workflows);
+    md += "\n### Priority Ranking\n";
+    [
+      ["start",    "Start here (21–25)"],
+      ["explore",  "Explore next (16–20)"],
+      ["backlog",  "Backlog (11–15)"],
+      ["skip",     "Skip (below 10)"],
+      ["unscored", "Unscored"]
+    ].forEach(([k, lab]) => {
+      const items = groups[k] || [];
+      if (!items.length) {
+        md += `- **${lab}:** —\n`;
+        return;
+      }
+      const names = items.map(w => {
+        if (k === "unscored") return `${w.name} (${scoredCount(w)}/5)`;
+        return `${w.name} (${computeTotal(w.scores)}/25)`;
+      }).join("; ");
+      md += `- **${lab}:** ${names}\n`;
+    });
+  }
+
+  // ---- Phase 2: Quantify ----
+  const selected = state.workflows.find(w => w.id === state.selectedWorkflowId) || state.workflows[0];
+  md += "\n## Phase 2 — Quantify\n";
+  if (!selected) {
+    md += "\n_No workflow selected._\n";
+  } else {
+    md += `\n**Selected workflow:** ${selected.name}${selected.dept ? ` (${selected.dept})` : ""}\n\n`;
+    const v = state.value;
+    const fmt = (x, suffix = "") => (x == null || x === "" ? "—" : `${x}${suffix}`);
+    md += `- People involved: ${fmt(v.people)}\n`;
+    md += `- Hours per week each: ${fmt(v.hoursPerWeek)}\n`;
+    md += `- Fully-loaded hourly cost: ${v.hourlyCost != null ? "$" + v.hourlyCost : "—"}\n`;
+    md += `- Weeks per month: ${fmt(v.weeksPerMonth)}\n`;
+    md += `- AI removal %: ${fmt(v.reductionPct, "%")}\n`;
+    if (v.monthlyVolume != null) md += `- Monthly volume: ${v.monthlyVolume.toLocaleString()}\n`;
+    if (v.errorRate != null)     md += `- Error rate: ${v.errorRate}%\n`;
+    if (v.errorCost != null)     md += `- Cost per error: $${v.errorCost}\n`;
+
+    const labor = computeLaborSavings(v);
+    const err   = computeErrorSavings(v);
+    md += "\n### Estimated Savings\n";
+    if (labor) {
+      md += `- **Labor savings:** ${formatMoney(labor.monthly)}/month · ${formatMoney(labor.annual)}/year\n`;
+    } else {
+      md += `- **Labor savings:** — (enter People, Hours, and Hourly cost)\n`;
+    }
+    if (err) md += `- **Error-cost avoided:** ${formatMoney(err.monthly)}/month · ${formatMoney(err.annual)}/year\n`;
+    if (labor) {
+      const annualTotal = labor.annual + (err ? err.annual : 0);
+      md += `- **Annual total:** ${formatMoney(annualTotal)}\n`;
+    }
+    md += "\n_Estimates only. Use for direction, not budget._\n";
+
+    // Before / After
+    const red = (v.reductionPct || 60) / 100;
+    const peopleBefore = v.people || 5;
+    const peopleAfter = Math.max(1, Math.ceil(peopleBefore * (1 - red)));
+    const volumeBefore = v.monthlyVolume || 1000;
+    const volumeAfter  = Math.round(volumeBefore * (1 + red));
+    const errBefore = v.errorRate != null ? v.errorRate : 8;
+    const errAfter  = (errBefore * 0.3).toFixed(1);
+    md += "\n### Before / After Metrics\n\n";
+    md += "| Metric | Before | After |\n|---|---|---|\n";
+    md += `| Time per task | 30 min | ${Math.max(1, Math.round(30 * (1 - red)))} min |\n`;
+    md += `| Monthly volume handled | ${volumeBefore.toLocaleString()} | ${volumeAfter.toLocaleString()} |\n`;
+    md += `| Error rate | ${errBefore}% | ${errAfter}% |\n`;
+    md += `| Approval cycle | 3 days | Same day |\n`;
+    md += `| Human effort | ${peopleBefore} people | ${peopleAfter} people + AI |\n`;
+  }
+
+  // ---- Phase 3: Pilot Charter ----
+  md += "\n## Phase 3 — Pilot Charter\n";
+  if (!selected) {
+    md += "\n_No workflow selected._\n";
+  } else {
+    md += `\n- **Workflow:** ${selected.name}\n`;
+    md += `- **Pilot owner:** ${state.pilot.owner || "—"}\n`;
+    md += `- **Exec sponsor:** ${state.pilot.sponsor || "—"}\n`;
+    md += `- **Start date:** ${state.pilot.startDate || "—"}\n`;
+
+    const roles = state.pilot.aiRoles
+      .map(id => AI_ROLES.find(r => r.id === id))
+      .filter(Boolean);
+    md += "\n### AI Roles\n";
+    if (roles.length === 0) {
+      md += "- _None selected — pick at least 2 in the Plan phase._\n";
+    } else {
+      roles.forEach(r => { md += `- **${r.name}** — ${r.desc}\n`; });
+    }
+
+    md += "\n### 4-Week Plan\n";
+    PILOT_WEEKS.forEach(w => {
+      const note = (state.pilot.weekNotes[w.n] || "").trim();
+      md += `\n**Week ${w.n} — ${w.title}**\n`;
+      md += `- Activity: ${w.activity}\n`;
+      md += `- Outcome: ${w.outcome}\n`;
+      if (note) md += `- Notes: ${note}\n`;
+    });
+
+    // Go / No-Go (mirror renderCharterGng logic)
+    const red = state.value.reductionPct || 60;
+    const labor = computeLaborSavings(state.value);
+    md += "\n### Go / No-Go at Day 30\n";
+    md += `- Manual effort on this workflow reduced by at least ${Math.max(20, red - 20)}% vs. the Week-0 baseline.\n`;
+    md += `- Error rate reduced by at least 50%, with every exception routed to a named human approver.\n`;
+    if (labor) {
+      md += `- Projected annualized savings of at least ${formatMoney(labor.annual * 0.6)} validated on real pilot volume.\n`;
+    } else {
+      md += `- Clear cost-per-transaction reduction validated on real pilot volume.\n`;
+    }
+    md += `- No customer-facing or compliance incidents traceable to AI during the 30-day window.\n`;
+  }
+
+  md += "\n---\nGenerated with the Techjays ROI Matrix · https://www.techjays.com\n";
+  return md;
+}
+
+function copyText(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    return navigator.clipboard.writeText(text);
+  }
+  // Fallback
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); } catch (e) {}
+  document.body.removeChild(ta);
+  return Promise.resolve();
+}
+
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("visible");
+  clearTimeout(t._tm);
+  t._tm = setTimeout(() => t.classList.remove("visible"), 2400);
+}
+
+// =======================================================
+//            Tooltip positioning (for future use)
+// =======================================================
+const GAP = 10, EDGE = 12;
+function positionTooltip(trigger, tip) {
+  const r = trigger.getBoundingClientRect();
+  const tw = tip.offsetWidth;
+  const th = tip.offsetHeight;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const spaceAbove = r.top;
+  const spaceBelow = vh - r.bottom;
+  let placement;
+  if (spaceAbove >= th + GAP + EDGE) placement = 'top';
+  else if (spaceBelow >= th + GAP + EDGE) placement = 'bottom';
+  else placement = spaceAbove > spaceBelow ? 'top' : 'bottom';
+  const top = placement === 'top' ? r.top - th - GAP : r.bottom + GAP;
+  const triggerCenter = r.left + r.width / 2;
+  let left = triggerCenter - tw / 2;
+  if (left < EDGE) left = EDGE;
+  if (left + tw > vw - EDGE) left = vw - EDGE - tw;
+  const arrowX = Math.max(14, Math.min(tw - 14, triggerCenter - left));
+  tip.style.top = Math.round(top) + 'px';
+  tip.style.left = Math.round(left) + 'px';
+  tip.style.setProperty('--arrow-x', Math.round(arrowX) + 'px');
+  tip.dataset.placement = placement;
+}
+
+// =======================================================
+//                    Bootstrap
+// =======================================================
+document.addEventListener("DOMContentLoaded", () => {
+  state = loadState();
+  if (!state.ui) state.ui = defaultState().ui;
+  if (!state.pilot) state.pilot = defaultState().pilot;
+  if (!state.pilot.weekNotes) state.pilot.weekNotes = { 1: "", 2: "", 3: "", 4: "" };
+  if (typeof state.pilot.owner    !== "string") state.pilot.owner    = "";
+  if (typeof state.pilot.sponsor  !== "string") state.pilot.sponsor  = "";
+  if (typeof state.pilot.startDate!== "string") state.pilot.startDate= "";
+  document.body.dataset.activePhase = state.ui.activePhase || "identify";
+  document.querySelectorAll(".phase").forEach(p => {
+    p.classList.toggle("current", p.dataset.phase === document.body.dataset.activePhase);
+    p.setAttribute("aria-selected", p.dataset.phase === document.body.dataset.activePhase ? "true" : "false");
+  });
+
+  // Phase tabs
+  document.querySelectorAll("nav.phases .phase").forEach(tab => {
+    tab.addEventListener("click", () => {
+      const target = tab.dataset.phase;
+      document.body.dataset.activePhase = target;
+      state.ui.activePhase = target;
+      saveState();
+      document.querySelectorAll("nav.phases .phase").forEach(t => {
+        t.classList.toggle("current", t === tab);
+        t.setAttribute("aria-selected", t === tab ? "true" : "false");
+      });
+      closeAllWfTips();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (target === "quantify") focusFirstQuantifyInput();
+    });
+  });
+
+  // Global listeners for workflow-info tooltips
+  document.addEventListener("click", closeAllWfTips);
+  window.addEventListener("resize", repositionWfTips);
+  window.addEventListener("scroll", repositionWfTips, true);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeAllWfTips(); });
+
+  // Reset
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    if (!confirm("Clear all inputs and start over? This cannot be undone.")) return;
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    if (window.location.hash) history.replaceState(null, "", window.location.pathname + window.location.search);
+    state = defaultState();
+    document.body.dataset.activePhase = "identify";
+    document.querySelectorAll("nav.phases .phase").forEach(t => {
+      t.classList.toggle("current", t.dataset.phase === "identify");
+      t.setAttribute("aria-selected", t.dataset.phase === "identify" ? "true" : "false");
+    });
+    renderAll();
+    showToast("Reset.");
+  });
+
+  // Phase 2: value inputs
+  const wire = (id, key) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener("input", () => onValueInput(key, el.value));
+    el.addEventListener("blur", () => onValueInput(key, el.value));
+  };
+  wire("vcPeople", "people");
+  wire("vcHours", "hoursPerWeek");
+  wire("vcRate", "hourlyCost");
+  wire("vcWeeks", "weeksPerMonth");
+  wire("vcVolume", "monthlyVolume");
+  wire("vcErrorRate", "errorRate");
+  wire("vcErrorCost", "errorCost");
+
+  document.querySelectorAll(".reduction-btn").forEach(b => {
+    b.addEventListener("click", () => {
+      state.value.reductionPct = Number(b.dataset.reduction);
+      document.querySelectorAll(".reduction-btn").forEach(o => o.classList.toggle("active", o === b));
+      saveState();
+      renderSavings();
+      renderBATable();
+      renderCharterHeader();
+      renderCharterMetrics();
+      renderCharterGng();
+      updateSummaryStrip();
+    });
+  });
+
+  // Charter meta inputs
+  const ownerIn = document.getElementById("charterOwner");
+  const sponsorIn = document.getElementById("charterSponsor");
+  const startIn = document.getElementById("charterStart");
+  if (ownerIn) ownerIn.addEventListener("input", () => { state.pilot.owner = ownerIn.value; saveState(); });
+  if (sponsorIn) sponsorIn.addEventListener("input", () => { state.pilot.sponsor = sponsorIn.value; saveState(); });
+  if (startIn) startIn.addEventListener("input", () => { state.pilot.startDate = startIn.value; saveState(); });
+
+  // Print Charter button — prints Phase 3 only
+  const printCharterBtn = document.getElementById("printCharterBtn");
+  if (printCharterBtn) {
+    printCharterBtn.addEventListener("click", () => {
+      document.body.classList.add("print-charter");
+      setTimeout(() => {
+        window.print();
+        setTimeout(() => document.body.classList.remove("print-charter"), 500);
+      }, 50);
+    });
+  }
+
+  document.querySelectorAll(".vc-collapsible-head").forEach(h => {
+    h.addEventListener("click", () => {
+      const key = h.dataset.toggle;
+      const block = document.getElementById(key);
+      block.classList.toggle("collapsed");
+      if (key === "volumeBlock") state.ui.volumeOpen = !block.classList.contains("collapsed");
+      if (key === "errorBlock")  state.ui.errorOpen  = !block.classList.contains("collapsed");
+      saveState();
+    });
+  });
+
+  // Workflow picker
+  document.getElementById("wfPicker").addEventListener("change", (e) => {
+    state.selectedWorkflowId = e.target.value;
+    state.value.reductionPct = recommendedReduction(state);
+    state.pilot.aiRoles = []; // reset suggestions for the new workflow
+    saveState();
+    renderPhase2Inputs();
+    renderSavings();
+    renderBATable();
+    renderNextPlanCTA();
+    refreshPhase3WfName();
+    renderCharterHeader();
+    renderCharterMetrics();
+    renderCharterGng();
+    renderRoleGrid();
+    updateSummaryStrip();
+  });
+
+  // Export menu
+  const exportBtn = document.getElementById("exportBtn");
+  const exportMenu = document.getElementById("exportMenu");
+  exportBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    exportMenu.classList.toggle("open");
+  });
+  document.addEventListener("click", () => exportMenu.classList.remove("open"));
+  exportMenu.addEventListener("click", (e) => e.stopPropagation());
+  exportMenu.querySelectorAll(".export-item").forEach(item => {
+    item.addEventListener("click", () => {
+      const kind = item.dataset.export;
+      exportMenu.classList.remove("open");
+      if (kind === "print") {
+        window.print();
+      } else if (kind === "markdown") {
+        copyText(exportMarkdown()).then(() => showToast("Summary copied to clipboard."));
+      } else if (kind === "link") {
+        const hash = encodeStateToHash(state);
+        const url = window.location.origin + window.location.pathname + "#s=" + hash;
+        copyText(url).then(() => showToast("Shareable link copied."));
+        history.replaceState(null, "", "#s=" + hash);
+      }
+    });
+  });
+
+  renderAll();
+});
+</script>
+
+</body>
+</html>
